@@ -6,6 +6,7 @@ const HomePage = () => {
         <div>
             <Hero />
             {/* আর future এ অন্য section: Featured, Categories, etc */}
+            Testing
         </div>
     );
 }
