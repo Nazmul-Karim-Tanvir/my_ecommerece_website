@@ -5,7 +5,7 @@ import { Heart, ShoppingCart, Search } from 'lucide-react'; // using lucide-reac
 const Navbar = () => {
     return (
         <nav className="bg-white pt-8 pb-4 px-8 border-b border-gray-300">
-            <div className="container mx-auto flex items-center justify-between">
+            <div className="my-container mx-auto flex items-center justify-between">
 
                 {/* Brand */}
                 <div className="text-xl font-bold text-gray-900">
