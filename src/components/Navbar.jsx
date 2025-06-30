@@ -33,9 +33,9 @@ const Navbar = () => {
 
 
                     {/* Icons */}
-                    <div className="flex items-center gap-4 text-gray-700 ml-6">
-                        <Heart className="w-5 h-5 hover:text-red-500 cursor-pointer" />
-                        <ShoppingCart className="w-5 h-5 hover:text-blue-500 cursor-pointer" />
+                    <div className="flex items-center gap-5 text-gray-700 ml-6">
+                        <Heart className="w-6 h-6 hover:text-red-500 cursor-pointer" />
+                        <ShoppingCart className="w-6 h-6 hover:text-blue-500 cursor-pointer" />
                     </div>
                 </div>
             </div>
