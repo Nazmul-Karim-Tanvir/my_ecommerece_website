@@ -2,10 +2,10 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
     return (
-        <div className="my-container  mx-auto flex gap-6 py-3">
+        <div className="max-w-[1170px] mx-auto flex gap-6 py-3">
             {/* Left Sidebar - Categories */}
             <div className="w-1/4 border-r border-gray-300">
-                <ul className="space-y-4 text-sm font-medium text-gray-700">
+                <ul className="space-y-4 text-xl font-medium text-gray-600">
                     <li className="cursor-pointer hover:text-black">Woman’s Fashion</li>
                     <li className="cursor-pointer hover:text-black">Men’s Fashion</li>
                     <li className="cursor-pointer hover:text-black">Electronics</li>
@@ -22,7 +22,7 @@ const Hero = () => {
             <div className="w-3/4 relative bg-black text-white overflow-hidden flex items-center p-10">
                 <div className="w-1/2 space-y-4">
                     <div className="flex items-center gap-6">
-                        <img src="../src/assets/images/iphone-logo.png" alt="Apple" className="w-10 h-12" />
+                        <img src="../src/assets/images/heroImages/iphone-logo.png" alt="Apple" className="w-10 h-12" />
                         <p className="text-xl text-gray-200">iPhone 14 Series</p>
                     </div>
                     <h2 className="text-6xl font-bold leading-tight">Up to 10% off Voucher</h2>
@@ -32,7 +32,7 @@ const Hero = () => {
                     </button>
                 </div>
                 <div className="w-1/2">
-                    <img src="../src/assets/images/iphone-hero.png" alt="iPhone" className="w-full object-contain" />
+                    <img src="../src/assets/images/heroImages/iphone-hero.png" alt="iPhone" className="w-full object-contain" />
                 </div>
             </div>
         </div>

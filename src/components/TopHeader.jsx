@@ -3,7 +3,7 @@ import React from 'react'
 const TopHeader = () => {
     return (
         <div className="w-full bg-black text-white text-md py-2 px-4">
-            <div className="my-container mx-auto flex justify-between items-center">
+            <div className="max-w-[1170px] mx-auto flex justify-between items-center">
 
                 {/* Center Part */}
                 <div className="flex-1 text-center">
