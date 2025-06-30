@@ -3,17 +3,25 @@ import { Heart, Eye } from 'lucide-react'; // optional icons from lucide-react
 const ProductCard = () => {
     return (
 
+        <div className=''>
+            <div className="max-w-[270px] h-[250px] relative bg-gray-100">
+                <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
+                    -40%
+                </div>
 
-        <div className="">
-            <div className="Top Badge and Icons">
-                <span className="">-40%</span>
-                <div className=""><Heart /><Eye /></div>
+                <div className="absolute top-2 right-2 flex flex-col gap-2">
+                    <div className='rounded-full bg-white p-2'><Heart /></div>
+                    <div className='rounded-full bg-white p-2'><Eye /></div>
+                </div>
+
+                <div className='absolute bottom-0 bg-black text-white w-full text-center py-2'>
+                    <button>Add To Cart</button>
+                </div>
+
+                <div className="items-center justify-center flex pt-8 m-auto px-auto">
+                    <img src="../src/assets/images/cardImages/Controler.png" />
+                </div>
             </div>
-
-            <div className="">
-                <img src="../src/assets/images/cardImages/Controler.png" />
-            </div>
-
             <div className="">
                 <h3 className="">HAVIT HV-G92 Gamepad</h3>
                 <div className="">
@@ -24,8 +32,8 @@ const ProductCard = () => {
                     ⭐ ⭐ ⭐ ⭐ ⭐ (88)
                 </div>
             </div>
-        </div>
 
+        </div>
 
         // <div className="max-w-xs bg-white shadow rounded p-4 relative">
         //     {/* Discount badge */}
