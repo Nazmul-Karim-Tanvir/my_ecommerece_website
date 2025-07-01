@@ -23,10 +23,10 @@ const ProductCard = () => {
                 </div>
             </div>
             <div className="">
-                <h3 className="">HAVIT HV-G92 Gamepad</h3>
-                <div className="">
-                    <span className="">$120</span>
-                    <span className="">$160</span>
+                <h3 className="text-lg pt-2 font-medium">HAVIT HV-G92 Gamepad</h3>
+                <div className="flex items-start pt-1.5 gap-2">
+                    <span className="text-red-600 font-medium">$120</span>
+                    <span className="text-gray-400 font-medium line-through">$160</span>
                 </div>
                 <div className="">
                     ⭐ ⭐ ⭐ ⭐ ⭐ (88)
