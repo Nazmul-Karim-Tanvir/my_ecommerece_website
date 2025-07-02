@@ -6,6 +6,8 @@ import {
     Camera,
     Headphones,
     Gamepad,
+    ArrowLeft,
+    ArrowRight,
 } from "lucide-react";
 
 const icons = [
@@ -33,11 +35,13 @@ export default function Categories() {
     };
 
     return (
-        <div className="mt-30">
+        <div className="mt-30 max-w-[1170px] mx-auto px-4">
             {/* Red bar and Categories */}
             <div className="flex items-center gap-3 mb-7">
                 <div className="bg-red-600 w-[20px] h-[40px] rounded"></div>
-                <h1 className="font-semibold text-xl text-red-600 font-mono">Categories</h1>
+                <h1 className="font-semibold text-xl text-red-600 font-mono">
+                    Categories
+                </h1>
             </div>
 
             {/* Browse by category with arrows */}
@@ -45,22 +49,22 @@ export default function Categories() {
                 <h1 className="text-4xl font-semibold">Browse By Category</h1>
 
                 {/* Arrows */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4">
                     <button
                         onClick={scrollLeft}
                         disabled={scrollIndex === 0}
-                        className="w-20 h-20 text-red-600 disabled:text-gray-300 text-2xl font-bold"
+                        className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-black disabled:text-gray-300 hover:text-red-600 cursor-pointer"
                         aria-label="Left"
                     >
-                        &#8592;
+                        <ArrowLeft size={20} />
                     </button>
                     <button
                         onClick={scrollRight}
                         disabled={scrollIndex >= icons.length - visibleCount}
-                        className="w-20 h-20 text-red-600 disabled:text-gray-300 text-2xl font-bold"
+                        className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-black disabled:text-gray-300 hover:text-red-600 cursor-pointer"
                         aria-label="Right"
                     >
-                        &#8594;
+                        <ArrowRight size={20} />
                     </button>
                 </div>
             </div>
@@ -76,7 +80,7 @@ export default function Categories() {
                                 className="flex flex-col items-center justify-center bg-gray-100 rounded shadow p-5 w-[250px] h-[180px] cursor-pointer hover:bg-red-600 hover:text-white transition-all"
                                 title={label}
                             >
-                                <Icon size={36} />
+                                <Icon size={56} />
                                 <span className="mt-3 text-base font-medium">{label}</span>
                             </li>
                         ))}
