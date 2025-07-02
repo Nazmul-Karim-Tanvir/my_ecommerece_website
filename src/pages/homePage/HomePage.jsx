@@ -8,7 +8,7 @@ const HomePage = () => {
         <div className='max-w-[1170px] mx-auto'>
             <Hero />
             <Today />
-            {/* <Categories /> */}
+            <Categories />
             <BestSelling />
             {/* আর future এ অন্য section: Featured, Categories, etc */}
         </div>
