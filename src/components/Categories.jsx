@@ -33,7 +33,7 @@ export default function Categories() {
     };
 
     return (
-        <div className="mt-10 max-w-[1170px] mx-auto px-4">
+        <div className="mt-30">
             {/* Red bar and Categories */}
             <div className="flex items-center gap-3 mb-7">
                 <div className="bg-red-600 w-[20px] h-[40px] rounded"></div>
@@ -49,7 +49,7 @@ export default function Categories() {
                     <button
                         onClick={scrollLeft}
                         disabled={scrollIndex === 0}
-                        className="w-10 h-10 text-red-600 disabled:text-gray-300 text-2xl font-bold"
+                        className="w-20 h-20 text-red-600 disabled:text-gray-300 text-2xl font-bold"
                         aria-label="Left"
                     >
                         &#8592;
@@ -57,7 +57,7 @@ export default function Categories() {
                     <button
                         onClick={scrollRight}
                         disabled={scrollIndex >= icons.length - visibleCount}
-                        className="w-10 h-10 text-red-600 disabled:text-gray-300 text-2xl font-bold"
+                        className="w-20 h-20 text-red-600 disabled:text-gray-300 text-2xl font-bold"
                         aria-label="Right"
                     >
                         &#8594;
