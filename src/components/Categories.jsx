@@ -17,12 +17,13 @@ const icons = [
     { Icon: Camera, label: "Camera" },
     { Icon: Headphones, label: "Headphones" },
     { Icon: Gamepad, label: "Gamepad" },
-    { Icon: Smartphone, label: "Extra" },
+    { Icon: Smartphone, label: "Sell Phone" },
+    { Icon: Monitor, label: "PC" },
 ];
 
 export default function Categories() {
     const [scrollIndex, setScrollIndex] = useState(0);
-    const visibleCount = 5;
+    const visibleCount = 6;
 
     const scrollLeft = () => {
         setScrollIndex((prev) => Math.max(prev - 1, 0));
