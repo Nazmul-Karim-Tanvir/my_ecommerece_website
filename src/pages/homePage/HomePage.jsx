@@ -2,6 +2,7 @@ import Hero from '../../components/Hero';
 import Today from '../../components/Today';
 import BestSelling from '../../components/BestSelling';
 import Categories from '../../components/Categories';
+import ExclusiveOffer from '../../components/ExclusiveOffer';
 
 const HomePage = () => {
     return (
@@ -10,6 +11,7 @@ const HomePage = () => {
             <Today />
             <Categories />
             <BestSelling />
+            <ExclusiveOffer />
             {/* আর future এ অন্য section: Featured, Categories, etc */}
         </div>
     );
