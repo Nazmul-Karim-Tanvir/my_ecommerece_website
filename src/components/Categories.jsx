@@ -22,7 +22,7 @@ const icons = [
 
 export default function Categories() {
     const [scrollIndex, setScrollIndex] = useState(0);
-    const visibleCount = 4;
+    const visibleCount = 5;
 
     const scrollLeft = () => {
         setScrollIndex((prev) => Math.max(prev - 1, 0));
@@ -35,7 +35,7 @@ export default function Categories() {
     };
 
     return (
-        <div className="mt-30 max-w-[1170px] mx-auto px-4">
+        <div className="mt-30">
             {/* Red bar and Categories */}
             <div className="flex items-center gap-3 mb-7">
                 <div className="bg-red-600 w-[20px] h-[40px] rounded"></div>
