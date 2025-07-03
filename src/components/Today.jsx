@@ -29,9 +29,9 @@ const Today = () => {
             </div>
 
             {/* FlashSales and Arrows */}
-            <div className="max-w-[1170px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-y-4 pb-6">
+            <div className="flex items-center justify-between">
                 <FlashSales />
-                <div className="flex items-center gap-4 pt-4 md:pt-0">
+                <div className="flex items-center gap-4 pt-4 md:pt-0 border-4 border-red-600">
                     <button
                         onClick={scrollLeft}
                         disabled={scrollIndex === 0}

@@ -24,14 +24,14 @@ const FlashSales = () => {
     }
 
     return (
-        <div className='max-w-[1170px] mx-auto font-semibold flex items-start pb-9 gap-x-28'>
+        <div className='font-semibold flex items-start pb-9 gap-x-28'>
             {/* Flash Sales Title */}
             <h1 className='text-4xl pt-6'>Flash Sales</h1>
 
             {/* Countdown block */}
             <div className="font-semibold">
                 {/* Labels */}
-                <div className="text-base flex justify-between gap-7 text-gray-600 pb-1">
+                <div className="text-base flex justify-between gap-8 text-gray-600 pb-1">
                     <span>Days</span>
                     <span>Hours</span>
                     <span>Minutes</span>
