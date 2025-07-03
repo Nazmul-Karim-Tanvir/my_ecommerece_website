@@ -4,8 +4,9 @@ import FlashSales from './FlashSales';
 import products from '../store/products';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
-const Today = () => {
-    const todayProducts = products.filter(product => product.section === "today");
+const ExploreProducts = () => {
+
+    const todayProducts = products.filter(product => product.section === "ourproducts");
 
     const [scrollIndex, setScrollIndex] = useState(0);
     const visibleCount = 4;
@@ -21,16 +22,14 @@ const Today = () => {
     };
 
     return (
-        <div className='mt-30'>
-            {/* Section Heading */}
+        <div className='my-7'>
             <div className="max-w-[1170px] mx-auto mb-7 flex items-center gap-3">
                 <div className="bg-red-600 w-[20px] h-[40px] rounded"></div>
-                <h1 className="font-semibold text-xl text-red-600 font-mono">Today's</h1>
+                <h1 className="font-semibold text-xl text-red-600 font-mono">Our Products</h1>
             </div>
 
-            {/* FlashSales and Arrows */}
-            <div className="max-w-[1170px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-y-4 pb-6">
-                <FlashSales />
+            <div className='flex justify-between mx-auto pb-9'>
+                <h1 className='text-4xl pr-6 font-semibold'>Explore Our Products</h1>
                 <div className="flex items-center gap-4 pt-4 md:pt-0">
                     <button
                         onClick={scrollLeft}
@@ -67,10 +66,8 @@ const Today = () => {
             <div className='text-center mx-auto'>
                 <button className='bg-red-600 hover:bg-red-400 text-white py-2 px-8 my-6 rounded'>View All Products</button>
             </div>
-
-            <hr className='border-gray-300' />
         </div>
-    );
-};
+    )
+}
 
-export default Today;
+export default ExploreProducts
