@@ -78,7 +78,7 @@ export default function Categories() {
                         .map(({ Icon, label }, idx) => (
                             <li
                                 key={idx}
-                                className="flex flex-col items-center justify-center bg-gray-100 rounded shadow p-5 w-[250px] h-[180px] cursor-pointer hover:bg-red-600 hover:text-white transition-all"
+                                className="flex flex-col items-center justify-center bg-gray-100 rounded shadow p-5 w-[170px] h-[145px] cursor-pointer hover:bg-red-600 hover:text-white transition-all"
                                 title={label}
                             >
                                 <Icon size={56} />

@@ -2,13 +2,13 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 const FlashSales = () => {
     // Set your countdown target date here
-    const targetDate = new Date('2025-07-05T00:00:00'); // YYYY-MM-DDTHH:mm:ss
+    const targetDate = new Date('2025-07-30T00:00:00'); // YYYY-MM-DDTHH:mm:ss
 
-    const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+    const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDate));
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const updatedTime = getTimeLeft();
+            const updatedTime = getTimeLeft(targetDate);
             setTimeLeft(updatedTime);
 
             if (updatedTime.total <= 0) {
@@ -24,31 +24,54 @@ const FlashSales = () => {
     }
 
     return (
-        <div className='max-w-[1170px] mx-auto font-semibold flex items-start pb-9'>
-            <h1 className='text-4xl pr-6'>Flash Sales</h1>
-            <div className="pl-6 text-4xl font-semibold flex gap-2">
-                <span>{timeLeft.days}d</span> :
-                <span>{timeLeft.hours}h</span> :
-                <span>{timeLeft.minutes}m</span> :
-                <span>{timeLeft.seconds}s</span>
+        <div className='max-w-[1170px] mx-auto font-semibold flex items-start pb-9 gap-x-28'>
+            {/* Flash Sales Title */}
+            <h1 className='text-4xl pt-6'>Flash Sales</h1>
+
+            {/* Countdown block */}
+            <div className="font-semibold">
+                {/* Labels */}
+                <div className="text-base flex justify-between gap-7 text-gray-600 pb-1">
+                    <span>Days</span>
+                    <span>Hours</span>
+                    <span>Minutes</span>
+                    <span>Seconds</span>
+                </div>
+
+                {/* Countdown values */}
+                <div className="text-4xl flex items-center gap-4">
+                    <span>{timeLeft.days}</span>
+                    <span className="text-red-600">:</span>
+                    <span>{timeLeft.hours}</span>
+                    <span className="text-red-600">:</span>
+                    <span>{timeLeft.minutes}</span>
+                    <span className="text-red-600">:</span>
+                    <span>{timeLeft.seconds}</span>
+                </div>
             </div>
         </div>
+
 
 
     )
 }
 // Helper function
-function getTimeLeft() {
-    const target = new Date('2025-07-05T00:00:00').getTime();
+function getTimeLeft(targetDate) {
+    const target = targetDate.getTime();
     const now = new Date().getTime();
     const difference = target - now;
 
+    const rawDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const rawHours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+    const rawMinutes = Math.floor((difference / (1000 * 60)) % 60);
+    const rawSeconds = Math.floor((difference / 1000) % 60);
+
     const time = {
         total: difference,
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / (1000 * 60)) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
+        days: String(rawDays).padStart(2, '0'),
+        hours: String(rawHours).padStart(2, '0'),
+        minutes: String(rawMinutes).padStart(2, '0'),
+        seconds: String(rawSeconds).padStart(2, '0'),
     };
 
     return time;
