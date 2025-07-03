@@ -1,35 +1,45 @@
 import React from 'react';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import androidstore from '../assets/images/footerImages/applestore.png'
+import playstore from '../assets/images/footerImages/playstore.png'
+import qrcode from '../assets/images/footerImages/qrcode.png'
 
 const Footer = () => {
     return (
         <footer className="bg-black text-white py-12">
-            <div className="max-w-[1170px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 px-6">
+            <div className="max-w-[1170px] mx-auto px-6 flex flex-col gap-10 md:flex-row md:justify-between md:items-start flex-wrap">
 
-                {/* Column 1 */}
-                <div>
+                {/* Column 1: Exclusive */}
+                <div className="max-w-[200px]">
                     <h3 className="text-lg font-semibold mb-4">Exclusive</h3>
-                    <ul className="space-y-2 text-sm text-gray-400">
-                        <li>Subscribe</li>
-                        <li>Get 10% off your first order</li>
-                        <li>Dummy Line 3</li>
+                    <p className="text-sm text-gray-200 mb-2">Subscribe</p>
+                    <p className="text-sm text-gray-200 mb-4">Get 10% off your first order</p>
 
-                    </ul>
+                    <div className="flex items-center border border-white rounded px-3 py-2">
+                        <input
+                            type="email"
+                            placeholder="Enter your email"
+                            className="bg-transparent outline-none text-sm w-full text-white placeholder:text-gray-400"
+                        />
+                        <button className="text-white ml-2 text-xl">➤</button>
+                    </div>
                 </div>
 
-                {/* Column 2 */}
-                <div>
+                {/* Column 2: Support */}
+                <div className="max-w-[200px]">
                     <h3 className="text-lg font-semibold mb-4">Support</h3>
-                    <ul className="space-y-2 text-sm text-gray-400">
-                        <li>111 Bijoy sarani, Dhaka,  DH 1515, Bangladesh.</li>
+                    <ul className="space-y-2 text-sm text-gray-200">
+                        <li>111 Bijoy sarani, Dhaka,</li>
+                        <li>DH 1515, Bangladesh.</li>
                         <li>exclusive@gmail.com</li>
                         <li>+88015-88888-9999</li>
                     </ul>
                 </div>
 
-                {/* Column 3 */}
-                <div>
+                {/* Column 3: Account */}
+                <div className="max-w-[200px]">
                     <h3 className="text-lg font-semibold mb-4">Account</h3>
-                    <ul className="space-y-2 text-sm text-gray-400">
+                    <ul className="space-y-2 text-sm text-gray-200">
                         <li>My Account</li>
                         <li>Login / Register</li>
                         <li>Cart</li>
@@ -38,10 +48,10 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                {/* Column 4 */}
-                <div>
+                {/* Column 4: Quick Link */}
+                <div className="max-w-[200px]">
                     <h3 className="text-lg font-semibold mb-4">Quick Link</h3>
-                    <ul className="space-y-2 text-sm text-gray-400">
+                    <ul className="space-y-2 text-sm text-gray-200">
                         <li>Privacy Policy</li>
                         <li>Terms Of Use</li>
                         <li>FAQ</li>
@@ -49,16 +59,45 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                {/* Column 5 */}
-                <div>
+                {/* Column 5: Download App */}
+                <div className="max-w-[200px]">
                     <h3 className="text-lg font-semibold mb-4">Download App</h3>
-                    <ul className="space-y-2 text-sm text-gray-400">
-                        <li>Save $3 with App New User Only</li>
-                        <li>Dummy Line 2</li>
+                    <p className="text-sm text-gray-200 mb-2">Save $3 with App New User Only</p>
 
-                    </ul>
+                    {/* QR Code + App Links */}
+                    <div className="flex gap-2 mb-4">
+                        <img
+                            src={qrcode}
+                            alt="QR"
+                            className="w-[80px] h-[80px] object-contain bg-white p-1"
+                        />
+                        <div className="flex flex-col gap-2">
+                            <img
+                                src={playstore}
+                                alt="Google Play"
+                                className="w-[100px]"
+                            />
+                            <img
+                                src={androidstore}
+                                alt="App Store"
+                                className="w-[100px]"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Social Icons */}
+                    <div className="flex gap-4 text-gray-200 text-lg">
+                        <FaFacebookF />
+                        <FaTwitter />
+                        <FaInstagram />
+                        <FaLinkedinIn />
+                    </div>
                 </div>
+            </div>
 
+            {/* Bottom line */}
+            <div className="text-center text-gray-200 text-xs mt-12">
+                © Copyright Rimel 2022. All right reserved
             </div>
         </footer>
     );
