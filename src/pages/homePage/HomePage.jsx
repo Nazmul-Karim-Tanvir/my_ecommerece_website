@@ -5,6 +5,7 @@ import Categories from '../../components/Categories';
 import ExclusiveOffer from '../../components/ExclusiveOffer';
 import ExploreProducts from '../../components/ExploreProducts';
 import NewArrival from '../../components/NewArrival';
+import Services from '../../components/Services';
 
 const HomePage = () => {
     return (
@@ -16,6 +17,7 @@ const HomePage = () => {
             <ExclusiveOffer />
             <ExploreProducts />
             <NewArrival />
+            <Services />
             {/* আর future এ অন্য section: Featured, Categories, etc */}
         </div>
     );
