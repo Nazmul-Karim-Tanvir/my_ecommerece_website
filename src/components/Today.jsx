@@ -31,7 +31,7 @@ const Today = () => {
             {/* FlashSales and Arrows */}
             <div className="flex items-center justify-between">
                 <FlashSales />
-                <div className="flex items-center gap-4 pt-4 md:pt-0 border-4 border-red-600">
+                <div className="flex items-center gap-4 pt-4 md:pt-0">
                     <button
                         onClick={scrollLeft}
                         disabled={scrollIndex === 0}

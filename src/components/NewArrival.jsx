@@ -1,7 +1,7 @@
 import React from 'react';
 import perfume from '../assets/images/newarrival/perfume.svg';
 import playstation from '../assets/images/newarrival/playstation.svg';
-import speaker3 from '../assets/images/newarrival/speaker3.jpg';
+import speaker3 from '../assets/images/newarrival/speaker3.png';
 import women from '../assets/images/newarrival/women.jpg';
 
 const NewArrival = () => {
@@ -15,10 +15,14 @@ const NewArrival = () => {
             <h1 className="text-4xl font-semibold mb-10">New Arrival</h1>
 
             {/* Grid Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+            <div className="flex flex-col lg:flex-row gap-5">
                 {/* Left large card */}
-                <div className="relative col-span-1 lg:col-span-2 h-[400px] rounded overflow-hidden bg-black">
-                    <img src={playstation} alt="PlayStation 5" className="w-[511] h-[511] object-cover" />
+                <div className="relative w-[570px] h-[600px] rounded overflow-hidden bg-black shrink-0">
+                    <img
+                        src={playstation}
+                        alt="PlayStation 5"
+                        className="w-[511px] h-[511px] object-cover mx-auto mt-6"
+                    />
                     <div className="absolute bottom-5 left-5 text-white">
                         <h2 className="text-xl font-bold">PlayStation 5</h2>
                         <p className="text-sm mb-2">Black and White version of the PS5 coming out on sale.</p>
@@ -27,10 +31,14 @@ const NewArrival = () => {
                 </div>
 
                 {/* Right column */}
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-5 flex-1">
                     {/* Women’s Collection */}
-                    <div className="relative h-[190px] rounded overflow-hidden bg-black">
-                        <img src={women} alt="Women Collection" className="w-full h-full object-cover" />
+                    <div className="relative w-[570px] h-[284px] rounded overflow-hidden bg-black">
+                        <img
+                            src={women}
+                            alt="Women Collection"
+                            className="w-[432px] h-[286px] object-cover mx-auto mt-[-1px]"
+                        />
                         <div className="absolute bottom-5 left-5 text-white">
                             <h2 className="text-xl font-bold">Women’s Collections</h2>
                             <p className="text-sm mb-2">Featured woman collections that give you another vibe.</p>
@@ -41,8 +49,12 @@ const NewArrival = () => {
                     {/* Speakers & Perfume */}
                     <div className="flex gap-5">
                         {/* Speakers */}
-                        <div className="relative w-1/2 h-[190px] rounded overflow-hidden bg-black">
-                            <img src={speaker3} alt="Speakers" className="w-[190] h-[221] object-cover" />
+                        <div className="relative w-[270px] h-[284px] rounded overflow-hidden bg-black flex items-center justify-center">
+                            <img
+                                src={speaker3}
+                                alt="Speakers"
+                                className="w-[190px] h-[221px] object-cover"
+                            />
                             <div className="absolute bottom-5 left-5 text-white">
                                 <h2 className="text-lg font-bold">Speakers</h2>
                                 <p className="text-sm mb-2">Amazon wireless speakers</p>
@@ -51,8 +63,12 @@ const NewArrival = () => {
                         </div>
 
                         {/* Perfume */}
-                        <div className="relative w-1/2 h-[190px] rounded overflow-hidden bg-black">
-                            <img src={perfume} alt="Perfume" className="w-full h-full object-cover" />
+                        <div className="relative w-[270px] h-[284px] rounded overflow-hidden bg-black flex items-center justify-center">
+                            <img
+                                src={perfume}
+                                alt="Perfume"
+                                className="w-[201px] h-[203px] object-cover"
+                            />
                             <div className="absolute bottom-5 left-5 text-white">
                                 <h2 className="text-lg font-bold">Perfume</h2>
                                 <p className="text-sm mb-2">GUCCI INTENSE OUD EDP</p>
