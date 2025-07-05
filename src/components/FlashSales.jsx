@@ -1,9 +1,7 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
-const FlashSales = () => {
-    // Set your countdown target date here
-    const targetDate = new Date('2025-07-30T00:00:00'); // YYYY-MM-DDTHH:mm:ss
+import React, { useEffect, useState } from 'react';
 
+const FlashSales = () => {
+    const targetDate = new Date('2025-07-30T00:00:00');
     const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDate));
 
     useEffect(() => {
@@ -16,7 +14,7 @@ const FlashSales = () => {
             }
         }, 1000);
 
-        return () => clearInterval(interval); // Clean up
+        return () => clearInterval(interval);
     }, []);
 
     if (timeLeft.total <= 0) {
@@ -24,14 +22,16 @@ const FlashSales = () => {
     }
 
     return (
-        <div className='font-semibold flex items-start pb-9 gap-x-28'>
+        <div className="font-semibold flex flex-col md:flex-row items-start md:items-center md:gap-x-28 gap-y-6 pb-9 px-4 md:px-0">
             {/* Flash Sales Title */}
-            <h1 className='text-4xl pt-6'>Flash Sales</h1>
+            <h1 className="text-3xl md:text-4xl pt-2 md:pt-6">
+                Flash Sales
+            </h1>
 
             {/* Countdown block */}
             <div className="font-semibold">
                 {/* Labels */}
-                <div className="text-base flex justify-between gap-8 text-gray-600 pb-1">
+                <div className="text-sm md:text-base flex justify-between gap-6 md:gap-8 text-gray-600 pb-1">
                     <span>Days</span>
                     <span>Hours</span>
                     <span>Minutes</span>
@@ -39,7 +39,7 @@ const FlashSales = () => {
                 </div>
 
                 {/* Countdown values */}
-                <div className="text-4xl flex items-center gap-4">
+                <div className="text-2xl md:text-4xl flex items-center gap-3 md:gap-4">
                     <span>{timeLeft.days}</span>
                     <span className="text-red-600">:</span>
                     <span>{timeLeft.hours}</span>
@@ -50,31 +50,22 @@ const FlashSales = () => {
                 </div>
             </div>
         </div>
+    );
+};
 
-
-
-    )
-}
 // Helper function
 function getTimeLeft(targetDate) {
     const target = targetDate.getTime();
     const now = new Date().getTime();
     const difference = target - now;
 
-    const rawDays = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const rawHours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-    const rawMinutes = Math.floor((difference / (1000 * 60)) % 60);
-    const rawSeconds = Math.floor((difference / 1000) % 60);
-
-    const time = {
+    return {
         total: difference,
-        days: String(rawDays).padStart(2, '0'),
-        hours: String(rawHours).padStart(2, '0'),
-        minutes: String(rawMinutes).padStart(2, '0'),
-        seconds: String(rawSeconds).padStart(2, '0'),
+        days: String(Math.floor(difference / (1000 * 60 * 60 * 24))).padStart(2, '0'),
+        hours: String(Math.floor((difference / (1000 * 60 * 60)) % 24)).padStart(2, '0'),
+        minutes: String(Math.floor((difference / (1000 * 60)) % 60)).padStart(2, '0'),
+        seconds: String(Math.floor((difference / 1000) % 60)).padStart(2, '0'),
     };
-
-    return time;
 }
 
-export default FlashSales
+export default FlashSales;
