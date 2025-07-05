@@ -134,7 +134,7 @@ const products = [
         offer: "-15%",
     },
     {
-        id: 10,
+        id: 11,
         section: "ourproducts",
         type: ["home", "appliance"],
         image: laptop,
@@ -146,7 +146,7 @@ const products = [
         offer: "-15%",
     },
     {
-        id: 10,
+        id: 12,
         section: "ourproducts",
         type: ["home", "appliance"],
         image: cream,
@@ -158,7 +158,7 @@ const products = [
         offer: "-15%",
     },
     {
-        id: 10,
+        id: 13,
         section: "ourproducts",
         type: ["home", "appliance"],
         image: chocolate,
@@ -170,7 +170,7 @@ const products = [
         offer: "-15%",
     },
     {
-        id: 10,
+        id: 14,
         section: "ourproducts",
         type: ["home", "appliance"],
         image: chocolate,
@@ -182,7 +182,7 @@ const products = [
         offer: "-15%",
     },
     {
-        id: 10,
+        id: 15,
         section: "ourproducts",
         type: ["home", "appliance"],
         image: chocolate,
@@ -194,7 +194,7 @@ const products = [
         offer: "-15%",
     },
     {
-        id: 10,
+        id: 16,
         section: "ourproducts",
         type: ["home", "appliance"],
         image: chocolate,
@@ -206,7 +206,7 @@ const products = [
         offer: "-15%",
     },
     {
-        id: 10,
+        id: 17,
         section: "today",
         type: ["home", "appliance"],
         image: jacketImg,
