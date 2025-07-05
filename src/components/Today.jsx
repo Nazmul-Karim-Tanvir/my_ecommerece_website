@@ -24,7 +24,7 @@ const Today = () => {
     const flashSalesTargetDate = new Date('2025-07-30T00:00:00');
 
     return (
-        <div className='max-w-[1170px] mx-auto mt-30'>
+        <div className='mt-30'>
             {/* Section Heading */}
             <div className="max-w-[1170px] mx-auto mb-7 flex items-center gap-3">
                 <div className="bg-red-600 w-[20px] h-[40px] rounded"></div>
@@ -32,7 +32,7 @@ const Today = () => {
             </div>
 
             {/* FlashSales and Arrows */}
-            <div className="flex items-center justify-between">
+            <div className="max-w-[1170px] mx-auto flex items-center justify-between">
                 {/* Pass the targetDate prop here */}
                 <FlashSales targetDate={flashSalesTargetDate} />
                 <div className="flex items-center gap-4 pt-4 md:pt-0">
@@ -56,9 +56,11 @@ const Today = () => {
             </div>
 
             {/* Carousel */}
-            <div className="max-w-[1170px] mx-auto overflow-hidden relative">
-                <div className="flex transition-all duration-300 gap-5"
-                    style={{ transform: `translateX(-${scrollIndex * 285}px)` }}>
+            <div className="w-full overflow-hidden relative">
+                <div
+                    className="flex transition-all duration-300 gap-5 pl-[calc((100%-1170px)/2)]"
+                    style={{ transform: `translateX(-${scrollIndex * 285}px)` }}
+                >
                     {todayProducts.map(product => (
                         <div key={product.id} className="min-w-[270px]">
                             <ProductCard {...product} />
@@ -66,6 +68,7 @@ const Today = () => {
                     ))}
                 </div>
             </div>
+
 
             {/* View All Button */}
             <div className='text-center mx-auto'>
