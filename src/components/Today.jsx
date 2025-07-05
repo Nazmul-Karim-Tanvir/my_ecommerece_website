@@ -20,6 +20,9 @@ const Today = () => {
         );
     };
 
+    // Define your desired target date here for the Flash Sales countdown:
+    const flashSalesTargetDate = new Date('2025-07-30T00:00:00');
+
     return (
         <div className='mt-30'>
             {/* Section Heading */}
@@ -30,7 +33,8 @@ const Today = () => {
 
             {/* FlashSales and Arrows */}
             <div className="flex items-center justify-between">
-                <FlashSales />
+                {/* Pass the targetDate prop here */}
+                <FlashSales targetDate={flashSalesTargetDate} />
                 <div className="flex items-center gap-4 pt-4 md:pt-0">
                     <button
                         onClick={scrollLeft}
