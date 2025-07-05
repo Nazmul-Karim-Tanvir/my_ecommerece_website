@@ -24,7 +24,7 @@ const Today = () => {
     const flashSalesTargetDate = new Date('2025-07-30T00:00:00');
 
     return (
-        <div className='mt-30'>
+        <div className='max-w-[1170px] mx-auto mt-30'>
             {/* Section Heading */}
             <div className="max-w-[1170px] mx-auto mb-7 flex items-center gap-3">
                 <div className="bg-red-600 w-[20px] h-[40px] rounded"></div>

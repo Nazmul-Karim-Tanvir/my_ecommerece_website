@@ -7,7 +7,7 @@ const ExclusiveOffer = () => {
     const { days, hours, minutes, seconds, total } = useCountdown(targetDate);
 
     return (
-        <div className='my-[100px]'>
+        <div className='max-w-[1170px] mx-auto my-[100px]'>
             <div className='relative bg-black text-white rounded overflow-hidden h-[500px] flex items-center justify-between px-10'>
 
                 {/* Text Content */}

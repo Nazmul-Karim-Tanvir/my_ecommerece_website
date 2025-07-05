@@ -36,7 +36,7 @@ export default function Categories() {
     };
 
     return (
-        <div className="mt-30">
+        <div className="max-w-[1170px] mx-auto mt-30">
             {/* Red bar and Categories */}
             <div className="flex items-center gap-3 mb-7">
                 <div className="bg-red-600 w-[20px] h-[40px] rounded"></div>
