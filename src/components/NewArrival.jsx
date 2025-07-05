@@ -6,18 +6,18 @@ import women from '../assets/images/newarrival/women.jpg';
 
 const NewArrival = () => {
     return (
-        <div className='mt-20 max-w-[1170px] mx-auto px-4'>
+        <div className='my-[100px] max-w-[1170px] mx-auto px-4'>
             {/* Section Heading */}
             <div className="mb-7 flex items-center gap-3">
                 <div className="bg-red-600 w-[20px] h-[40px] rounded"></div>
                 <h1 className="font-semibold text-xl text-red-600 font-mono">Featured</h1>
             </div>
-            <h1 className="text-4xl font-semibold mb-10">New Arrival</h1>
+            <h1 className="text-4xl font-semibold mb-10 tracking-wide uppercase">New Arrival</h1>
 
             {/* Grid Layout */}
-            <div className="flex flex-col lg:flex-row gap-5">
+            <div className="flex flex-col lg:flex-row gap-5 items-end">
                 {/* Left large card */}
-                <div className="relative w-[570px] h-[600px] rounded overflow-hidden bg-black shrink-0 flex items-end justify-center">
+                <div className="relative w-full lg:w-[570px] h-[600px] rounded overflow-hidden bg-black shrink-0 flex items-end justify-center">
                     <img
                         src={playstation}
                         alt="PlayStation 5"
@@ -30,11 +30,10 @@ const NewArrival = () => {
                     </div>
                 </div>
 
-
                 {/* Right column */}
-                <div className="flex flex-col gap-5 flex-1">
+                <div className="flex flex-col gap-8 flex-1">
                     {/* Women’s Collection */}
-                    <div className="relative w-[570px] h-[284px] rounded overflow-hidden bg-black flex items-center justify-end">
+                    <div className="relative w-full h-[284px] rounded overflow-hidden bg-black flex items-center justify-end">
                         <img
                             src={women}
                             alt="Women Collection"
@@ -48,9 +47,9 @@ const NewArrival = () => {
                     </div>
 
                     {/* Speakers & Perfume */}
-                    <div className="flex justify-between">
+                    <div className="flex flex-col sm:flex-row gap-5">
                         {/* Speakers */}
-                        <div className="relative w-[270px] h-[284px] rounded overflow-hidden bg-black flex items-center justify-center">
+                        <div className="relative w-full sm:w-[270px] h-[284px] rounded overflow-hidden bg-black flex items-center justify-center">
                             <img
                                 src={speaker3}
                                 alt="Speakers"
@@ -64,7 +63,7 @@ const NewArrival = () => {
                         </div>
 
                         {/* Perfume */}
-                        <div className="relative w-[270px] h-[284px] rounded overflow-hidden bg-black flex items-center justify-center">
+                        <div className="relative w-full sm:w-[270px] h-[284px] rounded overflow-hidden bg-black flex items-center justify-center">
                             <img
                                 src={perfume}
                                 alt="Perfume"
