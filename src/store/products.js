@@ -261,6 +261,26 @@ const products = {
       newPrice: 550,
       offer: "-15%",
     },
+    {
+      id: 17,
+      image: gamepad,
+      productName: "GP11 Shooter USB Gamepad",
+      rating: 4.9,
+      starCount: 500,
+      oldPrice: 650,
+      newPrice: 550,
+      offer: "-15%",
+    },
+    {
+      id: 18,
+      image: jacketImg,
+      productName: "Winter Jacket",
+      rating: 4.9,
+      starCount: 500,
+      oldPrice: 650,
+      newPrice: 550,
+      offer: "-15%",
+    },
   ]
 };
 
