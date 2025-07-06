@@ -5,7 +5,7 @@ import products from '../store/products';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const Today = () => {
-     const todayProducts = products.today;
+    const todayProducts = products.today;
 
     const [scrollIndex, setScrollIndex] = useState(0);
     const visibleCount = 4;
@@ -55,13 +55,17 @@ const Today = () => {
                 </div>
             </div>
 
-            {/* Carousel */}
+
+            {/* Scrolling Track - Full Width */}
             <div className="w-full overflow-hidden relative">
                 <div
                     className="flex transition-all duration-300 gap-5 pl-[calc((100%-1170px)/2)]"
-                    style={{ transform: `translateX(-${scrollIndex * 285}px)` }}
+                    style={{
+                        width: `${todayProducts.length * 285}px`,
+                        transform: `translateX(-${scrollIndex * 285}px)`,
+                    }}
                 >
-                    {todayProducts.map(product => (
+                    {todayProducts.map((product) => (
                         <div key={product.id} className="min-w-[270px]">
                             <ProductCard {...product} />
                         </div>
