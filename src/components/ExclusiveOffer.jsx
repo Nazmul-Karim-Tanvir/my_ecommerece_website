@@ -1,6 +1,6 @@
 import React from 'react';
 import speakerImage from '../assets/images/offerImages/speaker.svg';
-import useCountdown from '../utils/useCountdown';
+import { useCountdown } from '../utils/countdown';
 
 const ExclusiveOffer = () => {
     const targetDate = new Date('2025-07-10T00:00:00');
@@ -38,8 +38,6 @@ const ExclusiveOffer = () => {
                     ) : (
                         <div className="text-red-600 font-bold text-2xl mb-6">Offer Ended!</div>
                     )}
-
-
 
                     <button className="bg-green-400 hover:bg-red-600 transition text-white px-9 py-3 rounded font-semibold">
                         Buy Now
