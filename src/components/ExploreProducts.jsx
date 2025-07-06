@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const ExploreProducts = () => {
 
-    const todayProducts = products.filter(product => product.section === "ourproducts");
+    const ourProducts = products.ourProducts;
 
     const [scrollIndex, setScrollIndex] = useState(0);
     const visibleCount = 4;
@@ -17,7 +17,7 @@ const ExploreProducts = () => {
 
     const scrollRight = () => {
         setScrollIndex((prev) =>
-            Math.min(prev + 1, todayProducts.length - visibleCount)
+            Math.min(prev + 1, ourProducts.length - visibleCount)
         );
     };
 
@@ -41,7 +41,7 @@ const ExploreProducts = () => {
                     </button>
                     <button
                         onClick={scrollRight}
-                        disabled={scrollIndex >= todayProducts.length - visibleCount}
+                        disabled={scrollIndex >= ourProducts.length - visibleCount}
                         className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-black disabled:text-gray-300 hover:text-red-600 cursor-pointer"
                         aria-label="Right"
                     >
@@ -54,7 +54,7 @@ const ExploreProducts = () => {
             <div className="max-w-[1170px] mx-auto overflow-hidden relative">
                 <div className="flex transition-all duration-300 gap-5"
                     style={{ transform: `translateX(-${scrollIndex * 285}px)` }}>
-                    {todayProducts.map(product => (
+                    {ourProducts.map(product => (
                         <div key={product.id} className="min-w-[270px]">
                             <ProductCard {...product} />
                         </div>

@@ -5,7 +5,7 @@ import products from '../store/products';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const Today = () => {
-    const todayProducts = products.filter(product => product.section === "today");
+     const todayProducts = products.today;
 
     const [scrollIndex, setScrollIndex] = useState(0);
     const visibleCount = 4;

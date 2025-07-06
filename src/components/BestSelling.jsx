@@ -1,7 +1,7 @@
 import products from '../store/products'
 import ProductCard from './ProductCard'
 const BestSelling = () => {
-    const todayProducts = products.filter(product => product.section === "thismonth");
+    const bestSelling = products.thisMonth;
     return (
         <div className='max-w-[1170px] mx-auto mt-30'>
             < div className="max-w-[1170px] mx-auto m-auto mb-7 flex items-center gap-3" >
@@ -13,7 +13,7 @@ const BestSelling = () => {
                 <button className='text-white bg-red-600 rounded px-6'>View All</button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {todayProducts.map(product => (
+                {bestSelling.map(product => (
                     <ProductCard key={product.id} {...product} />
                 ))}
             </div>
