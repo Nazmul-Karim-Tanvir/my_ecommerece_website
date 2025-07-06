@@ -59,7 +59,7 @@ const Today = () => {
             {/* Scrolling Track - Full Width */}
             <div className="w-full overflow-hidden relative">
                 <div
-                    className="flex transition-all duration-300 gap-5 pl-[calc((100%-1170px)/2)]"
+                    className="flex transition-all duration-300 gap-8 pl-[calc((100%-1170px)/2)]"
                     style={{
                         width: `${todayProducts.length * 285}px`,
                         transform: `translateX(-${scrollIndex * 285}px)`,

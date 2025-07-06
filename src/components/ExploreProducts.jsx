@@ -52,7 +52,7 @@ const ExploreProducts = () => {
 
             {/* Carousel */}
             <div className="max-w-[1170px] mx-auto overflow-hidden relative">
-                <div className="flex transition-all duration-300 gap-5"
+                <div className="flex transition-all duration-300 gap-8"
                     style={{ transform: `translateX(-${scrollIndex * 285}px)` }}>
                     {ourProducts.map(product => (
                         <div key={product.id} className="min-w-[270px]">
