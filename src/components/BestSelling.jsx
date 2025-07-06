@@ -12,7 +12,7 @@ const BestSelling = () => {
                 <h1 className='text-4xl pr-6 font-semibold'>Best Selling Products</h1>
                 <button className='text-white bg-red-600 rounded px-6'>View All</button>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-5">
                 {bestSelling.map(product => (
                     <ProductCard key={product.id} {...product} />
                 ))}

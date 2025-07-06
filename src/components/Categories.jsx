@@ -71,7 +71,7 @@ export default function Categories() {
             </div>
 
             {/* Carousel area */}
-            <div className="w-full overflow-hidden">
+            <div className="w-full overflow-hidden py-5">
                 <ul className="flex justify-between gap-4">
                     {icons
                         .slice(scrollIndex, scrollIndex + visibleCount)

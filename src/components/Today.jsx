@@ -75,11 +75,11 @@ const Today = () => {
 
 
             {/* View All Button */}
-            <div className='text-center mx-auto'>
+            <div className='text-center mx-auto py-5'>
                 <button className='bg-red-600 hover:bg-red-400 text-white py-2 px-8 my-6 rounded'>View All Products</button>
             </div>
 
-            <hr className='border-gray-300' />
+            <hr className='max-w-[1170px] mx-auto border-gray-300' />
         </div>
     );
 };
