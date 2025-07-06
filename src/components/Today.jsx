@@ -75,7 +75,7 @@ const Today = () => {
 
 
             {/* View All Button */}
-            <div className='text-center mx-auto py-5'>
+            <div className='text-center mx-auto pb-5 pt-7'>
                 <button className='bg-red-600 hover:bg-red-400 text-white py-2 px-8 my-6 rounded'>View All Products</button>
             </div>
 
