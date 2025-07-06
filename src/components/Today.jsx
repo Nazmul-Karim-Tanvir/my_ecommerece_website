@@ -61,8 +61,8 @@ const Today = () => {
                 <div
                     className="flex transition-all duration-300 gap-6 pl-[calc((100%-1170px)/2)]"
                     style={{
-                        width: `${todayProducts.length * 285}px`,
-                        transform: `translateX(-${scrollIndex * 285}px)`,
+                        width: `${todayProducts.length * 298.5}px`,
+                        transform: `translateX(-${scrollIndex * 298.5}px)`,
                     }}
                 >
                     {todayProducts.map((product) => (
