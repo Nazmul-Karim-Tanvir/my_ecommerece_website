@@ -6,7 +6,7 @@ import women from '../assets/images/newarrival/women.jpg';
 
 const NewArrival = () => {
     return (
-        <div className='my-[100px] max-w-[1170px] mx-auto px-4'>
+        <div className='max-w-[1170px] mx-auto my-[100px]'>
             {/* Section Heading */}
             <div className="mb-7 flex items-center gap-3">
                 <div className="bg-red-600 w-[20px] h-[40px] rounded"></div>
@@ -47,7 +47,7 @@ const NewArrival = () => {
                     </div>
 
                     {/* Speakers & Perfume */}
-                    <div className="flex flex-col sm:flex-row gap-5">
+                    <div className="flex flex-col sm:flex-row gap-10">
                         {/* Speakers */}
                         <div className="relative w-full sm:w-[270px] h-[284px] rounded overflow-hidden bg-black flex items-center justify-center">
                             <img
