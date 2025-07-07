@@ -12,7 +12,7 @@ const ExclusiveOffer = () => {
 
                 {/* Text Content */}
                 <div className="z-10 max-w-md">
-                    <p className='font-sans font-semibold py-5 text-green-400'>categories</p>
+                    <p className='font-sans font-semibold py-5 text-green-400'>Categories</p>
                     <h2 className="text-3xl md:text-5xl font-bold mb-4">Enhance Your Music Experience</h2>
                     <p className="text-gray-300 mb-6">
                         Get the best sound experience with our top-rated speaker. Limited time offer. Don’t miss out!
