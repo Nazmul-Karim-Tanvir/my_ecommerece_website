@@ -6,7 +6,10 @@ import Header from '../layout/Header';
 import Body from '../layout/Body';
 import Footer from '../layout/Footer';
 
-import HomePage from '../pages/homePage/HomePage';
+import HomePage from '../pages/homePage/HomePage.jsx';
+import About from '../pages/about/About.jsx';
+import Contact from '../pages/contact/Contact.jsx';
+import SignUp from '../pages/signUp/SignUp.jsx';
 
 const AppRoutes = () => {
     return (
@@ -22,6 +25,12 @@ const AppRoutes = () => {
                 }
             >
                 <Route index element={<HomePage />} />
+                <Route path="about" element={<About />} />
+                <Route path="contact" element={<Contact />} />
+                <Route path="signup" element={<SignUp />} />
+                <Route path="*" element={<div className="text-center py-10 text-2xl">404 - Page Not Found</div>} />
+
+
             </Route>
         </Routes>
     );
