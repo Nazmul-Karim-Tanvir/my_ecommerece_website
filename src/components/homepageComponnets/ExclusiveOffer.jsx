@@ -1,6 +1,6 @@
 import React from 'react';
-import speakerImage from '../assets/images/offerImages/speaker.svg';
-import { useCountdown } from '../utils/countdown';
+import speakerImage from '../../assets/images/offerImages/speaker.svg';
+import { useCountdown } from '../../utils/countdown';
 
 const ExclusiveOffer = () => {
     const targetDate = new Date('2025-07-10T00:00:00');

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ProductCard from './ProductCard';
-import products from '../store/products';
+import ProductCard from '../productCardComponent/ProductCard';
+import products from '../../store/products';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const ExploreProducts = () => {

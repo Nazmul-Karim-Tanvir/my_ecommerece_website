@@ -1,11 +1,11 @@
-import Hero from '../../components/Hero';
-import Today from '../../components/Today';
-import BestSelling from '../../components/BestSelling';
-import Categories from '../../components/Categories';
-import ExclusiveOffer from '../../components/ExclusiveOffer';
-import ExploreProducts from '../../components/ExploreProducts';
-import NewArrival from '../../components/NewArrival';
-import Services from '../../components/Services';
+import Hero from '../../components/homepageComponnets/Hero';
+import Today from '../../components/homepageComponnets/Today';
+import BestSelling from '../../components/homepageComponnets/BestSelling';
+import Categories from '../../components/homepageComponnets/Categories';
+import ExclusiveOffer from '../../components/homepageComponnets/ExclusiveOffer';
+import ExploreProducts from '../../components/homepageComponnets/ExploreProducts';
+import NewArrival from '../../components/homepageComponnets/NewArrival';
+import Services from '../../components/homepageComponnets/Services';
 
 const HomePage = () => {
     return (

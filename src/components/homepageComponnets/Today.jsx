@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ProductCard from './ProductCard';
-import { useCountdown } from '../utils/countdown';
-import products from '../store/products';
+import ProductCard from '../productCardComponent/ProductCard';
+import { useCountdown } from '../../utils/countdown';
+import products from '../../store/products';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const Today = () => {

@@ -1,8 +1,8 @@
 import React from 'react';
-import perfume from '../assets/images/newarrival/perfume.svg';
-import playstation from '../assets/images/newarrival/playstation.svg';
-import speaker3 from '../assets/images/newarrival/speaker3.png';
-import women from '../assets/images/newarrival/women.jpg';
+import perfume from '../../assets/images/newarrival/perfume.svg';
+import playstation from '../../assets/images/newarrival/playstation.svg';
+import speaker3 from '../../assets/images/newarrival/speaker3.png';
+import women from '../../assets/images/newarrival/women.jpg';
 
 const NewArrival = () => {
     return (
