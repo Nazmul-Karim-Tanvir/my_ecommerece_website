@@ -10,6 +10,8 @@ import HomePage from '../pages/homePage/HomePage.jsx';
 import About from '../pages/about/About.jsx';
 import Contact from '../pages/contact/Contact.jsx';
 import SignUp from '../pages/signUp/SignUp.jsx';
+import WishList from '../pages/wishList/WishList.jsx';
+import Cart from '../pages/cart/Cart.jsx';
 
 const AppRoutes = () => {
     return (
@@ -28,6 +30,8 @@ const AppRoutes = () => {
                 <Route path="about" element={<About />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="signup" element={<SignUp />} />
+                <Route path="wishlist" element={<WishList />} />
+                <Route path="cart" element={<Cart />} />
                 <Route path="*" element={<div className="text-center py-10 text-2xl">404 - Page Not Found</div>} />
 
 

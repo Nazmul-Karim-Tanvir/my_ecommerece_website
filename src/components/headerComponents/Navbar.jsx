@@ -17,7 +17,7 @@ const Navbar = () => {
                     <li><Link to="/" className="hover:underline hover:underline-offset-4">Home</Link></li>
                     <li><Link to="/about" className="hover:underline hover:underline-offset-4">About</Link></li>
                     <li><Link to="/contact" className="hover:underline hover:underline-offset-4">Contact</Link></li>
-                    <li><Link to="/signup" className="hover:underline hover:underline-offset-4">Sign Up</Link></li>
+                    <li><Link to="/signUp" className="hover:underline hover:underline-offset-4">Sign Up</Link></li>
                 </ul>
 
                 <div className="ml-6 flex items-center">
@@ -34,8 +34,12 @@ const Navbar = () => {
 
                     {/* Icons */}
                     <div className="flex items-center gap-5 text-gray-700 ml-6">
-                        <Heart className="w-6 h-6 hover:text-red-500 cursor-pointer" />
-                        <ShoppingCart className="w-6 h-6 hover:text-blue-500 cursor-pointer" />
+                        <Link to="/wishList">
+                            <Heart className="w-6 h-6 hover:text-red-500 cursor-pointer" />
+                        </Link>
+                        <Link to="/Cart">
+                            <ShoppingCart className="w-6 h-6 hover:text-blue-500 cursor-pointer" />
+                        </Link>
                     </div>
                 </div>
             </div>
