@@ -7,7 +7,7 @@ const SectionExclusiveOffer = () => {
     const { days, hours, minutes, seconds, total } = useCountdown(targetDate);
 
     return (
-        <div className='max-w-[1170px] mx-auto my-[100px] px-4'>
+        <div className='max-w-[1170px] mx-auto my-[100px]'>
             <div className='relative bg-black text-white rounded overflow-hidden h-auto md:h-[500px] flex flex-col md:flex-row items-center justify-between px-6 md:px-10 py-10'>
 
                 {/* Text Content */}
