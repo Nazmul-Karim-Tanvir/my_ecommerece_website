@@ -1,47 +1,37 @@
 import { ArrowRight } from 'lucide-react';
+import useCategoryStore from '../../store/useCategoryStore';
 
 const SectionHero = () => {
+    const categories = useCategoryStore((state) => state.categories);
+
     return (
         <div className="max-w-[1170px] mx-auto flex gap-6 py-3 px-4 sm:px-6 lg:px-0 flex-col md:flex-row">
-
             {/* Left Sidebar - Categories */}
             <div className="w-full md:w-1/4 border-b md:border-b-0 md:border-r border-gray-300">
                 <ul className="flex flex-wrap md:flex-col gap-2 md:gap-4 text-sm md:text-xl font-medium text-gray-600">
-                    {[
-                        "Woman’s Fashion",
-                        "Men’s Fashion",
-                        "Electronics",
-                        "Home & Lifestyle",
-                        "Medicine",
-                        "Sports & Outdoor",
-                        "Baby’s & Toys",
-                        "Groceries & Pets",
-                        "Health & Beauty"
-                    ].map((item) => (
+                    {categories.map((item) => (
                         <li
                             key={item}
                             className="
-                                cursor-pointer 
-                                hover:text-black
-
-                                /* Desktop: normal vertical list */
-                                md:block
-                                md:bg-transparent
-                                md:px-0
-                                md:py-0
-                                md:rounded-none
-                                md:m-0
-
-                                /* Small/Medium devices: badge style */
-                                bg-gray-200 
-                                text-gray-800 
-                                px-3 
-                                py-1 
-                                rounded-full 
-                                whitespace-nowrap
-                                inline-block
-                                transition
-                            "
+                cursor-pointer 
+                hover:text-black
+                /* Desktop: normal vertical list */
+                md:block
+                md:bg-transparent
+                md:px-0
+                md:py-0
+                md:rounded-none
+                md:m-0
+                /* Small/Medium devices: badge style */
+                bg-gray-200 
+                text-gray-800 
+                px-3 
+                py-1 
+                rounded-full 
+                whitespace-nowrap
+                inline-block
+                transition
+              "
                         >
                             {item}
                         </li>
