@@ -1,37 +1,67 @@
 import { ArrowRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import useCategoryStore from '../../store/useCategoryStore';
+
+const slides = [
+    {
+        title: 'iPhone 14 Series',
+        description: 'Up to 10% off Voucher',
+        image: '../src/assets/images/heroImages/iphone-hero.png',
+    },
+    {
+        title: 'Stylish Backpack',
+        description: 'Trendy & Spacious',
+        image: '../src/assets/images/cardImages/bag.png',
+    },
+    {
+        title: 'Winter Red Jacket',
+        description: 'Stay Warm in Style – 15% Off',
+        image: '../src/assets/images/cardImages/jacket.png',
+    },
+    {
+        title: 'PlayStation 5',
+        description: 'Next-Gen Gaming Console',
+        image: '../src/assets/images/cardImages/gamepad.png',
+    },
+];
 
 const SectionHero = () => {
     const categories = useCategoryStore((state) => state.categories);
+    const [current, setCurrent] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrent((prev) => (prev + 1) % slides.length);
+        }, 3000);
+        return () => clearInterval(timer);
+    }, []);
 
     return (
-        <div className="max-w-[1170px] mx-auto flex gap-6 py-3 px-4 sm:px-6 lg:px-0 flex-col md:flex-row">
+        <div className="max-w-[1170px] mx-auto flex gap-6 py-4 px-4 sm:px-6 lg:px-0 flex-col md:flex-row">
             {/* Left Sidebar - Categories */}
             <div className="w-full md:w-1/4 border-b md:border-b-0 md:border-r border-gray-300">
-                <ul className="flex flex-wrap md:flex-col gap-2 md:gap-4 text-sm md:text-xl font-medium text-gray-600">
+                <ul className="flex flex-wrap md:flex-col gap-2 md:gap-4 text-sm md:text-base lg:text-xl font-medium text-gray-600">
                     {categories.map((item) => (
                         <li
                             key={item}
                             className="
-                cursor-pointer 
-                hover:text-black
-                /* Desktop: normal vertical list */
-                md:block
-                md:bg-transparent
-                md:px-0
-                md:py-0
-                md:rounded-none
-                md:m-0
-                /* Small/Medium devices: badge style */
-                bg-gray-200 
-                text-gray-800 
-                px-3 
-                py-1 
-                rounded-full 
-                whitespace-nowrap
-                inline-block
-                transition
-              "
+                                cursor-pointer 
+                                hover:text-black
+                                md:block
+                                md:bg-transparent
+                                md:px-0
+                                md:py-0
+                                md:rounded-none
+                                md:m-0
+                                bg-gray-200 
+                                text-gray-800 
+                                px-3 
+                                py-1 
+                                rounded-full 
+                                whitespace-nowrap
+                                inline-block
+                                transition
+                            "
                         >
                             {item}
                         </li>
@@ -39,31 +69,49 @@ const SectionHero = () => {
                 </ul>
             </div>
 
-            {/* Right Side - Hero Banner */}
-            <div className="w-full md:w-3/4 relative bg-black text-white overflow-hidden flex items-center p-6 md:p-10 mt-4 md:mt-0">
-                <div className="w-full md:w-1/2 space-y-4 text-center md:text-left">
-                    <div className="flex items-center justify-center md:justify-start gap-6">
-                        <img
-                            src="../src/assets/images/heroImages/iphone-logo.png"
-                            alt="Apple"
-                            className="w-10 h-12"
-                        />
-                        <p className="text-xl text-gray-200">iPhone 14 Series</p>
+            {/* Right Side - Hero Carousel */}
+            <div className="w-full md:w-3/4 relative bg-black text-white overflow-hidden rounded-md flex flex-col justify-center min-h-[360px] px-4 py-6 sm:p-6 md:p-10">
+                <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6 h-full">
+                    {/* Text Area */}
+                    <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-3">
+                        <div className="flex justify-center md:justify-start items-center gap-4">
+                            <img
+                                src="../src/assets/images/heroImages/iphone-logo.png"
+                                alt="Apple"
+                                className="w-8 sm:w-10 h-auto"
+                            />
+                            <p className="text-[1rem] sm:text-[1.2rem] md:text-[1.3rem] text-gray-200 font-medium">
+                                {slides[current].title}
+                            </p>
+                        </div>
+                        <h2 className="text-[1.5rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold leading-tight min-h-[60px]">
+                            {slides[current].description}
+                        </h2>
+                        <button className="inline-flex items-center gap-1 text-white hover:text-gray-300 transition mx-auto md:mx-0 text-sm sm:text-base">
+                            <span className="border-b border-white leading-none">Shop Now</span>
+                            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                        </button>
                     </div>
-                    <h2 className="text-4xl md:text-6xl font-bold leading-tight">
-                        Up to 10% off Voucher
-                    </h2>
-                    <button className="mt-4 inline-flex items-center gap-1 text-white hover:text-gray-300 transition mx-auto md:mx-0">
-                        <span className="border-b border-white leading-none">Shop Now</span>
-                        <ArrowRight className="w-5 h-5" />
-                    </button>
+
+                    {/* Image */}
+                    <div className="w-full md:w-1/2 flex justify-center">
+                        <img
+                            src={slides[current].image}
+                            alt={slides[current].title}
+                            className="w-full max-w-[300px] sm:max-w-[350px] object-contain h-[200px] sm:h-[220px]"
+                        />
+                    </div>
                 </div>
-                <div className="w-full md:w-1/2 mt-6 md:mt-0">
-                    <img
-                        src="../src/assets/images/heroImages/iphone-hero.png"
-                        alt="iPhone"
-                        className="w-full object-contain"
-                    />
+
+                {/* Dots */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                    {slides.map((_, index) => (
+                        <span
+                            key={index}
+                            className={`h-2 rounded-full transition-all duration-300 ${index === current ? 'bg-white w-4' : 'bg-gray-500 w-2'
+                                }`}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
