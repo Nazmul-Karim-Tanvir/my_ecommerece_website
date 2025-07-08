@@ -79,7 +79,7 @@ const SectionHero = () => {
             <div className="w-full md:w-3/4 relative bg-black text-white overflow-hidden rounded-md flex flex-col justify-center min-h-[360px] px-4 py-6 sm:p-6 md:p-10">
                 <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6 h-full">
                     {/* Text Area */}
-                    <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-3">
+                    <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-3 pb-10">
                         <div className="flex justify-center md:justify-start items-center gap-4">
                             <img
                                 src={iphoneLogo}
@@ -93,7 +93,7 @@ const SectionHero = () => {
                         <h2 className="text-[1.5rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold leading-tight min-h-[60px]">
                             {slides[current].description}
                         </h2>
-                        <button className="inline-flex items-center gap-1 text-white hover:text-gray-300 transition mx-auto md:mx-0 text-sm sm:text-base">
+                        <button className="inline-flex items-center gap-1 text-white hover:text-gray-300 transition mx-auto md:mx-0 text-sm sm:text-base mt-2 sm:mt-4">
                             <span className="border-b border-white leading-none">Shop Now</span>
                             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                         </button>
