@@ -18,7 +18,6 @@ const HomePage = () => {
             <SectionExploreProducts />
             <SectionNewArrival />
             <Services />
-            {/* আর future এ অন্য section: Featured, Categories, etc */}
         </div>
     );
 }
