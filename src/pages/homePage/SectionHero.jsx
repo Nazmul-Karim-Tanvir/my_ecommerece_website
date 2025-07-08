@@ -2,32 +2,40 @@ import { ArrowRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import useCategoryStore from '../../store/useCategoryStore';
 
+import { FaApple } from "react-icons/fa";
+import { HiShoppingBag } from "react-icons/hi2";
+import { GiPirateCoat } from "react-icons/gi";
+import { SiRepublicofgamers } from "react-icons/si";
+
+import asusrog from '../../assets/images/heroImages/asusrog.png';
+import bagimage from '../../assets/images/heroImages/guch.png';
+import blazzer from '../../assets/images/heroImages/blazzer.jpg';
 import iphoneHero from '../../assets/images/heroImages/iphone-hero.png';
-import bagImg from '../../assets/images/cardImages/bag.png';
-import jacketImg from '../../assets/images/cardImages/jacket.png';
-import gamepadImg from '../../assets/images/cardImages/gamepad.png';
-import iphoneLogo from '../../assets/images/heroImages/iphone-logo.png';
 
 const slides = [
     {
         title: 'iPhone 14 Series',
         description: 'Up to 10% off Voucher',
         image: iphoneHero,
+        LogoIcon: FaApple,
     },
     {
         title: 'Stylish Backpack',
         description: 'Trendy & Spacious',
-        image: bagImg,
+        image: bagimage,
+        LogoIcon: HiShoppingBag,
     },
     {
         title: 'Winter Red Jacket',
         description: 'Stay Warm in Style – 15% Off',
-        image: jacketImg,
+        image: blazzer,
+        LogoIcon: GiPirateCoat,
     },
     {
         title: 'PlayStation 5',
         description: 'Next-Gen Gaming Console',
-        image: gamepadImg,
+        image: asusrog,
+        LogoIcon: SiRepublicofgamers,
     },
 ];
 
@@ -41,6 +49,8 @@ const SectionHero = () => {
         }, 3000);
         return () => clearInterval(timer);
     }, []);
+
+    const CurrentLogoIcon = slides[current].LogoIcon;
 
     return (
         <div className="max-w-[1170px] mx-auto flex gap-6 py-4 px-4 sm:px-6 lg:px-0 flex-col md:flex-row">
@@ -81,11 +91,7 @@ const SectionHero = () => {
                     {/* Text Area */}
                     <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-3 pb-10">
                         <div className="flex justify-center md:justify-start items-center gap-4">
-                            <img
-                                src={iphoneLogo}
-                                alt="Apple"
-                                className="w-8 sm:w-10 h-auto"
-                            />
+                            <CurrentLogoIcon className="text-white w-10 h-10 sm:w-12 sm:h-12" />
                             <p className="text-[1rem] sm:text-[1.2rem] md:text-[1.3rem] text-gray-200 font-medium">
                                 {slides[current].title}
                             </p>
@@ -114,8 +120,9 @@ const SectionHero = () => {
                     {slides.map((_, index) => (
                         <span
                             key={index}
-                            className={`h-2 rounded-full transition-all duration-300 ${index === current ? 'bg-white w-4' : 'bg-gray-500 w-2'
-                                }`}
+                            className={`h-2 rounded-full transition-all duration-300 ${
+                                index === current ? 'bg-white w-4' : 'bg-gray-500 w-2'
+                            }`}
                         />
                     ))}
                 </div>
