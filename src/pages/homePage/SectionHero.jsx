@@ -2,26 +2,32 @@ import { ArrowRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import useCategoryStore from '../../store/useCategoryStore';
 
+import iphoneHero from '../../assets/images/heroImages/iphone-hero.png';
+import bagImg from '../../assets/images/cardImages/bag.png';
+import jacketImg from '../../assets/images/cardImages/jacket.png';
+import gamepadImg from '../../assets/images/cardImages/gamepad.png';
+import iphoneLogo from '../../assets/images/heroImages/iphone-logo.png';
+
 const slides = [
     {
         title: 'iPhone 14 Series',
         description: 'Up to 10% off Voucher',
-        image: '../src/assets/images/heroImages/iphone-hero.png',
+        image: iphoneHero,
     },
     {
         title: 'Stylish Backpack',
         description: 'Trendy & Spacious',
-        image: '../src/assets/images/cardImages/bag.png',
+        image: bagImg,
     },
     {
         title: 'Winter Red Jacket',
         description: 'Stay Warm in Style – 15% Off',
-        image: '../src/assets/images/cardImages/jacket.png',
+        image: jacketImg,
     },
     {
         title: 'PlayStation 5',
         description: 'Next-Gen Gaming Console',
-        image: '../src/assets/images/cardImages/gamepad.png',
+        image: gamepadImg,
     },
 ];
 
@@ -76,7 +82,7 @@ const SectionHero = () => {
                     <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-center gap-3">
                         <div className="flex justify-center md:justify-start items-center gap-4">
                             <img
-                                src="../src/assets/images/heroImages/iphone-logo.png"
+                                src={iphoneLogo}
                                 alt="Apple"
                                 className="w-8 sm:w-10 h-auto"
                             />
