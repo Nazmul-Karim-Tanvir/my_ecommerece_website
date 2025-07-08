@@ -1,4 +1,4 @@
-import controlerImg from '../assets/images/cardImages/controler.png';
+import controlerImg from '../assets/images/cardImages/controler1.png';
 import keyboardImg from '../assets/images/cardImages/keyboard.png';
 import monitorImg from '../assets/images/cardImages/monitor.png';
 import chairImg from '../assets/images/cardImages/chair.png';
