@@ -2,7 +2,7 @@ import React from 'react'
 import aboutimage from '../../assets/images/aboutImages/aboutpageimage1.png';
 import { Link } from 'react-router-dom';
 
-const AboutpageHero = () => {
+const SectionAboutpageHero = () => {
     return (
         <div className="bg-white py-10 relative overflow-hidden gap-5 mb-28">
             <div className="max-w-[1170px] mx-auto text-sm text-gray-500 mb-6 px-4 md:px-0 pb-6">
@@ -35,4 +35,4 @@ const AboutpageHero = () => {
     )
 }
 
-export default AboutpageHero
+export default SectionAboutpageHero

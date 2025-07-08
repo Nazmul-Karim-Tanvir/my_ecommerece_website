@@ -21,7 +21,7 @@ const icons = [
     { Icon: Monitor, label: "PC" },
 ];
 
-export default function Categories() {
+export default function SectionCategories() {
     const [scrollIndex, setScrollIndex] = useState(0);
     const visibleCount = 6;
 

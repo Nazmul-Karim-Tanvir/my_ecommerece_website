@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import ProductCard from '../productCardComponent/ProductCard';
+import ProductCard from '../../components/productCardComponent/ProductCard';
 import { useCountdown } from '../../utils/countdown';
 import products from '../../store/products';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
-const Today = () => {
+const SectionToday = () => {
     const todayProducts = products.today;
 
     const [scrollIndex, setScrollIndex] = useState(0);
@@ -111,4 +111,4 @@ const Today = () => {
     );
 };
 
-export default Today;
+export default SectionToday;

@@ -1,8 +1,8 @@
 import React from 'react';
 import speakerImage from '../../assets/images/offerImages/speaker.svg';
-import { useCountdown } from '../../utils/countdown';
+import { useCountdown } from '../../utils/countdown.js';
 
-const ExclusiveOffer = () => {
+const SectionExclusiveOffer = () => {
     const targetDate = new Date('2025-07-10T00:00:00');
     const { days, hours, minutes, seconds, total } = useCountdown(targetDate);
 
@@ -57,4 +57,4 @@ const ExclusiveOffer = () => {
     );
 };
 
-export default ExclusiveOffer;
+export default SectionExclusiveOffer;

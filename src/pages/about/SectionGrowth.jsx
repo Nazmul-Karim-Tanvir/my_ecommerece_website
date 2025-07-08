@@ -1,7 +1,7 @@
 import { CircleDollarSign, Landmark, ShoppingBag, Store } from 'lucide-react'
 import React from 'react'
 
-const Growth = () => {
+const SectionGrowth = () => {
     return (
         <div className='max-w-[1170px] mx-auto flex justify-between text-center mb-28'>
             <div className='flex flex-col items-center border border-gray-300 rounded px-6 py-6 gap-2 w-[270px] h-[230px] hover:bg-red-600/80 hover:text-white transition-all'>
@@ -45,4 +45,4 @@ const Growth = () => {
     )
 }
 
-export default Growth
+export default SectionGrowth

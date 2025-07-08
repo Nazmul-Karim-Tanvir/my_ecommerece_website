@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import ProductCard from '../productCardComponent/ProductCard';
+import ProductCard from '../../components/productCardComponent/ProductCard';
 import products from '../../store/products';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
-const ExploreProducts = () => {
+const SectionExploreProducts = () => {
     const ourProducts = products.ourProducts;
 
     const itemsPerPage = 8; // 4 per row * 2 rows
@@ -64,4 +64,4 @@ const ExploreProducts = () => {
     );
 };
 
-export default ExploreProducts;
+export default SectionExploreProducts;

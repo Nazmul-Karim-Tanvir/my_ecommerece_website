@@ -1,19 +1,16 @@
-import React from 'react';
-
-import AboutpageHero from '../../components/aboutpageComponents/AboutpageHero';
-import Services from '../../components/homepageComponnets/Services';
-import Growth from '../../components/aboutpageComponents/Growth';
-import Employee from '../../components/aboutpageComponents/Employee';
+import Services from '../../components/Services';
+import SectionAboutpageHero from './SectionAboutpageHero';
+import SectionGrowth from './SectionGrowth';
+import SectionEmployee from './SectionEmployee';
 
 const About = () => {
     return (
         <div>
-            <AboutpageHero />
-            <Growth />
-            <Employee />
+            <SectionAboutpageHero />
+            <SectionGrowth />
+            <SectionEmployee />
             <Services />
         </div>
-
     );
 };
 

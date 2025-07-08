@@ -1,6 +1,6 @@
 import products from '../../store/products.js'
-import ProductCard from '../productCardComponent/ProductCard.jsx'
-const BestSelling = () => {
+import ProductCard from '../../components/productCardComponent/ProductCard.jsx'
+const SectionBestSelling = () => {
     const bestSelling = products.thisMonth;
     return (
         <div className='max-w-[1170px] mx-auto mt-30'>
@@ -22,4 +22,4 @@ const BestSelling = () => {
     )
 }
 
-export default BestSelling
+export default SectionBestSelling

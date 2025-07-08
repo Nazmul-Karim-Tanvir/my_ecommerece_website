@@ -1,22 +1,22 @@
-import Hero from '../../components/homepageComponnets/Hero';
-import Today from '../../components/homepageComponnets/Today';
-import BestSelling from '../../components/homepageComponnets/BestSelling';
-import Categories from '../../components/homepageComponnets/Categories';
-import ExclusiveOffer from '../../components/homepageComponnets/ExclusiveOffer';
-import ExploreProducts from '../../components/homepageComponnets/ExploreProducts';
-import NewArrival from '../../components/homepageComponnets/NewArrival';
-import Services from '../../components/homepageComponnets/Services';
+import SectionHero from './SectionHero';
+import SectionToday from './SectionToday';
+import SectionCategories from './SectionCategories';
+import SectionBestSelling from './SectionBestSelling';
+import SectionExclusiveOffer from './SectionExclusiveOffer';
+import SectionExploreProducts from './SectionExploreProducts';
+import SectionNewArrival from './SectionNewArrival';
+import Services from '../../components/Services';
 
 const HomePage = () => {
     return (
         <div className=''>
-            <Hero />
-            <Today />
-            <Categories />
-            <BestSelling />
-            <ExclusiveOffer />
-            <ExploreProducts />
-            <NewArrival />
+            <SectionHero />
+            <SectionToday />
+            <SectionCategories />
+            <SectionBestSelling />
+            <SectionExclusiveOffer />
+            <SectionExploreProducts />
+            <SectionNewArrival />
             <Services />
             {/* আর future এ অন্য section: Featured, Categories, etc */}
         </div>

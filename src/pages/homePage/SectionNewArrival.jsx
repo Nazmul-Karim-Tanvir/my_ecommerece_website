@@ -4,7 +4,7 @@ import playstation from '../../assets/images/newarrival/playstation.svg';
 import speaker3 from '../../assets/images/newarrival/speaker3.png';
 import women from '../../assets/images/newarrival/women.jpg';
 
-const NewArrival = () => {
+const SectionNewArrival = () => {
     return (
         <div className='max-w-[1170px] mx-auto my-[100px]'>
             {/* Section Heading */}
@@ -82,4 +82,4 @@ const NewArrival = () => {
     );
 };
 
-export default NewArrival;
+export default SectionNewArrival;

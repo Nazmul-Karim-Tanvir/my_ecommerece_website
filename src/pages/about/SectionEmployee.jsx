@@ -4,7 +4,7 @@ import employee2 from '../../assets/images/aboutImages/employee2.png';
 import employee3 from '../../assets/images/aboutImages/employee3.png';
 import { CiInstagram, CiTwitter, CiLinkedin } from "react-icons/ci";
 
-const Employee = () => {
+const SectionEmployee = () => {
     const employees = [
         {
             name: 'Tom Cruise',
@@ -56,4 +56,4 @@ const Employee = () => {
     );
 };
 
-export default Employee;
+export default SectionEmployee;

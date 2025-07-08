@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 
-const Hero = () => {
+const SectionHero = () => {
     return (
         <div className="max-w-[1170px] mx-auto flex gap-6 py-3">
             {/* Left Sidebar - Categories */}
@@ -39,4 +39,4 @@ const Hero = () => {
     );
 };
 
-export default Hero
+export default SectionHero
