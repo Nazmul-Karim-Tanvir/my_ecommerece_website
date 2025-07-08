@@ -6,16 +6,18 @@ import women from '../../assets/images/newarrival/women.jpg';
 
 const SectionNewArrival = () => {
     return (
-        <div className='max-w-[1170px] mx-auto my-[100px]'>
+        <div className="max-w-[1170px] mx-auto my-[100px] px-4 sm:px-6 lg:px-0">
+
             {/* Section Heading */}
             <div className="mb-7 flex items-center gap-3">
                 <div className="bg-red-600 w-[20px] h-[40px] rounded"></div>
                 <h1 className="font-semibold text-xl text-red-600 font-mono">Featured</h1>
             </div>
-            <h1 className="text-4xl font-semibold mb-10 tracking-wide uppercase">New Arrival</h1>
+            <h1 className="text-4xl font-semibold mb-10 tracking-wide">New Arrival</h1>
 
             {/* Grid Layout */}
             <div className="flex flex-col lg:flex-row gap-5 items-end">
+
                 {/* Left large card */}
                 <div className="relative w-full lg:w-[570px] h-[600px] rounded overflow-hidden bg-black shrink-0 flex items-end justify-center">
                     <img
@@ -31,7 +33,8 @@ const SectionNewArrival = () => {
                 </div>
 
                 {/* Right column */}
-                <div className="flex flex-col gap-8 flex-1">
+                <div className="flex flex-col gap-8 flex-1 w-full">
+
                     {/* Women’s Collection */}
                     <div className="relative w-full h-[284px] rounded overflow-hidden bg-black flex items-center justify-end">
                         <img
@@ -48,6 +51,7 @@ const SectionNewArrival = () => {
 
                     {/* Speakers & Perfume */}
                     <div className="flex flex-col sm:flex-row gap-10">
+
                         {/* Speakers */}
                         <div className="relative w-full sm:w-[270px] h-[284px] rounded overflow-hidden bg-black flex items-center justify-center">
                             <img
@@ -75,6 +79,7 @@ const SectionNewArrival = () => {
                                 <button className="underline">Shop Now</button>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
