@@ -2,7 +2,7 @@ import controlerImg from '../assets/images/cardImages/controler1.png';
 import keyboardImg from '../assets/images/cardImages/keyboard.png';
 import monitorImg from '../assets/images/cardImages/monitor1.png';
 import chairImg from '../assets/images/cardImages/chair1.png';
-import redJacketImg from '../assets/images/cardImages/redJacket.png';
+import redJacketImg from '../assets/images/cardImages/redjacket.png';
 import bagImg from '../assets/images/cardImages/bag.png';
 import cpucoolerImg from '../assets/images/cardImages/cpucooler.png';
 import bookshell from '../assets/images/cardImages/bookshell.svg';
