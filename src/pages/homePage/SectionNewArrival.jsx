@@ -6,7 +6,7 @@ import women from '../../assets/images/newarrival/women.jpg';
 
 const SectionNewArrival = () => {
     return (
-        <div className="max-w-[1170px] mx-auto my-[100px] px-4 sm:px-6 lg:px-0">
+        <div className="max-w-[1170px] mx-auto my-[100px] sm:px-6 lg:px-0">
 
             {/* Section Heading */}
             <div className="mb-7 flex items-center gap-3">
