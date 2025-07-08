@@ -24,30 +24,29 @@ const SectionEmployee = () => {
     ];
 
     return (
-        <div className="max-w-[1170px] mx-auto mb-28 flex flex-wrap justify-center md:justify-between gap-6">
+        <div className="max-w-[1170px] mx-auto mb-28 flex flex-wrap justify-center md:justify-between gap-6 px-4">
             {employees.map((employee, index) => (
                 <div
                     key={index}
-                    className="flex flex-col w-[370px] h-[564px] rounded-md px-3 pt-3"
+                    className="w-full sm:w-[80%] md:w-[48%] lg:w-[31%] bg-white rounded-md shadow-md"
                 >
-                    {/* Centered image */}
-                    <div className="flex justify-center items-center h-[391px] bg-gray-100">
+                    {/* Image */}
+                    <div className="flex justify-center items-center bg-gray-100 aspect-[2/3] overflow-hidden rounded-t-md">
                         <img
                             src={employee.img}
                             alt={employee.name}
-                            className="w-[250px] h-[391px] object-cover rounded-md px-4 py-4"
+                            className="object-cover h-full w-full"
                         />
                     </div>
 
                     {/* Text + Social Icons */}
-                    <div className="mt-3 text-left px-2">
-                        <h1 className="text-2xl font-semibold py-2 text-gray-800">{employee.name}</h1>
-                        <p className="text-sm text-gray-600">{employee.title}</p>
-
-                        <div className="flex gap-3 mt-4 text-[28px]">
-                            <CiTwitter className="text-gray-600 hover:text-blue-500 cursor-pointer transition duration-300" />
-                            <CiInstagram className="text-gray-600 hover:text-pink-500 cursor-pointer transition duration-300" />
-                            <CiLinkedin className="text-gray-600 hover:text-blue-700 cursor-pointer transition duration-300" />
+                    <div className="p-4 text-center">
+                        <h1 className="text-xl font-semibold text-gray-800">{employee.name}</h1>
+                        <p className="text-sm text-gray-600 mb-3">{employee.title}</p>
+                        <div className="flex justify-center gap-4 text-[26px]">
+                            <CiTwitter className="text-gray-600 hover:text-blue-500 cursor-pointer transition" />
+                            <CiInstagram className="text-gray-600 hover:text-pink-500 cursor-pointer transition" />
+                            <CiLinkedin className="text-gray-600 hover:text-blue-700 cursor-pointer transition" />
                         </div>
                     </div>
                 </div>
