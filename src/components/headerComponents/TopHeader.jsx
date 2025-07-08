@@ -16,7 +16,6 @@ const TopHeader = () => {
                     <select className="bg-black text-white">
                         <option>English</option>
                         <option>বাংলা</option>
-                        <option>Español</option>
                     </select>
                 </div>
             </div>
