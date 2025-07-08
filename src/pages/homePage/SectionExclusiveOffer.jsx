@@ -7,19 +7,19 @@ const SectionExclusiveOffer = () => {
     const { days, hours, minutes, seconds, total } = useCountdown(targetDate);
 
     return (
-        <div className='max-w-[1170px] mx-auto my-[100px]'>
-            <div className='relative bg-black text-white rounded overflow-hidden h-[500px] flex items-center justify-between px-10'>
+        <div className='max-w-[1170px] mx-auto my-[100px] px-4 sm:px-6 lg:px-0'>
+            <div className='relative bg-black text-white rounded overflow-hidden h-[500px] flex flex-col md:flex-row md:items-center justify-between px-6 md:px-10 py-10 md:py-0'>
 
                 {/* Text Content */}
-                <div className="z-10 max-w-md">
+                <div className="z-10 max-w-md md:max-w-none md:flex-1 text-center md:text-left">
                     <p className='font-sans font-semibold py-5 text-green-400'>Categories</p>
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4">Enhance Your Music Experience</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4">Enhance Your Music Experience</h2>
                     <p className="text-gray-300 mb-6">
                         Get the best sound experience with our top-rated speaker. Limited time offer. Don’t miss out!
                     </p>
 
                     {total > 0 ? (
-                        <div className="flex gap-4 text-black text-xl font-mono mb-6">
+                        <div className="flex flex-wrap justify-center md:justify-start gap-4 text-black text-xl font-mono mb-6">
                             {[
                                 { label: 'Days', value: days },
                                 { label: 'Hours', value: hours },
@@ -44,12 +44,12 @@ const SectionExclusiveOffer = () => {
                     </button>
                 </div>
 
-                {/* Speaker Image - Vertically Centered */}
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:block">
+                {/* Speaker Image */}
+                <div className="mt-10 md:mt-0 md:absolute md:right-4 md:top-1/2 md:-translate-y-1/2 flex justify-center w-full md:w-auto">
                     <img
                         src={speakerImage}
                         alt="Speaker"
-                        className="h-[330px] object-contain drop-shadow-[0_4px_40px_rgba(255,255,255,0.4)]"
+                        className="h-[200px] sm:h-[250px] md:h-[330px] object-contain drop-shadow-[0_4px_40px_rgba(255,255,255,0.4)]"
                     />
                 </div>
             </div>
