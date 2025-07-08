@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ProductCard from '../../components/productCardComponent/ProductCard';
+import ProductCard from '../../components/ProductCard';
 import products from '../../store/products';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 

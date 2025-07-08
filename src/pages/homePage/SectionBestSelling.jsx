@@ -1,5 +1,5 @@
 import products from '../../store/products.js'
-import ProductCard from '../../components/productCardComponent/ProductCard.jsx'
+import ProductCard from '../../components/ProductCard.jsx'
 
 const SectionBestSelling = () => {
     const bestSelling = products.thisMonth;
