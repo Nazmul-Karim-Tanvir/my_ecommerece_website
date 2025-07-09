@@ -26,7 +26,7 @@ const slides = [
         LogoIcon: HiShoppingBag,
     },
     {
-        title: 'Winter Red Jacket',
+        title: 'Exclusive Formal Jacket',
         description: 'Stay Warm in Style – 15% Off',
         image: blazzer,
         LogoIcon: GiPirateCoat,
