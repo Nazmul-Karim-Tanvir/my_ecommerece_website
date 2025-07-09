@@ -16,9 +16,9 @@ const ProductDetails = () => {
 
     return (
         <div className="max-w-[1170px] mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* Images */}
+            {/* Image Section */}
             <div className="flex flex-col md:flex-row gap-5">
-                <div className="flex md:flex-col gap-3">
+                <div className="flex md:flex-col gap-3 justify-center">
                     {images.map((img, idx) => (
                         <img
                             key={idx}
@@ -31,23 +31,24 @@ const ProductDetails = () => {
                         />
                     ))}
                 </div>
-                <div className="flex-1">
-                    <div className="rounded-xl border overflow-hidden shadow-sm">
+                <div className="flex-1 flex items-center justify-center">
+                    <div className="rounded-xl border overflow-hidden shadow-sm p-4 bg-white">
                         <img
                             src={selectedImage}
-                            alt="Product"
-                            className="w-full object-contain transition-all duration-500 ease-in-out"
+                            alt="Selected Product"
+                            className="w-full h-[400px] object-contain transition-all duration-500 ease-in-out"
                         />
                     </div>
                 </div>
             </div>
 
-            {/* Info */}
+            {/* Product Info */}
             <div className="space-y-6">
                 <div>
                     <h1 className="text-3xl font-semibold text-gray-900">Havic HV G-92 Gamepad</h1>
                     <div className="flex items-center gap-2 text-yellow-500 mt-1">
-                        ★★★★☆ <span className="text-sm text-gray-600">(150 Reviews)</span>
+                        ★★★★☆
+                        <span className="text-sm text-gray-600">(150 Reviews)</span>
                         <span className="text-green-600 ml-2 text-sm">In Stock</span>
                     </div>
                     <div className="text-2xl font-bold mt-2">$192.00</div>
@@ -58,22 +59,24 @@ const ProductDetails = () => {
                     Pressure sensitive material ensures smooth application.
                 </p>
 
-                {/* Colors */}
+                {/* Color Options */}
                 <div>
                     <p className="font-medium mb-2">Colours:</p>
                     <div className="flex items-center gap-3">
                         {['white', 'red'].map((col) => (
                             <div
                                 key={col}
-                                className={`w-6 h-6 rounded-full cursor-pointer border-2 ${col === 'white' ? 'bg-white' : 'bg-red-600'}
-                                ${color === col ? 'ring-2 ring-black' : 'border-gray-300'}`}
                                 onClick={() => setColor(col)}
+                                className={`w-6 h-6 rounded-full cursor-pointer border-2
+                                    ${col === 'white' ? 'bg-white' : 'bg-red-600'}
+                                    ${color === col ? 'ring-2 ring-black' : 'border-gray-300'}
+                                `}
                             />
                         ))}
                     </div>
                 </div>
 
-                {/* Sizes */}
+                {/* Size Options */}
                 <div>
                     <p className="font-medium mb-2">Size:</p>
                     <div className="flex gap-2 flex-wrap">
@@ -91,9 +94,9 @@ const ProductDetails = () => {
                     </div>
                 </div>
 
-                {/* Quantity & Buy */}
-                <div className="flex items-center gap-4 flex-wrap mt-4">
-                    <div className="flex items-center gap-2 border rounded px-2 py-1">
+                {/* Quantity and Actions */}
+                <div className="flex flex-wrap items-center gap-4 mt-4">
+                    <div className="flex items-center gap-2 border rounded px-3 py-1.5">
                         <button
                             onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
                             className="p-1 hover:text-red-600 transition"
