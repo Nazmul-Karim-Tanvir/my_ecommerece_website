@@ -7,9 +7,9 @@ import { HiShoppingBag } from "react-icons/hi2";
 import { GiPirateCoat } from "react-icons/gi";
 import { SiRepublicofgamers } from "react-icons/si";
 
-import asusrog from '../../assets/images/heroImages/asusrog.png';
-import bagimage from '../../assets/images/heroImages/guch.png';
-import blazzer from '../../assets/images/heroImages/blazzer.jpg';
+import asusrog from '../../assets/images/heroImages/asusrog1.jpg';
+import bagimage from '../../assets/images/heroImages/guchi4.jpg';
+import blazzer from '../../assets/images/heroImages/blazzer2.jpg';
 import iphoneHero from '../../assets/images/heroImages/iphone-hero.png';
 
 const slides = [
@@ -33,7 +33,7 @@ const slides = [
     },
     {
         title: 'PlayStation 5',
-        description: 'Next-Gen Gaming Console',
+        description: 'Next-Gen Gaming Laptop',
         image: asusrog,
         LogoIcon: SiRepublicofgamers,
     },
@@ -120,9 +120,8 @@ const SectionHero = () => {
                     {slides.map((_, index) => (
                         <span
                             key={index}
-                            className={`h-2 rounded-full transition-all duration-300 ${
-                                index === current ? 'bg-white w-4' : 'bg-gray-500 w-2'
-                            }`}
+                            className={`h-2 rounded-full transition-all duration-300 ${index === current ? 'bg-white w-4' : 'bg-gray-500 w-2'
+                                }`}
                         />
                     ))}
                 </div>
