@@ -12,6 +12,7 @@ import Contact from '../pages/contact/Contact.jsx';
 import SignUp from '../pages/signUp/SignUp.jsx';
 import WishList from '../pages/wishList/WishList.jsx';
 import Cart from '../pages/cart/Cart.jsx';
+import Product from '../pages/product/Product.jsx';
 
 const AppRoutes = () => {
     return (
@@ -32,6 +33,7 @@ const AppRoutes = () => {
                 <Route path="signup" element={<SignUp />} />
                 <Route path="wishlist" element={<WishList />} />
                 <Route path="cart" element={<Cart />} />
+                <Route path="product" element={<Product />} />
                 <Route path="*" element={<div className="text-center py-10 text-2xl">404 - Page Not Found</div>} />
 
 
