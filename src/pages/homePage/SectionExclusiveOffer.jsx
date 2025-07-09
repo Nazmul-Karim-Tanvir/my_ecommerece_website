@@ -28,7 +28,7 @@ const SectionExclusiveOffer = () => {
                             ].map(({ label, value }) => (
                                 <div
                                     key={label}
-                                    className="flex flex-col items-center justify-center w-20 h-20 rounded-full bg-white"
+                                    className="flex flex-col items-center justify-center w-16 md:w-20 h-20 rounded-full bg-white"
                                 >
                                     <div className="text-3xl font-bold leading-5">{value}</div>
                                     <div className="text-sm text-black font-sans font-medium mt-1">{label}</div>
