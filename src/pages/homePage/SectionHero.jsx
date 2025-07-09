@@ -32,7 +32,7 @@ const slides = [
         LogoIcon: GiPirateCoat,
     },
     {
-        title: 'PlayStation 5',
+        title: 'ASUS ROG',
         description: 'Next-Gen Gaming Laptop',
         image: asusrog,
         LogoIcon: SiRepublicofgamers,
