@@ -40,7 +40,7 @@ const SectionToday = () => {
     const { days, hours, minutes, seconds, total } = useCountdown(flashSalesTargetDate);
 
     return (
-        <div className="max-w-[1170px] mx-auto my-10 px-4 sm:px-6 lg:px-0">
+        <div className="max-w-[1170px] mx-auto mt-32 px-4 sm:px-6 lg:px-0">
             {/* Section Title */}
             <div className="mb-7 flex items-center gap-3">
                 <div className="bg-red-600 w-[20px] h-[40px] rounded"></div>
