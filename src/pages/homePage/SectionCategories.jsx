@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Smartphone,
     Monitor,
@@ -23,7 +23,23 @@ const icons = [
 
 export default function SectionCategories() {
     const [scrollIndex, setScrollIndex] = useState(0);
-    const visibleCount = 6;
+    const [visibleCount, setVisibleCount] = useState(getVisibleCount());
+
+    function getVisibleCount() {
+        const width = window.innerWidth;
+        if (width < 640) return 2;     // small
+        if (width < 1024) return 4;    // medium
+        return 6;                      // desktop
+    }
+
+    useEffect(() => {
+        const handleResize = () => {
+            setVisibleCount(getVisibleCount());
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const scrollLeft = () => {
         setScrollIndex((prev) => Math.max(prev - 1, 0));
@@ -49,7 +65,7 @@ export default function SectionCategories() {
             <div className="flex justify-between items-center pb-9">
                 <h1 className="text-4xl font-semibold">Browse By Category</h1>
 
-                {/* Arrows */}
+                {/* Arrows - always visible */}
                 <div className="flex items-center gap-4">
                     <button
                         onClick={scrollLeft}
@@ -71,14 +87,30 @@ export default function SectionCategories() {
             </div>
 
             {/* Carousel area */}
-            <div className="w-full overflow-hidden py-5">
-                <ul className="flex justify-between gap-4">
+            <div
+                className="
+                    w-full py-5
+                    overflow-x-auto scroll-smooth touch-pan-x snap-x snap-mandatory
+                "
+            >
+                <ul
+                    className={`
+                        flex gap-4
+                        ${visibleCount === 6 ? "justify-between" : ""}
+                    `}
+                >
                     {icons
                         .slice(scrollIndex, scrollIndex + visibleCount)
                         .map(({ Icon, label }, idx) => (
                             <li
                                 key={idx}
-                                className="flex flex-col items-center justify-center bg-gray-100 rounded shadow p-5 w-[170px] h-[145px] cursor-pointer hover:bg-red-600 hover:text-white transition-all"
+                                className="
+                                    flex-shrink-0 snap-start flex flex-col items-center justify-center 
+                                    bg-gray-100 rounded shadow p-5 cursor-pointer 
+                                    hover:bg-red-600 hover:text-white transition-all
+                                    w-[48%] sm:w-[48%] md:w-[23%] lg:w-[15%] xl:w-[170px] 
+                                    h-[145px]
+                                "
                                 title={label}
                             >
                                 <Icon size={56} />
