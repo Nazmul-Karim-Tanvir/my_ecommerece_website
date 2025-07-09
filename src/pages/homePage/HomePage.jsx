@@ -6,20 +6,18 @@ import SectionExclusiveOffer from './SectionExclusiveOffer';
 import SectionExploreProducts from './SectionExploreProducts';
 import SectionNewArrival from './SectionNewArrival';
 import Services from '../../components/Services';
-import ProductDetails from '../productDetailspage/ProductDetails';
 
 const HomePage = () => {
     return (
         <div className=''>
-            {/* <SectionHero />
+            <SectionHero />
             <SectionToday />
             <SectionCategories />
             <SectionBestSelling />
             <SectionExclusiveOffer />
             <SectionExploreProducts />
             <SectionNewArrival />
-            <Services /> */}
-            <ProductDetails />
+            <Services />
         </div>
     );
 }
