@@ -2,11 +2,15 @@ import { Heart, Eye } from 'lucide-react';
 import { Star as StarIcon, StarHalf, StarOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import useCartStore from '../store/cartStore';
 
 const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating, starCount }) => {
     const stars = getStarArray(rating);
     const navigate = useNavigate();
     const [showViewText, setShowViewText] = useState(false);
+
+
+    const addToCart = useCartStore(state => state.addToCart);
 
     return (
         <div className="max-w-[270px]">
@@ -43,7 +47,24 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
 
                 {/* Add to Cart Button (on hover bottom) */}
                 <div className="absolute bottom-0 w-full text-center py-2 text-sm font-medium transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-black/90 text-white cursor-pointer">
-                    <button className="w-full">Add To Cart</button>
+                    <button
+                        className="w-full"
+                        onClick={() =>
+                            addToCart({
+                                id,
+                                image,
+                                productName,
+                                newPrice,
+                                oldPrice,
+                                offer,
+                                rating,
+                                starCount,
+                            })
+                        }
+                    >
+                        Add To Cart
+                    </button>
+
                 </div>
 
                 {/* Product Image */}
