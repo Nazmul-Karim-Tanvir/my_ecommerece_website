@@ -64,7 +64,6 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
                     >
                         Add To Cart
                     </button>
-
                 </div>
 
                 {/* Product Image */}
