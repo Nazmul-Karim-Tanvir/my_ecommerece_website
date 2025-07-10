@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import products from '../../store/products';
 import ProductCard from '../../components/ProductCard';
 
-// All possible categories (some may have no product now)
 const categories = {
     all: 'All Products',
     today: "Today’s Deals",
@@ -27,39 +26,43 @@ const categories = {
 
 const Product = () => {
     const [activeCategory, setActiveCategory] = useState('all');
+    const [perPage, setPerPage] = useState(12);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    // Merge all products into one array
-    const allProducts = [
-        ...products.today,
-        ...products.thisMonth,
-        ...products.ourProducts,
-    ];
-
-    // Filtering logic
     const getFilteredProducts = () => {
-        if (activeCategory === 'all') return allProducts;
-
-        // Convert to lowercase to check if productName contains category name
-        const lower = (text) => text.toLowerCase();
-
-        return allProducts.filter((product) =>
-            lower(product.productName).includes(lower(activeCategory))
-        );
+        if (activeCategory === 'all') {
+            return Object.values(products).flat();
+        }
+        return products[activeCategory] || [];
     };
 
     const filteredProducts = getFilteredProducts();
 
+    const totalPages = Math.ceil(filteredProducts.length / perPage);
+    const startIndex = (currentPage - 1) * perPage;
+    const paginatedProducts = filteredProducts.slice(startIndex, startIndex + perPage);
+
+    const handleCategoryChange = (category) => {
+        setActiveCategory(category);
+        setCurrentPage(1);
+    };
+
+    const handlePerPageChange = (e) => {
+        setPerPage(Number(e.target.value));
+        setCurrentPage(1);
+    };
+
     return (
         <div className="max-w-[1170px] mx-auto px-4 py-10">
             {/* Category Badges */}
-            <div className="flex flex-wrap gap-3 justify-center mb-8">
+            <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-6">
                 {Object.entries(categories).map(([key, label]) => (
                     <button
                         key={key}
-                        onClick={() => setActiveCategory(key)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition ${activeCategory === key
-                            ? 'bg-black text-white'
-                            : 'bg-gray-200 hover:bg-gray-300'
+                        onClick={() => handleCategoryChange(key)}
+                        className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition ${activeCategory === key
+                                ? 'bg-black text-white'
+                                : 'bg-gray-200 hover:bg-gray-300'
                             }`}
                     >
                         {label}
@@ -67,16 +70,71 @@ const Product = () => {
                 ))}
             </div>
 
-            {/* Product Grid or Message */}
-            {filteredProducts.length > 0 ? (
-                <div className="grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-                    {filteredProducts.map((product) => (
-                        <ProductCard key={product.id} {...product} />
+            {/* Per Page Selector */}
+            <div className="flex justify-center mb-8">
+                <div className="flex items-center gap-2 text-sm bg-gray-100 px-4 py-2 rounded">
+                    <label htmlFor="perPage" className="text-gray-600">Show per page:</label>
+                    <select
+                        id="perPage"
+                        value={perPage}
+                        onChange={handlePerPageChange}
+                        className="border rounded px-2 py-1 text-sm"
+                    >
+                        <option value={12}>12</option>
+                        <option value={20}>20</option>
+                        <option value={32}>32</option>
+                    </select>
+                </div>
+            </div>
+
+            {/* Product Grid */}
+            {paginatedProducts.length > 0 ? (
+                <div className="space-y-8">
+                    {Array.from({ length: Math.ceil(paginatedProducts.length / 4) }, (_, i) =>
+                        paginatedProducts.slice(i * 4, i * 4 + 4)
+                    ).map((row, index) => (
+                        <div
+                            key={index}
+                            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 border-b border-gray-200 pb-6"
+                        >
+                            {row.map((product) => (
+                                <ProductCard key={product.id} {...product} />
+                            ))}
+                        </div>
                     ))}
                 </div>
             ) : (
                 <div className="text-center text-gray-500 text-lg py-20">
                     No products available in this category.
+                </div>
+            )}
+
+            {/* Pagination Controls */}
+            {filteredProducts.length > perPage && (
+                <div className="flex justify-center mt-10 gap-4">
+                    <button
+                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                        className={`px-4 py-2 rounded border text-sm font-medium ${currentPage === 1
+                                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                : 'bg-white hover:bg-gray-100'
+                            }`}
+                    >
+                        Prev
+                    </button>
+                    <span className="text-sm text-gray-600 pt-2">
+                        Page {currentPage} of {totalPages}
+                    </span>
+                    <button
+                        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                        className={`px-4 py-2 rounded border text-sm font-medium ${currentPage === totalPages
+                                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                : 'bg-white hover:bg-gray-100'
+                            }`}
+                    >
+                        Next
+                    </button>
                 </div>
             )}
         </div>

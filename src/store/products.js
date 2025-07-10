@@ -381,7 +381,187 @@ const products = {
       newPrice: 550,
       offer: "-15%",
     },
-  ]
+  ],
+  women: [
+    {
+      id: 37,
+      image: redJacketImg,
+      productName: "Stylish Red Jacket",
+      rating: 4.5,
+      starCount: 240,
+      oldPrice: 1500,
+      newPrice: 1250,
+      offer: "-17%",
+    }
+  ],
+  men: [
+    {
+      id: 38,
+      image: jacketImg,
+      productName: "Men's Winter Jacket",
+      rating: 4.7,
+      starCount: 330,
+      oldPrice: 1800,
+      newPrice: 1400,
+      offer: "-22%",
+    }
+  ],
+  electronics: [
+    {
+      id: 39,
+      image: monitorImg,
+      productName: "Gaming Monitor",
+      rating: 4.4,
+      starCount: 310,
+      oldPrice: 900,
+      newPrice: 750,
+      offer: "-17%",
+    }
+  ],
+  home: [
+    {
+      id: 40,
+      image: bookshell,
+      productName: "Modern Bookshelf",
+      rating: 4.6,
+      starCount: 120,
+      oldPrice: 2000,
+      newPrice: 1750,
+      offer: "-12%",
+    }
+  ],
+  medicine: [
+    {
+      id: 41,
+      image: cream,
+      productName: "Skincare Cream",
+      rating: 4.3,
+      starCount: 95,
+      oldPrice: 400,
+      newPrice: 350,
+      offer: "-13%",
+    }
+  ],
+  sports: [
+    {
+      id: 42,
+      image: boot,
+      productName: "Soccer Cleats",
+      rating: 4.7,
+      starCount: 300,
+      oldPrice: 1000,
+      newPrice: 850,
+      offer: "-15%",
+    }
+  ],
+  baby: [
+    {
+      id: 43,
+      image: babycar,
+      productName: "Kids Electric Car",
+      rating: 4.8,
+      starCount: 220,
+      oldPrice: 5000,
+      newPrice: 4200,
+      offer: "-16%",
+    }
+  ],
+  groceries: [
+    {
+      id: 44,
+      image: chocolate,
+      productName: "Dark Chocolate Pack",
+      rating: 4.6,
+      starCount: 180,
+      oldPrice: 350,
+      newPrice: 300,
+      offer: "-14%",
+    }
+  ],
+  health: [
+    {
+      id: 45,
+      image: cream,
+      productName: "Curology Skincare Set",
+      rating: 4.8,
+      starCount: 130,
+      oldPrice: 1200,
+      newPrice: 1050,
+      offer: "-13%",
+    }
+  ],
+  smartphone: [
+    {
+      id: 46,
+      image: laptop,
+      productName: "Smartphone Accessory Kit",
+      rating: 4.5,
+      starCount: 250,
+      oldPrice: 700,
+      newPrice: 600,
+      offer: "-14%",
+    }
+  ],
+  monitor: [
+    {
+      id: 47,
+      image: monitorImg,
+      productName: "HD Computer Monitor",
+      rating: 4.7,
+      starCount: 200,
+      oldPrice: 1000,
+      newPrice: 850,
+      offer: "-15%",
+    }
+  ],
+  watch: [
+    {
+      id: 48,
+      image: bagImg,
+      productName: "Digital Wrist Watch",
+      rating: 4.2,
+      starCount: 190,
+      oldPrice: 1200,
+      newPrice: 990,
+      offer: "-18%",
+    }
+  ],
+  camera: [
+    {
+      id: 49,
+      image: dslr,
+      productName: "Canon DSLR",
+      rating: 4.9,
+      starCount: 400,
+      oldPrice: 3500,
+      newPrice: 3000,
+      offer: "-14%",
+    }
+  ],
+  headphones: [
+    {
+      id: 50,
+      image: cpucoolerImg,
+      productName: "Wireless Headset",
+      rating: 4.6,
+      starCount: 220,
+      oldPrice: 1300,
+      newPrice: 1100,
+      offer: "-15%",
+    }
+  ],
+  gamepad: [
+    {
+      id: 51,
+      image: gamepad,
+      productName: "USB Gamepad",
+      rating: 4.8,
+      starCount: 290,
+      oldPrice: 800,
+      newPrice: 680,
+      offer: "-15%",
+    }
+  ],
 };
 
 export default products;
