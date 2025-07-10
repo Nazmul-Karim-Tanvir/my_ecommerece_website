@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import products from '../../store/products';
 import ProductCard from '../../components/ProductCard';
 
@@ -25,9 +26,21 @@ const categories = {
 };
 
 const Product = () => {
+    const location = useLocation();
+
     const [activeCategory, setActiveCategory] = useState('all');
     const [perPage, setPerPage] = useState(12);
     const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const categoryFromQuery = params.get('category');
+
+        if (categoryFromQuery && categories[categoryFromQuery]) {
+            setActiveCategory(categoryFromQuery);
+            setCurrentPage(1);
+        }
+    }, [location.search]);
 
     const getFilteredProducts = () => {
         if (activeCategory === 'all') {
@@ -60,9 +73,7 @@ const Product = () => {
                     <button
                         key={key}
                         onClick={() => handleCategoryChange(key)}
-                        className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition ${activeCategory === key
-                                ? 'bg-black text-white'
-                                : 'bg-gray-200 hover:bg-gray-300'
+                        className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition ${activeCategory === key ? 'bg-black text-white' : 'bg-gray-200 hover:bg-gray-300'
                             }`}
                     >
                         {label}
@@ -73,7 +84,9 @@ const Product = () => {
             {/* Per Page Selector */}
             <div className="flex justify-center mb-8">
                 <div className="flex items-center gap-2 text-sm bg-gray-100 px-4 py-2 rounded">
-                    <label htmlFor="perPage" className="text-gray-600">Show per page:</label>
+                    <label htmlFor="perPage" className="text-gray-600">
+                        Show per page:
+                    </label>
                     <select
                         id="perPage"
                         value={perPage}

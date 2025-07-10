@@ -8,6 +8,29 @@ import img2 from '../../assets/images/productDetails/image58.svg';
 import img3 from '../../assets/images/productDetails/image61.svg';
 import img4 from '../../assets/images/productDetails/image63.svg';
 
+// Map categories to nice labels (for breadcrumb)
+const categoryLabels = {
+    all: 'All Products',
+    today: "Today’s Deals",
+    thisMonth: "This Month",
+    ourProducts: "Our Products",
+    women: "Woman’s Fashion",
+    men: "Men’s Fashion",
+    electronics: "Electronics",
+    home: "Home & Lifestyle",
+    medicine: "Medicine",
+    sports: "Sports & Outdoor",
+    baby: "Baby’s & Toys",
+    groceries: "Groceries & Pets",
+    health: "Health & Beauty",
+    smartphone: "Smartphone",
+    monitor: "Monitor",
+    watch: "Watch",
+    camera: "Camera",
+    headphones: "Headphones",
+    gamepad: "Gamepad",
+};
+
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
@@ -24,30 +47,43 @@ const ProductDetails = () => {
             if (found) {
                 setProduct(found);
                 setCategory(categoryName);
-                setSelectedImage(found.image); //Use product image
+                setSelectedImage(found.image); // Use product image
                 break;
             }
         }
     }, [id]);
 
-    if (!product) return <div className="text-center py-10 text-gray-500">Loading...</div>;
+    if (!product)
+        return <div className="text-center py-10 text-gray-500">Loading...</div>;
 
     // Optional thumbnails (first one is product image)
     const thumbnails = [product.image, img1, img2, img3];
 
     return (
         <div className="max-w-[1170px] mx-auto px-4 py-10">
-            {/*Breadcrumb */}
-            <div className="text-sm text-gray-600 mb-6 space-x-1">
-                <Link to="/product" className="hover:underline text-blue-600">Product</Link>
+            {/* Breadcrumb */}
+            <div className="max-w-[1170px] mx-auto text-sm text-gray-500 mb-6 px-4 md:px-0 pb-6 flex flex-wrap items-center gap-1">
+                <Link to="/" className="hover:underline text-gray-500">
+                    Home
+                </Link>
                 <span>/</span>
-                <span className="capitalize">{category}</span>
+                <Link to="/product" className="hover:underline text-gray-500">
+                    Product
+                </Link>
                 <span>/</span>
-                <span className="text-black font-medium">{product.productName}</span>
+                <Link
+                    to={`/product?category=${category}`}
+                    className="capitalize hover:underline text-gray-700 font-medium"
+                >
+                    {categoryLabels[category] || category}
+                </Link>
+                <span>/</span>
+                <span className="text-gray-900 font-semibold">{product.productName}</span>
             </div>
 
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                {/* 🖼️ Image Section */}
+                {/* Image Section */}
                 <div className="flex flex-col md:flex-row gap-5">
                     <div className="flex md:flex-col gap-3 justify-center">
                         {thumbnails.map((img, idx) => (
@@ -57,7 +93,10 @@ const ProductDetails = () => {
                                 alt={`thumb-${idx}`}
                                 onClick={() => setSelectedImage(img)}
                                 className={`w-20 h-20 object-contain rounded-md border-2 cursor-pointer transition-all duration-300
-                  ${selectedImage === img ? 'border-black scale-105' : 'border-gray-300 hover:border-black'}
+                  ${selectedImage === img
+                                        ? 'border-black scale-105'
+                                        : 'border-gray-300 hover:border-black'
+                                    }
                 `}
                             />
                         ))}
@@ -76,7 +115,9 @@ const ProductDetails = () => {
                 {/* 🛍️ Product Info */}
                 <div className="space-y-6">
                     <div>
-                        <h1 className="text-3xl font-semibold text-gray-900">{product.productName}</h1>
+                        <h1 className="text-3xl font-semibold text-gray-900">
+                            {product.productName}
+                        </h1>
                         <div className="flex items-center gap-2 text-yellow-500 mt-1">
                             ★★★★☆
                             <span className="text-sm text-gray-600">({product.starCount} Reviews)</span>
@@ -116,7 +157,10 @@ const ProductDetails = () => {
                                     key={sz}
                                     onClick={() => setSize(sz)}
                                     className={`px-3 py-1 rounded border transition-all duration-200
-                    ${size === sz ? 'bg-black text-white border-black' : 'bg-white text-black border-gray-300 hover:border-black'}
+                    ${size === sz
+                                            ? 'bg-black text-white border-black'
+                                            : 'bg-white text-black border-gray-300 hover:border-black'
+                                        }
                   `}
                                 >
                                     {sz}
@@ -156,12 +200,17 @@ const ProductDetails = () => {
                     <div className="mt-6 space-y-3 border-t pt-4 text-sm text-gray-700">
                         <div className="flex items-center gap-2">
                             🚚 <span>Free Delivery</span>
-                            <a href="#" className="text-blue-600 underline ml-2">Enter your postal code</a>
+                            <a href="#" className="text-blue-600 underline ml-2">
+                                Enter your postal code
+                            </a>
                         </div>
                         <div className="flex items-center gap-2">
                             🔁 <span>Return Delivery</span>
                             <span className="ml-2">
-                                Free 30 Days Delivery Returns. <a href="#" className="underline text-blue-600">Details</a>
+                                Free 30 Days Delivery Returns.{' '}
+                                <a href="#" className="underline text-blue-600">
+                                    Details
+                                </a>
                             </span>
                         </div>
                     </div>
