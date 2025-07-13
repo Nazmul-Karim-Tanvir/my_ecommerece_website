@@ -17,6 +17,7 @@ import ProductDetails from '../pages/productDetailspage/ProductDetails.jsx';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CheckOut from '../pages/checkOut/CheckOut.jsx';
 
 const AppRoutes = () => {
     return (
@@ -51,6 +52,7 @@ const AppRoutes = () => {
                 <Route path="cart" element={<Cart />} />
                 <Route path="product" element={<Product />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
+                <Route path="checkout" element={<CheckOut />} />
                 <Route
                     path="*"
                     element={
