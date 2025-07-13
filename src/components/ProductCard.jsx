@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import useCartStore from '../store/cartStore';
 import { toast } from 'react-toastify';
+import getStarArray from '../utils/getStarArray.js';
 
 const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating, starCount }) => {
     const stars = getStarArray(rating);
@@ -151,18 +152,3 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
 };
 
 export default ProductCard;
-
-// ⭐ Star Logic Utility
-const getStarArray = (rating) => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-        if (i <= Math.floor(rating)) {
-            stars.push('full');
-        } else if (i - rating < 1) {
-            stars.push('half');
-        } else {
-            stars.push('empty');
-        }
-    }
-    return stars;
-};
