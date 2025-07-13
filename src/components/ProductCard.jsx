@@ -78,10 +78,10 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
                     </div>
                 </div>
 
-                {/* Add to Cart Section */}
                 {existingItem ? (
-                    <div className="absolute bottom-0 w-full px-3 py-2 text-sm font-medium transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-black/50 backdrop-blur-sm text-white rounded-t flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
+                    <div className="absolute bottom-0 w-full px-3 py-2 text-sm font-medium bg-black/50 backdrop-blur-sm text-white rounded-t flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0 transition-opacity duration-300 opacity-100 md:opacity-0 group-hover:opacity-100">
+                        {/* Buttons */}
+                        <div className="flex justify-center md:justify-start items-center gap-2">
                             <button
                                 onClick={handleDecrement}
                                 className="w-8 h-8 rounded-full bg-white/10 hover:bg-red-500 text-lg flex items-center justify-center transition active:scale-90"
@@ -101,18 +101,19 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
                             </button>
                         </div>
 
+                        {/* View Cart Button */}
                         <button
                             onClick={(e) => {
                                 e.stopPropagation();
                                 navigate('/cart');
                             }}
-                            className="text-xs px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 transition active:scale-95"
+                            className="text-xs px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 transition active:scale-95 w-full md:w-auto text-center"
                         >
                             View Cart
                         </button>
                     </div>
                 ) : (
-                    <div className="absolute bottom-0 w-full text-center py-2 text-sm font-medium transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-black/90 text-white cursor-pointer">
+                    <div className="absolute bottom-0 w-full text-center py-2 text-sm font-medium bg-black/90 text-white cursor-pointer transition-opacity duration-300 opacity-100 md:opacity-0 group-hover:opacity-100">
                         <button
                             className="w-full py-2 hover:bg-white/20 transition active:scale-95 duration-150 rounded"
                             onClick={handleAddToCart}
@@ -121,6 +122,7 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
                         </button>
                     </div>
                 )}
+
 
                 <div className="flex items-center justify-center h-full px-4">
                     <img src={image} alt={productName} className="max-h-[150px] object-contain" />
