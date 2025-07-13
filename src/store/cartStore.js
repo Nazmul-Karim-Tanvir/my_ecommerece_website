@@ -64,6 +64,10 @@ const useCartStore = create((set, get) => ({
         const cartItems = get().cartItems;
         return cartItems.reduce((total, item) => total + item.newPrice * item.quantity, 0);
     },
+
+    // Calculate total quantity of all items in cart
+    getTotalQuantity: () =>
+        get().cartItems.reduce((total, item) => total + item.quantity, 0),
 }));
 
 export default useCartStore;
