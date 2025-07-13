@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import useCategoryStore from '../../store/useCategoryStore';
 
 import { FaApple } from "react-icons/fa";
@@ -58,8 +59,9 @@ const SectionHero = () => {
             <div className="w-full md:w-1/4 border-b md:border-b-0 md:border-r border-gray-300 pb-4 md:pb-0">
                 <ul className="flex flex-wrap md:flex-col gap-2 md:gap-4 text-sm md:text-base lg:text-xl font-medium text-gray-600">
                     {categories.map((item) => (
-                        <li
+                        <Link
                             key={item}
+                            to={`/category/${encodeURIComponent(item)}`}
                             className="
                                 cursor-pointer 
                                 hover:text-black
@@ -80,7 +82,7 @@ const SectionHero = () => {
                             "
                         >
                             {item}
-                        </li>
+                        </Link>
                     ))}
                 </ul>
             </div>

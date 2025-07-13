@@ -3,14 +3,49 @@ import { Star as StarIcon, StarHalf, StarOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import useCartStore from '../store/cartStore';
+import { toast } from 'react-toastify';  // import toast
 
 const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating, starCount }) => {
     const stars = getStarArray(rating);
     const navigate = useNavigate();
     const [showViewText, setShowViewText] = useState(false);
 
-
+    const cartItems = useCartStore(state => state.cartItems);
     const addToCart = useCartStore(state => state.addToCart);
+    const removeFromCart = useCartStore(state => state.removeFromCart);
+
+    const existingItem = cartItems.find(item => item.id === id);
+
+    const handleAddToCart = () => {
+        addToCart({
+            id,
+            image,
+            productName,
+            newPrice,
+            oldPrice,
+            offer,
+            rating,
+            starCount,
+        });
+        toast.success('Product added to cart');
+    };
+
+    const handleIncrement = (e) => {
+        e.stopPropagation();
+        addToCart({ ...existingItem, quantity: 1 });
+        toast.success('Product quantity increased');
+    };
+
+    const handleDecrement = (e) => {
+        e.stopPropagation();
+        if (existingItem.quantity > 1) {
+            addToCart({ ...existingItem, quantity: -1 });
+            toast.info('Product quantity decreased');
+        } else {
+            removeFromCart(id);
+            toast.info('Product removed from cart');
+        }
+    };
 
     return (
         <div className="max-w-[270px]">
@@ -26,7 +61,6 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
                         <Heart size={16} />
                     </div>
 
-                    {/* 👁 Eye Icon with transparent tooltip */}
                     <div
                         className="relative group"
                         onMouseEnter={() => setShowViewText(true)}
@@ -36,7 +70,6 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
                         <div className="rounded-full bg-white p-2 cursor-pointer">
                             <Eye size={16} />
                         </div>
-                        {/* Tooltip */}
                         {showViewText && (
                             <div className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black/60 text-white text-xs px-2 py-1 rounded shadow-md whitespace-nowrap">
                                 View Details
@@ -45,34 +78,55 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
                     </div>
                 </div>
 
-                {/* Add to Cart Button (on hover bottom) */}
-                <div className="absolute bottom-0 w-full text-center py-2 text-sm font-medium transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-black/90 text-white cursor-pointer">
-                    <button
-                        className="w-full"
-                        onClick={() =>
-                            addToCart({
-                                id,
-                                image,
-                                productName,
-                                newPrice,
-                                oldPrice,
-                                offer,
-                                rating,
-                                starCount,
-                            })
-                        }
-                    >
-                        Add To Cart
-                    </button>
-                </div>
+                {/* Add to Cart Section */}
+                {existingItem ? (
+                    <div className="absolute bottom-0 w-full px-3 py-2 text-sm font-medium transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-black/50 backdrop-blur-sm text-white rounded-t flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={handleDecrement}
+                                className="w-8 h-8 rounded-full bg-white/10 hover:bg-red-500 text-lg flex items-center justify-center transition active:scale-90"
+                            >
+                                −
+                            </button>
 
-                {/* Product Image */}
+                            <div className="min-w-[36px] px-3 py-1 text-center rounded-full bg-white/20 backdrop-blur-sm font-semibold">
+                                {existingItem.quantity}
+                            </div>
+
+                            <button
+                                onClick={handleIncrement}
+                                className="w-8 h-8 rounded-full bg-white/10 hover:bg-green-500 text-lg flex items-center justify-center transition active:scale-90"
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                navigate('/cart');
+                            }}
+                            className="text-xs px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 transition active:scale-95"
+                        >
+                            View Cart
+                        </button>
+                    </div>
+                ) : (
+                    <div className="absolute bottom-0 w-full text-center py-2 text-sm font-medium transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-black/90 text-white cursor-pointer">
+                        <button
+                            className="w-full py-2 hover:bg-white/20 transition active:scale-95 duration-150 rounded"
+                            onClick={handleAddToCart}
+                        >
+                            Add To Cart
+                        </button>
+                    </div>
+                )}
+
                 <div className="flex items-center justify-center h-full px-4">
                     <img src={image} alt={productName} className="max-h-[150px] object-contain" />
                 </div>
             </div>
 
-            {/* Product Info */}
             <div className="pt-2">
                 <h3 className="text-lg font-medium line-clamp-1">{productName}</h3>
                 <div className="flex items-start pt-1.5 gap-2">
@@ -80,7 +134,6 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
                     <span className="text-gray-400 font-medium line-through">${oldPrice}</span>
                 </div>
 
-                {/* ⭐ Star Rating */}
                 <div className="flex items-center gap-1 text-sm pt-1">
                     {stars.map((type, index) =>
                         type === "full" ? (

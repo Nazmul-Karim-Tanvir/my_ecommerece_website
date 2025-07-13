@@ -15,6 +15,9 @@ import Cart from '../pages/cart/Cart.jsx';
 import Product from '../pages/product/Product.jsx';
 import ProductDetails from '../pages/productDetailspage/ProductDetails.jsx';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const AppRoutes = () => {
     return (
         <Routes>
@@ -25,6 +28,18 @@ const AppRoutes = () => {
                         <Header />
                         <Body />
                         <Footer />
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={3000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="dark"
+                        />
                     </>
                 }
             >
@@ -36,9 +51,14 @@ const AppRoutes = () => {
                 <Route path="cart" element={<Cart />} />
                 <Route path="product" element={<Product />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
-                <Route path="*" element={<div className="text-center py-10 text-2xl">404 - Page Not Found</div>} />
-
-
+                <Route
+                    path="*"
+                    element={
+                        <div className="text-center py-10 text-2xl">
+                            404 - Page Not Found
+                        </div>
+                    }
+                />
             </Route>
         </Routes>
     );
