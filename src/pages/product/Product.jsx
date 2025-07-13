@@ -29,7 +29,7 @@ const Product = () => {
     const location = useLocation();
 
     const [activeCategory, setActiveCategory] = useState('all');
-    const [perPage, setPerPage] = useState(12);
+    const [perPage, setPerPage] = useState(6);
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
@@ -67,89 +67,109 @@ const Product = () => {
 
     return (
         <div className="max-w-[1170px] mx-auto px-4 py-10">
-            {/* Category Badges */}
-            <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-6">
-                {Object.entries(categories).map(([key, label]) => (
-                    <button
-                        key={key}
-                        onClick={() => handleCategoryChange(key)}
-                        className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition ${activeCategory === key ? 'bg-black text-white' : 'bg-gray-200 hover:bg-gray-300'
-                            }`}
-                    >
-                        {label}
-                    </button>
-                ))}
-            </div>
+            <div className="flex flex-col lg:flex-row gap-8">
+                {/* Sidebar - Large Screens */}
+                <aside className="hidden lg:block w-1/4">
+                    <div className="space-y-2 sticky top-20 bg-gray-50 p-4 rounded shadow-sm">
+                        <h2 className="text-lg font-semibold mb-2 text-gray-800">Categories</h2>
+                        {Object.entries(categories).map(([key, label]) => (
+                            <button
+                                key={key}
+                                onClick={() => handleCategoryChange(key)}
+                                className={`w-full text-left px-3 py-2 rounded text-sm font-medium transition ${activeCategory === key
+                                        ? 'bg-black text-white'
+                                        : 'bg-gray-200 hover:bg-gray-300'
+                                    }`}
+                            >
+                                {label}
+                            </button>
+                        ))}
+                    </div>
+                </aside>
 
-            {/* Per Page Selector */}
-            <div className="flex justify-center mb-8">
-                <div className="flex items-center gap-2 text-sm bg-gray-100 px-4 py-2 rounded">
-                    <label htmlFor="perPage" className="text-gray-600">
-                        Show per page:
-                    </label>
-                    <select
-                        id="perPage"
-                        value={perPage}
-                        onChange={handlePerPageChange}
-                        className="border rounded px-2 py-1 text-sm"
-                    >
-                        <option value={12}>12</option>
-                        <option value={20}>20</option>
-                        <option value={32}>32</option>
-                    </select>
-                </div>
-            </div>
-
-            {/* Product Grid */}
-            {paginatedProducts.length > 0 ? (
-                <div className="space-y-8">
-                    {Array.from({ length: Math.ceil(paginatedProducts.length / 4) }, (_, i) =>
-                        paginatedProducts.slice(i * 4, i * 4 + 4)
-                    ).map((row, index) => (
-                        <div
-                            key={index}
-                            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 border-b border-gray-200 pb-6"
+                {/* Main Content */}
+                <main className="w-full lg:w-3/4">
+                    {/* Category Dropdown - Mobile */}
+                    <div className="lg:hidden mb-6">
+                        <label htmlFor="categorySelect" className="block text-sm font-medium text-gray-700 mb-1">
+                            Select Category
+                        </label>
+                        <select
+                            id="categorySelect"
+                            value={activeCategory}
+                            onChange={(e) => handleCategoryChange(e.target.value)}
+                            className="w-full border rounded px-3 py-2 text-sm"
                         >
-                            {row.map((product) => (
+                            {Object.entries(categories).map(([key, label]) => (
+                                <option key={key} value={key}>
+                                    {label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Per Page Selector */}
+                    <div className="flex justify-end mb-4">
+                        <div className="flex items-center gap-2 text-sm bg-gray-100 px-4 py-2 rounded">
+                            <label htmlFor="perPage" className="text-gray-600">
+                                Show per page:
+                            </label>
+                            <select
+                                id="perPage"
+                                value={perPage}
+                                onChange={handlePerPageChange}
+                                className="border rounded px-2 py-1 text-sm"
+                            >
+                                <option value={3}>3</option>
+                                <option value={6}>6</option>
+                                <option value={9}>9</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    {/* Product Grid */}
+                    {paginatedProducts.length > 0 ? (
+                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {paginatedProducts.map((product) => (
                                 <ProductCard key={product.id} {...product} />
                             ))}
                         </div>
-                    ))}
-                </div>
-            ) : (
-                <div className="text-center text-gray-500 text-lg py-20">
-                    No products available in this category.
-                </div>
-            )}
+                    ) : (
+                        <div className="text-center text-gray-500 text-lg py-20">
+                            No products available in this category.
+                        </div>
+                    )}
 
-            {/* Pagination Controls */}
-            {filteredProducts.length > perPage && (
-                <div className="flex justify-center mt-10 gap-4">
-                    <button
-                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
-                        className={`px-4 py-2 rounded border text-sm font-medium ${currentPage === 1
-                                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                                : 'bg-white hover:bg-gray-100'
-                            }`}
-                    >
-                        Prev
-                    </button>
-                    <span className="text-sm text-gray-600 pt-2">
-                        Page {currentPage} of {totalPages}
-                    </span>
-                    <button
-                        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                        disabled={currentPage === totalPages}
-                        className={`px-4 py-2 rounded border text-sm font-medium ${currentPage === totalPages
-                                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                                : 'bg-white hover:bg-gray-100'
-                            }`}
-                    >
-                        Next
-                    </button>
-                </div>
-            )}
+                    {/* Pagination */}
+                    {filteredProducts.length > perPage && (
+                        <div className="flex justify-center mt-10 gap-4">
+                            <button
+                                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                                disabled={currentPage === 1}
+                                className={`px-4 py-2 rounded border text-sm font-medium ${currentPage === 1
+                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                        : 'bg-white hover:bg-gray-100'
+                                    }`}
+                            >
+                                Prev
+                            </button>
+                            <span className="text-sm text-gray-600 pt-2">
+                                Page {currentPage} of {totalPages}
+                            </span>
+                            <button
+                                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                                disabled={currentPage === totalPages}
+                                className={`px-4 py-2 rounded border text-sm font-medium ${currentPage === totalPages
+                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                        : 'bg-white hover:bg-gray-100'
+                                    }`}
+                            >
+                                Next
+                            </button>
+                        </div>
+                    )}
+                </main>
+            </div>
         </div>
     );
 };
