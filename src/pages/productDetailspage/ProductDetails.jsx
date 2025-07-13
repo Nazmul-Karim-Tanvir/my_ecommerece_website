@@ -8,6 +8,8 @@ import img2 from '../../assets/images/productDetails/image58.svg';
 import img3 from '../../assets/images/productDetails/image61.svg';
 import img4 from '../../assets/images/productDetails/image63.svg';
 
+import ProductCard from '../../components/ProductCard'; // Your ProductCard import
+
 // Map categories to nice labels (for breadcrumb)
 const categoryLabels = {
     all: 'All Products',
@@ -39,24 +41,39 @@ const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const [color, setColor] = useState('white');
     const [size, setSize] = useState('M');
+    const [relatedProducts, setRelatedProducts] = useState([]);
 
     useEffect(() => {
         const productId = parseInt(id);
+        let foundProduct = null;
+        let foundCategory = '';
+
+        // Find the product and category by id
         for (const categoryName in products) {
             const found = products[categoryName].find((item) => item.id === productId);
             if (found) {
-                setProduct(found);
-                setCategory(categoryName);
-                setSelectedImage(found.image); // Use product image
+                foundProduct = found;
+                foundCategory = categoryName;
                 break;
             }
+        }
+
+        if (foundProduct) {
+            setProduct(foundProduct);
+            setCategory(foundCategory);
+            setSelectedImage(foundProduct.image);
+
+            // Find related products (same category, exclude current product)
+            const related = products[foundCategory]
+                .filter(item => item.id !== productId)
+                .slice(0, 4); // limit to 4 related products
+            setRelatedProducts(related);
         }
     }, [id]);
 
     if (!product)
         return <div className="text-center py-10 text-gray-500">Loading...</div>;
 
-    // Optional thumbnails (first one is product image)
     const thumbnails = [product.image, img1, img2, img3];
 
     return (
@@ -81,7 +98,7 @@ const ProductDetails = () => {
                 <span className="text-gray-900 font-semibold">{product.productName}</span>
             </div>
 
-
+            {/* Main product detail */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 {/* Image Section */}
                 <div className="flex flex-col md:flex-row gap-5">
@@ -93,10 +110,7 @@ const ProductDetails = () => {
                                 alt={`thumb-${idx}`}
                                 onClick={() => setSelectedImage(img)}
                                 className={`w-20 h-20 object-contain rounded-md border-2 cursor-pointer transition-all duration-300
-                  ${selectedImage === img
-                                        ? 'border-black scale-105'
-                                        : 'border-gray-300 hover:border-black'
-                                    }
+                  ${selectedImage === img ? 'border-black scale-105' : 'border-gray-300 hover:border-black'}
                 `}
                             />
                         ))}
@@ -112,12 +126,10 @@ const ProductDetails = () => {
                     </div>
                 </div>
 
-                {/* 🛍️ Product Info */}
+                {/* Product Info */}
                 <div className="space-y-6">
                     <div>
-                        <h1 className="text-3xl font-semibold text-gray-900">
-                            {product.productName}
-                        </h1>
+                        <h1 className="text-3xl font-semibold text-gray-900">{product.productName}</h1>
                         <div className="flex items-center gap-2 text-yellow-500 mt-1">
                             ★★★★☆
                             <span className="text-sm text-gray-600">({product.starCount} Reviews)</span>
@@ -131,7 +143,7 @@ const ProductDetails = () => {
                         Pressure sensitive material ensures smooth application.
                     </p>
 
-                    {/* 🎨 Color Options */}
+                    {/* Color Options */}
                     <div>
                         <p className="font-medium mb-2">Colours:</p>
                         <div className="flex items-center gap-3">
@@ -148,7 +160,7 @@ const ProductDetails = () => {
                         </div>
                     </div>
 
-                    {/* 📏 Size Options */}
+                    {/* Size Options */}
                     <div>
                         <p className="font-medium mb-2">Size:</p>
                         <div className="flex gap-2 flex-wrap">
@@ -169,7 +181,7 @@ const ProductDetails = () => {
                         </div>
                     </div>
 
-                    {/* ➕➖ Quantity & Actions */}
+                    {/* Quantity & Actions */}
                     <div className="flex flex-wrap items-center gap-4 mt-4">
                         <div className="flex items-center gap-2 border rounded px-3 py-1.5">
                             <button
@@ -196,7 +208,7 @@ const ProductDetails = () => {
                         </button>
                     </div>
 
-                    {/* 📦 Delivery Info */}
+                    {/* Delivery Info */}
                     <div className="mt-6 space-y-3 border-t pt-4 text-sm text-gray-700">
                         <div className="flex items-center gap-2">
                             🚚 <span>Free Delivery</span>
@@ -215,6 +227,30 @@ const ProductDetails = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            {/* Related Products Section */}
+            <div className="mt-16">
+                <h2 className="text-2xl font-semibold mb-6">Related Products</h2>
+                {relatedProducts.length === 0 ? (
+                    <p className="text-gray-500">No related products found.</p>
+                ) : (
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {relatedProducts.map((item) => (
+                            <ProductCard
+                                key={item.id}
+                                id={item.id}
+                                image={item.image}
+                                productName={item.productName}
+                                newPrice={item.newPrice}
+                                oldPrice={item.oldPrice || item.newPrice}
+                                offer={item.offer || ''}
+                                rating={item.rating || 0}
+                                starCount={item.starCount || 0}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
