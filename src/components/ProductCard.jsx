@@ -3,7 +3,7 @@ import { Star as StarIcon, StarHalf, StarOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import useCartStore from '../store/cartStore';
-import { toast } from 'react-toastify';  // import toast
+import { toast } from 'react-toastify';
 
 const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating, starCount }) => {
     const stars = getStarArray(rating);
@@ -12,7 +12,6 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
 
     const cartItems = useCartStore(state => state.cartItems);
     const addToCart = useCartStore(state => state.addToCart);
-    const removeFromCart = useCartStore(state => state.removeFromCart);
 
     const existingItem = cartItems.find(item => item.id === id);
 
@@ -26,6 +25,7 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
             offer,
             rating,
             starCount,
+            quantity: 1, // Ensure default quantity is passed
         });
         toast.success('Product added to cart');
     };
@@ -38,13 +38,12 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
 
     const handleDecrement = (e) => {
         e.stopPropagation();
-        if (existingItem.quantity > 1) {
-            addToCart({ ...existingItem, quantity: -1 });
-            toast.info('Product quantity decreased');
-        } else {
-            removeFromCart(id);
-            toast.info('Product removed from cart');
-        }
+        addToCart({ ...existingItem, quantity: -1 });
+        toast.info(
+            existingItem.quantity > 1
+                ? 'Product quantity decreased'
+                : 'Product removed from cart'
+        );
     };
 
     return (
@@ -136,9 +135,9 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
 
                 <div className="flex items-center gap-1 text-sm pt-1">
                     {stars.map((type, index) =>
-                        type === "full" ? (
+                        type === 'full' ? (
                             <StarIcon key={index} size={16} className="text-yellow-500 fill-yellow-500" />
-                        ) : type === "half" ? (
+                        ) : type === 'half' ? (
                             <StarHalf key={index} size={16} className="text-yellow-500 fill-yellow-500" />
                         ) : (
                             <StarOff key={index} size={16} className="text-gray-300 fill-none" />
@@ -158,11 +157,11 @@ const getStarArray = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
         if (i <= Math.floor(rating)) {
-            stars.push("full");
+            stars.push('full');
         } else if (i - rating < 1) {
-            stars.push("half");
+            stars.push('half');
         } else {
-            stars.push("empty");
+            stars.push('empty');
         }
     }
     return stars;
