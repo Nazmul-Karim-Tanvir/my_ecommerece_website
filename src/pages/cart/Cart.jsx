@@ -25,7 +25,7 @@ const Cart = () => {
                     <p className="max-w-sm text-gray-400">
                         Looks like you haven&apos;t added anything yet. Start shopping and your cart will show up here.
                     </p>
-                    <button className="mt-6 border border-gray-700 px-6 py-2 rounded hover:bg-gray-100 transition">
+                    <button onClick={() => navigate("/product")} className="mt-6 border border-gray-700 px-6 py-2 rounded hover:bg-gray-100 transition">
                         Return To Shop
                     </button>
                 </div>
