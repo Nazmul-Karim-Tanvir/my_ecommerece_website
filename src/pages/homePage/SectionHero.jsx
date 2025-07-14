@@ -61,7 +61,7 @@ const SectionHero = () => {
                     {categories.map((item) => (
                         <Link
                             key={item}
-                            to={`/category/${encodeURIComponent(item)}`}
+                            to={`/product?search=${encodeURIComponent(item)}`}
                             className="
                                 cursor-pointer 
                                 hover:text-black

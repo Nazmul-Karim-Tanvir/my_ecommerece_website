@@ -28,20 +28,31 @@ const categories = {
 const Product = () => {
     const location = useLocation();
 
+    const [filteredProducts, setFilteredProducts] = useState([]);
     const [activeCategory, setActiveCategory] = useState('all');
     const [perPage, setPerPage] = useState(6);
     const [currentPage, setCurrentPage] = useState(1);
 
+    // ✅ Handle query param and map it to category key
     useEffect(() => {
         const params = new URLSearchParams(location.search);
-        const categoryFromQuery = params.get('category');
+        let categoryFromQuery = params.get('search');
 
-        if (categoryFromQuery && categories[categoryFromQuery]) {
-            setActiveCategory(categoryFromQuery);
-            setCurrentPage(1);
+        if (categoryFromQuery) {
+            categoryFromQuery = decodeURIComponent(categoryFromQuery).trim();
+
+            const matchedKey = Object.entries(categories).find(
+                ([_, label]) => label.toLowerCase() === categoryFromQuery.toLowerCase()
+            )?.[0];
+
+            if (matchedKey) {
+                setActiveCategory(matchedKey);
+                setCurrentPage(1);
+            }
         }
     }, [location.search]);
 
+    // ✅ Filter products based on activeCategory
     const getFilteredProducts = () => {
         if (activeCategory === 'all') {
             return Object.values(products).flat();
@@ -49,8 +60,12 @@ const Product = () => {
         return products[activeCategory] || [];
     };
 
-    const filteredProducts = getFilteredProducts();
+    // ✅ Update filteredProducts whenever activeCategory changes
+    useEffect(() => {
+        setFilteredProducts(getFilteredProducts());
+    }, [activeCategory]);
 
+    // ✅ Pagination logic
     const totalPages = Math.ceil(filteredProducts.length / perPage);
     const startIndex = (currentPage - 1) * perPage;
     const paginatedProducts = filteredProducts.slice(startIndex, startIndex + perPage);
@@ -89,7 +104,7 @@ const Product = () => {
 
                 {/* Main Content */}
                 <main className="w-full lg:w-3/4">
-                    {/* Category Dropdown - Mobile */}
+                    {/* Mobile Dropdown */}
                     <div className="lg:hidden mb-6">
                         <label htmlFor="categorySelect" className="block text-sm font-medium text-gray-700 mb-1">
                             Select Category
