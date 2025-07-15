@@ -3,11 +3,18 @@ import ProductCard from '../../components/ProductCard';
 import { useCountdown } from '../../utils/countdown';
 import products from '../../store/products';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
 const SectionToday = () => {
     const todayProducts = products.today;
     const [scrollIndex, setScrollIndex] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(4);
+    const navigate = useNavigate();
+
+    const handleCategoryClick = () => {
+        navigate(`/product?search=${encodeURIComponent("Today’s Deals")}`);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
     // Set itemsPerPage based on screen width
     useEffect(() => {
@@ -101,7 +108,7 @@ const SectionToday = () => {
             </div>
 
             {/* View All Button */}
-            <div className="text-center pt-7">
+            <div onClick={handleCategoryClick} className="text-center pt-7">
                 <button className="bg-red-600 hover:bg-red-400 text-white py-2 px-8 rounded text-sm sm:text-base">
                     View All Products
                 </button>
