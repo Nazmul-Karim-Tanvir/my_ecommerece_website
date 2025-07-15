@@ -53,6 +53,7 @@ const AppRoutes = () => {
                 <Route path="product" element={<Product />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
                 <Route path="checkout" element={<CheckOut />} />
+                <Route path="signup" element={<SignUp />} />
                 <Route
                     path="*"
                     element={
