@@ -3,6 +3,7 @@ import perfume from '../../assets/images/newarrival/perfume.svg';
 import playstation from '../../assets/images/newarrival/playstation.svg';
 import speaker3 from '../../assets/images/newarrival/speaker3.png';
 import women from '../../assets/images/newarrival/women.jpg';
+import { Link } from "react-router-dom";
 
 const SectionNewArrival = () => {
     return (
@@ -28,7 +29,13 @@ const SectionNewArrival = () => {
                     <div className="absolute bottom-5 left-5 text-white">
                         <h2 className="text-2xl font-bold py-4">PlayStation 5</h2>
                         <p className="text-sm mb-2 py-2">Black and White version of the PS5 <br /> coming out on sale.</p>
-                        <button className="underline">Shop Now</button>
+                        <Link
+                            to="/product"
+                            className="underline"
+                            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                        >
+                            Shop Now
+                        </Link>
                     </div>
                 </div>
 
@@ -45,7 +52,13 @@ const SectionNewArrival = () => {
                         <div className="absolute bottom-5 left-5 text-white">
                             <h2 className="text-xl font-bold py-2">Women’s Collections</h2>
                             <p className="text-sm mb-2 py-2">Featured woman collections that <br /> give you another vibe.</p>
-                            <button className="underline">Shop Now</button>
+                            <Link
+                                to="/product"
+                                className="underline"
+                                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                            >
+                                Shop Now
+                            </Link>
                         </div>
                     </div>
 
@@ -62,7 +75,13 @@ const SectionNewArrival = () => {
                             <div className="absolute bottom-5 left-5 text-white">
                                 <h2 className="text-lg font-bold">Speakers</h2>
                                 <p className="text-sm mb-2">Amazon wireless speakers</p>
-                                <button className="underline">Shop Now</button>
+                                <Link
+                                    to="/product"
+                                    className="underline"
+                                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                                >
+                                    Shop Now
+                                </Link>
                             </div>
                         </div>
 
@@ -76,7 +95,13 @@ const SectionNewArrival = () => {
                             <div className="absolute bottom-5 left-5 text-white">
                                 <h2 className="text-lg font-bold">Perfume</h2>
                                 <p className="text-sm mb-2">GUCCI INTENSE OUD EDP</p>
-                                <button className="underline">Shop Now</button>
+                                <Link
+                                    to="/product"
+                                    className="underline"
+                                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                                >
+                                    Shop Now
+                                </Link>
                             </div>
                         </div>
 
