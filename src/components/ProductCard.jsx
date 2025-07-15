@@ -48,7 +48,7 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
     };
 
     return (
-        <div className="max-w-[270px]">
+        <div className="max-w-[270px] shadow rounded">
             <div className="h-[250px] group relative bg-gray-100 rounded overflow-hidden">
                 {/* Offer Badge */}
                 <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
@@ -129,7 +129,7 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
                 </div>
             </div>
 
-            <div className="pt-2">
+            <div className="py-2 px-2">
                 <h3 className="text-lg font-medium line-clamp-1">{productName}</h3>
                 <div className="flex items-start pt-1.5 gap-2">
                     <span className="text-red-600 font-medium">${newPrice}</span>
