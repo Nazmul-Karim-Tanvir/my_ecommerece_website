@@ -1,8 +1,15 @@
 import products from '../../store/products.js'
 import ProductCard from '../../components/ProductCard.jsx'
+import { useNavigate } from "react-router-dom";
 
 const SectionBestSelling = () => {
+    const navigate = useNavigate();
     const bestSelling = products.thisMonth;
+
+    const handleCategoryClick = () => {
+        navigate(`/product?search=${encodeURIComponent("This Month")}`);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
     return (
         <div className='max-w-[1170px] mx-auto mt-30 sm:px-6 lg:px-0'>
             {/* Title bar */}
@@ -16,7 +23,7 @@ const SectionBestSelling = () => {
                 <h1 className='text-3xl md:text-4xl pr-0 md:pr-6 font-semibold'>
                     Best Selling Products
                 </h1>
-                <button className='text-white bg-red-600 rounded px-4 py-2 sm:px-6 sm:py-2 md:px-6 md:py-3 text-sm sm:text-base md:text-base whitespace-nowrap'>
+                <button onClick={handleCategoryClick} className='text-white bg-red-600 rounded px-4 py-2 sm:px-6 sm:py-2 md:px-6 md:py-3 text-sm sm:text-base md:text-base whitespace-nowrap'>
                     View All
                 </button>
             </div>
