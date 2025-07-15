@@ -1,15 +1,32 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Heart } from 'lucide-react'; // ✅ Importing Heart icon
 import useWishListStore from '../../store/wishlistStore';
 import ProductCard from '../../components/ProductCard';
 
 const WishList = () => {
     const wishListItems = useWishListStore(state => state.wishListItems);
+    const navigate = useNavigate(); // ✅ Using navigate properly
 
     return (
         <div className="max-w-[1170px] mx-auto px-4 py-10">
-            <h1 className="text-3xl font-semibold mb-6">Your Wishlist</h1>
+            <h2 className="text-xl font-bold mb-8 text-center sm:text-left">Your Wishlist</h2>
+
+            {/* Empty Wishlist View */}
             {wishListItems.length === 0 ? (
-                <p className="text-gray-500">Your wishlist is empty.</p>
+                <div className="flex flex-col items-center justify-center text-center text-gray-500 py-20">
+                    <Heart size={80} className="mb-6 opacity-40 text-red-400" />
+                    <p className="text-xl font-semibold mb-2">Your wishlist is empty</p>
+                    <p className="max-w-sm text-gray-400">
+                        Looks like you haven&apos;t added anything to your wishlist yet.
+                    </p>
+                    <button
+                        onClick={() => navigate("/product")}
+                        className="mt-6 border border-gray-700 px-6 py-2 rounded hover:bg-gray-100 transition"
+                    >
+                        Return To Shop
+                    </button>
+                </div>
             ) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {wishListItems.map(product => (

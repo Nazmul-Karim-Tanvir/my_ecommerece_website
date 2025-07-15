@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Heart, ShoppingCart, Search, Menu, X } from 'lucide-react';
-import useCartStore from '../store/cartStore'; // <-- import your cart store
+import useCartStore from '../store/cartStore';
+import useWishListStore from '../store/wishlistStore';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -11,6 +12,11 @@ const Navbar = () => {
     const totalQuantity = useCartStore(state =>
         state.cartItems.reduce((total, item) => total + item.quantity, 0)
     );
+    // Get total quantity from wishlist
+    const totalQuantity1 = useWishListStore(state =>
+        state.wishListItems.reduce((total, item) => total + (item.quantity || 1), 0)
+    );
+
 
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -61,9 +67,18 @@ const Navbar = () => {
                         <Search className="w-6 h-6 text-gray-700" />
                     </div>
 
-                    <Link to="/wishList" className="text-gray-700">
+                    <Link to="/wishList" className="relative text-gray-700">
                         <Heart className="w-6 h-6 hover:text-red-500" />
+                        {totalQuantity1 > 0 && (
+                            <span
+                                className="absolute -top-2 -right-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full"
+                                style={{ minWidth: '18px', height: '18px' }}
+                            >
+                                {totalQuantity1}
+                            </span>
+                        )}
                     </Link>
+
 
                     <Link to="/cart" className="relative text-gray-700">
                         <ShoppingCart className="w-6 h-6 hover:text-blue-500" />
@@ -101,8 +116,8 @@ const Navbar = () => {
                                 to={link.path}
                                 onClick={() => setMenuOpen(false)}
                                 className={`block text-lg ${location.pathname === link.path
-                                        ? 'underline underline-offset-4 text-black font-semibold'
-                                        : ''
+                                    ? 'underline underline-offset-4 text-black font-semibold'
+                                    : ''
                                     }`}
                             >
                                 {link.label}
