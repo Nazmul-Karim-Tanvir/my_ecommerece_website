@@ -3,6 +3,7 @@ import { Star as StarIcon, StarHalf, StarOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import useCartStore from '../store/cartStore';
+import useWishListStore from '../store/wishlistStore';
 import { toast } from 'react-toastify';
 import getStarArray from '../utils/getStarArray.js';
 
@@ -11,11 +12,17 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
     const navigate = useNavigate();
     const [showViewText, setShowViewText] = useState(false);
 
+    // Cart store hooks
     const cartItems = useCartStore(state => state.cartItems);
     const addToCart = useCartStore(state => state.addToCart);
-
     const existingItem = cartItems.find(item => item.id === id);
 
+    // Wishlist store hooks
+    const wishListItems = useWishListStore(state => state.wishListItems);
+    const toggleWishList = useWishListStore(state => state.toggleWishList);
+    const isInWishList = wishListItems.some(item => item.id === id);
+
+    // Cart handlers
     const handleAddToCart = () => {
         addToCart({
             id,
@@ -26,7 +33,7 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
             offer,
             rating,
             starCount,
-            quantity: 1, // Ensure default quantity is passed
+            quantity: 1,
         });
         toast.success('Product added to cart');
     };
@@ -47,6 +54,17 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
         );
     };
 
+    // Wishlist toggle handler
+    const handleToggleWishList = (e) => {
+        e.stopPropagation();
+        toggleWishList({ id, image, productName, newPrice, oldPrice, offer, rating, starCount });
+        if (isInWishList) {
+            toast.info('Removed from wishlist');
+        } else {
+            toast.success('Added to wishlist');
+        }
+    };
+
     return (
         <div className="max-w-[270px] shadow rounded">
             <div className="h-[250px] group relative bg-gray-100 rounded overflow-hidden">
@@ -57,7 +75,11 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
 
                 {/* Action Icons */}
                 <div className="absolute top-2 right-2 flex flex-col gap-2 z-10 items-end">
-                    <div className="rounded-full bg-white p-2 cursor-pointer">
+                    <div
+                        onClick={handleToggleWishList}
+                        className={`rounded-full p-2 cursor-pointer transition-colors ${isInWishList ? 'bg-red-500 text-white' : 'bg-white'}`}
+                        title={isInWishList ? 'Remove from wishlist' : 'Add to wishlist'}
+                    >
                         <Heart size={16} />
                     </div>
 
@@ -80,7 +102,7 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
 
                 {existingItem ? (
                     <div className="absolute bottom-0 w-full px-3 py-2 text-sm font-medium bg-black/50 backdrop-blur-sm text-white rounded-t flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0 transition-opacity duration-300 opacity-100 md:opacity-0 group-hover:opacity-100">
-                        {/* Buttons */}
+                        {/* Quantity Buttons */}
                         <div className="flex justify-center md:justify-start items-center gap-2">
                             <button
                                 onClick={handleDecrement}
@@ -122,7 +144,6 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
                         </button>
                     </div>
                 )}
-
 
                 <div className="flex items-center justify-center h-full px-4">
                     <img src={image} alt={productName} className="max-h-[150px] object-contain" />
