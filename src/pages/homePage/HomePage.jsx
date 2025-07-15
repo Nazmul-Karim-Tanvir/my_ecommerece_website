@@ -14,7 +14,7 @@ import Services from '../../components/Services';
 const HomePage = () => {
     useEffect(() => {
         AOS.init({
-            duration: 800, // animation duration
+            duration: 700, // animation duration
             once: true, // animation only once
         });
     }, []);
