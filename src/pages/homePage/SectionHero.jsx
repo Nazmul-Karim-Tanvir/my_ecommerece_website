@@ -101,10 +101,14 @@ const SectionHero = () => {
                         <h2 className="text-[1.5rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold leading-tight min-h-[60px]">
                             {slides[current].description}
                         </h2>
-                        <button className="inline-flex items-center gap-1 text-white hover:text-gray-300 transition mx-auto md:mx-0 text-sm sm:text-base mt-2 sm:mt-4">
+                        <Link
+                            to="/product"
+                            className="inline-flex items-center gap-1 text-white hover:text-gray-300 transition mx-auto md:mx-0 text-sm sm:text-base mt-2 sm:mt-4"
+                            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                        >
                             <span className="border-b border-white leading-none">Shop Now</span>
                             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                        </button>
+                        </Link>
                     </div>
 
                     {/* Image */}
