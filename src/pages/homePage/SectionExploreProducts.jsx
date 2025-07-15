@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import ProductCard from '../../components/ProductCard';
 import products from '../../store/products';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
 const SectionExploreProducts = () => {
+    const navigate = useNavigate();
+    const handleCategoryClick = () => {
+        navigate(`/product?search=${encodeURIComponent("Our Products")}`);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
     const ourProducts = products.ourProducts;
 
     const itemsPerPage = 8; // 4 per row * 2 rows
@@ -61,7 +67,7 @@ const SectionExploreProducts = () => {
 
             {/* View All Button */}
             <div className='text-center pt-7'>
-                <button className='bg-red-600 hover:bg-red-400 text-white py-2 px-8 my-6 rounded text-sm sm:text-base'>
+                <button onClick={handleCategoryClick} className='bg-red-600 hover:bg-red-400 text-white py-2 px-8 my-6 rounded text-sm sm:text-base'>
                     View All Products
                 </button>
             </div>
