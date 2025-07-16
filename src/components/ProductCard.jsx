@@ -5,8 +5,9 @@ import useCartStore from '../store/cartStore';
 import useWishListStore from '../store/wishlistStore';
 import { toast } from 'react-toastify';
 import getStarArray from '../utils/getStarArray.js';
+import { Trash2 } from 'lucide-react';
 
-const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating, starCount }) => {
+const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating, starCount, isInWishListPage = false }) => {
     const stars = getStarArray(rating);
     const navigate = useNavigate();
 
@@ -60,7 +61,7 @@ const ProductCard = ({ id, image, productName, newPrice, oldPrice, offer, rating
                         className={`rounded-full p-2 cursor-pointer transition-colors z-20 ${isInWishList ? 'bg-red-500 text-white' : 'bg-white'}`}
                         title={isInWishList ? 'Remove from wishlist' : 'Add to wishlist'}
                     >
-                        <Heart size={16} />
+                        {isInWishListPage ? <Trash2 size={16} /> : <Heart size={16} />}
                     </div>
                 </div>
 
