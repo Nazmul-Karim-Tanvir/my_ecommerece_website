@@ -18,6 +18,7 @@ import ProductDetails from '../pages/productDetailspage/ProductDetails.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CheckOut from '../pages/checkOut/CheckOut.jsx';
+import ProfilePage from '../pages/profile/ProfilePage.jsx';
 
 const AppRoutes = () => {
     return (
@@ -54,6 +55,7 @@ const AppRoutes = () => {
                 <Route path="/product/:id" element={<ProductDetails />} />
                 <Route path="checkout" element={<CheckOut />} />
                 <Route path="signup" element={<SignUp />} />
+                <Route path="profilepage" element={<ProfilePage />} />
                 <Route
                     path="*"
                     element={
