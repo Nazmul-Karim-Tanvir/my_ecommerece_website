@@ -2,6 +2,7 @@ import React from 'react';
 import { ShoppingCart } from 'lucide-react';
 import useCartStore from '../../store/cartStore';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineClose } from "react-icons/ai";
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -48,9 +49,9 @@ const Cart = () => {
                                         <td className="p-4 flex items-center gap-4">
                                             <button
                                                 onClick={() => removeItem(item.id)}
-                                                className="text-red-500 hover:text-red-700 text-lg font-bold"
+                                                className="text-red-600 hover:text-red-800 p-1"
                                             >
-                                                ×
+                                                <AiOutlineClose size={20} />
                                             </button>
                                             <img
                                                 src={item.image}
