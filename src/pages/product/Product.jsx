@@ -30,7 +30,7 @@ const Product = () => {
 
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [activeCategory, setActiveCategory] = useState('all');
-    const [perPage, setPerPage] = useState(6);
+    const [perPage, setPerPage] = useState(4);
     const [currentPage, setCurrentPage] = useState(1);
 
     // Handle URL query param to set category
