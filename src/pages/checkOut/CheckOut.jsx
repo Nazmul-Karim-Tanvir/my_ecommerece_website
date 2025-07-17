@@ -37,7 +37,13 @@ const CheckOut = () => {
     const handlePlaceOrder = (e) => {
         e.preventDefault();
 
-        localStorage.setItem('checkoutFormData', JSON.stringify(formState));
+        // ✅ Validation
+        for (let key in formState) {
+            if (formState[key] === '' && key !== 'paymentMethod') {
+                alert(`Please fill in the ${key}`);
+                return;
+            }
+        }
 
         const loggedInUser = localStorage.getItem('loggedInUser');
         if (!loggedInUser) {
@@ -71,7 +77,7 @@ const CheckOut = () => {
                     <div className="w-full md:w-2/3">
                         <div className="bg-white rounded-xl shadow-md p-6 sm:p-8">
                             <h3 className="text-xl font-semibold mb-6 text-gray-800">Billing Details</h3>
-                            <form className="space-y-4">
+                            <form className="space-y-4" onSubmit={handlePlaceOrder}>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <input
                                         type="text"
@@ -151,6 +157,12 @@ const CheckOut = () => {
                                     <option value="us">United States</option>
                                     <option value="uk">United Kingdom</option>
                                 </select>
+                                <button
+                                    type="submit"
+                                    className="mt-8 w-1/2 bg-red-500 text-white py-2 rounded font-semibold hover:bg-red-600 transition text-center"
+                                >
+                                    Place Order
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -198,13 +210,6 @@ const CheckOut = () => {
                                     </select>
                                 </div>
                             </div>
-
-                            <button
-                                onClick={handlePlaceOrder}
-                                className="mt-8 w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition"
-                            >
-                                Place Order
-                            </button>
                         </div>
                     </div>
                 </div>
