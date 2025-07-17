@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ import navigate
+import { useNavigate } from "react-router-dom";
 import signupImage from "../../assets/images/signupimage/signup-image.png";
 
 const SignUp = () => {
-    const navigate = useNavigate(); // ✅ initialize navigate
+    const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
         name: "",
@@ -62,7 +62,7 @@ const SignUp = () => {
 
             alert(`Welcome back, ${user.name}!`);
             localStorage.setItem("loggedInUser", user.email);
-            navigate("/"); // ✅ redirect to home
+            navigate("/");
         } else {
             const userExists = storedUsers.some(
                 (u) => u.email.toLowerCase() === formData.email.toLowerCase()
@@ -83,7 +83,7 @@ const SignUp = () => {
             localStorage.setItem("users", JSON.stringify(storedUsers));
             localStorage.setItem("loggedInUser", formData.email.trim().toLowerCase());
             alert("Signup successful! You are now logged in.");
-            navigate("/"); // ✅ redirect to home
+            navigate("/");
         }
 
         setFormData({ name: "", email: "", password: "", confirmPassword: "" });
@@ -92,7 +92,7 @@ const SignUp = () => {
     const RedStar = () => <span className="text-red-600">*</span>;
 
     return (
-        <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-[#f1f5f9] to-[#dbeafe]">
+        <div className="min-h-[800px] flex items-center justify-center px-4">
             <div className="w-full max-w-[1170px] bg-white/80 backdrop-blur-lg shadow shadow-gray-300 rounded-xl overflow-hidden flex flex-col md:flex-row relative">
                 <div className="relative w-full md:w-1/2 h-52 md:h-auto">
                     <img
