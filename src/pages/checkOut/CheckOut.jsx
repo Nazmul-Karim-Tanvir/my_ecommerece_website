@@ -22,7 +22,6 @@ const CheckOut = () => {
         paymentMethod: 'cod',
     });
 
-    // Load saved form data if exists
     useEffect(() => {
         const saved = localStorage.getItem('checkoutFormData');
         if (saved) {
@@ -56,161 +55,160 @@ const CheckOut = () => {
                 Checkout
             </h2>
 
-            <div className="flex flex-col md:flex-row gap-8 md:gap-10">
-                {/* Billing Form */}
-                <div className="w-full md:w-2/3">
-                    <div className="bg-white rounded-xl shadow-md p-6 sm:p-8">
-                        <h3 className="text-xl font-semibold mb-6 text-gray-800">Billing Details</h3>
-                        <form className="space-y-4">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input
-                                    type="text"
-                                    name="firstName"
-                                    value={formState.firstName}
-                                    onChange={handleChange}
-                                    placeholder="First Name"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-                                    required
-                                />
-                                <input
-                                    type="text"
-                                    name="lastName"
-                                    value={formState.lastName}
-                                    onChange={handleChange}
-                                    placeholder="Last Name"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-                                    required
-                                />
-                            </div>
-                            <input
-                                type="email"
-                                name="email"
-                                value={formState.email}
-                                onChange={handleChange}
-                                placeholder="Email Address"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-                                required
-                            />
-                            <input
-                                type="text"
-                                name="phone"
-                                value={formState.phone}
-                                onChange={handleChange}
-                                placeholder="Phone Number"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-                                required
-                            />
-                            <input
-                                type="text"
-                                name="address"
-                                value={formState.address}
-                                onChange={handleChange}
-                                placeholder="Address Line"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-                                required
-                            />
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input
-                                    type="text"
-                                    name="city"
-                                    value={formState.city}
-                                    onChange={handleChange}
-                                    placeholder="City"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-                                    required
-                                />
-                                <input
-                                    type="text"
-                                    name="postalCode"
-                                    value={formState.postalCode}
-                                    onChange={handleChange}
-                                    placeholder="Postal Code"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-                                    required
-                                />
-                            </div>
-                            <select
-                                name="country"
-                                value={formState.country}
-                                onChange={handleChange}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-                                required
-                            >
-                                <option value="" disabled>Select Country</option>
-                                <option value="bd">Bangladesh</option>
-                                <option value="us">United States</option>
-                                <option value="uk">United Kingdom</option>
-                            </select>
-
-                            {orderPlaced && (
-                                <div className="mt-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg text-center font-semibold flex items-center justify-center gap-4">
-                                    <span>Order placed successfully!</span>
-                                    <Link
-                                        to="/"
-                                        className="text-blue-600 underline hover:text-blue-800"
-                                    >
-                                        Home
-                                    </Link>
-                                </div>
-                            )}
-                        </form>
-                    </div>
+            {orderPlaced ? (
+                <div className="bg-green-100 border border-green-400 text-green-700 px-6 py-8 rounded-lg text-center font-semibold max-w-lg mx-auto">
+                    <p className="text-xl mb-4">✅ Order placed successfully!</p>
+                    <Link
+                        to="/"
+                        className="inline-block mt-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                    >
+                        Return to Home
+                    </Link>
                 </div>
-
-                {/* Order Summary */}
-                <div className="w-full md:w-1/3">
-                    <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 sticky top-20 flex flex-col justify-between h-full">
-                        <div>
-                            <h3 className="text-xl font-semibold mb-6 text-gray-800">Order Summary</h3>
-                            <div className="divide-y divide-gray-200 text-sm max-h-[50vh] overflow-y-auto mb-6">
-                                {cartItems.map((item) => (
-                                    <div key={item.id} className="py-3 flex justify-between text-gray-700">
-                                        <span>
-                                            {item.productName} × {item.quantity}
-                                        </span>
-                                        <span>${(item.newPrice * item.quantity).toFixed(2)}</span>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="border-t border-gray-200 pt-6 text-sm space-y-3 text-gray-800">
-                                <div className="flex justify-between">
-                                    <span>Subtotal:</span>
-                                    <span>${subtotal.toFixed(2)}</span>
+            ) : (
+                <div className="flex flex-col md:flex-row gap-8 md:gap-10">
+                    {/* Billing Form */}
+                    <div className="w-full md:w-2/3">
+                        <div className="bg-white rounded-xl shadow-md p-6 sm:p-8">
+                            <h3 className="text-xl font-semibold mb-6 text-gray-800">Billing Details</h3>
+                            <form className="space-y-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <input
+                                        type="text"
+                                        name="firstName"
+                                        value={formState.firstName}
+                                        onChange={handleChange}
+                                        placeholder="First Name"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                                        required
+                                    />
+                                    <input
+                                        type="text"
+                                        name="lastName"
+                                        value={formState.lastName}
+                                        onChange={handleChange}
+                                        placeholder="Last Name"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                                        required
+                                    />
                                 </div>
-                                <div className="flex justify-between">
-                                    <span>Shipping:</span>
-                                    <span>Free</span>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formState.email}
+                                    onChange={handleChange}
+                                    placeholder="Email Address"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    name="phone"
+                                    value={formState.phone}
+                                    onChange={handleChange}
+                                    placeholder="Phone Number"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    name="address"
+                                    value={formState.address}
+                                    onChange={handleChange}
+                                    placeholder="Address Line"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                                    required
+                                />
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <input
+                                        type="text"
+                                        name="city"
+                                        value={formState.city}
+                                        onChange={handleChange}
+                                        placeholder="City"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                                        required
+                                    />
+                                    <input
+                                        type="text"
+                                        name="postalCode"
+                                        value={formState.postalCode}
+                                        onChange={handleChange}
+                                        placeholder="Postal Code"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                                        required
+                                    />
                                 </div>
-                                <div className="flex justify-between font-semibold text-lg border-t border-gray-300 pt-4 mt-4">
-                                    <span>Total:</span>
-                                    <span>${subtotal.toFixed(2)}</span>
-                                </div>
-                            </div>
-                            <div className="mt-8">
-                                <h4 className="font-semibold mb-3 text-gray-800">Payment Method</h4>
                                 <select
-                                    name="paymentMethod"
-                                    value={formState.paymentMethod}
+                                    name="country"
+                                    value={formState.country}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                                    required
                                 >
-                                    <option value="cod">Cash on Delivery</option>
-                                    <option value="card">Credit / Debit Card</option>
-                                    <option value="bkash">bKash / Nagad</option>
+                                    <option value="" disabled>Select Country</option>
+                                    <option value="bd">Bangladesh</option>
+                                    <option value="us">United States</option>
+                                    <option value="uk">United Kingdom</option>
                                 </select>
-                            </div>
+                            </form>
                         </div>
+                    </div>
 
-                        {/* Place Order Button at bottom */}
-                        <button
-                            onClick={handlePlaceOrder}
-                            className="mt-8 w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition"
-                        >
-                            Place Order
-                        </button>
+                    {/* Order Summary */}
+                    <div className="w-full md:w-1/3">
+                        <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 sticky top-20 flex flex-col justify-between h-full">
+                            <div>
+                                <h3 className="text-xl font-semibold mb-6 text-gray-800">Order Summary</h3>
+                                <div className="divide-y divide-gray-200 text-sm max-h-[50vh] overflow-y-auto mb-6">
+                                    {cartItems.map((item) => (
+                                        <div key={item.id} className="py-3 flex justify-between text-gray-700">
+                                            <span>
+                                                {item.productName} × {item.quantity}
+                                            </span>
+                                            <span>${(item.newPrice * item.quantity).toFixed(2)}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="border-t border-gray-200 pt-6 text-sm space-y-3 text-gray-800">
+                                    <div className="flex justify-between">
+                                        <span>Subtotal:</span>
+                                        <span>${subtotal.toFixed(2)}</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span>Shipping:</span>
+                                        <span>Free</span>
+                                    </div>
+                                    <div className="flex justify-between font-semibold text-lg border-t border-gray-300 pt-4 mt-4">
+                                        <span>Total:</span>
+                                        <span>${subtotal.toFixed(2)}</span>
+                                    </div>
+                                </div>
+                                <div className="mt-8">
+                                    <h4 className="font-semibold mb-3 text-gray-800">Payment Method</h4>
+                                    <select
+                                        name="paymentMethod"
+                                        value={formState.paymentMethod}
+                                        onChange={handleChange}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                                    >
+                                        <option value="cod">Cash on Delivery</option>
+                                        <option value="card">Credit / Debit Card</option>
+                                        <option value="bkash">bKash / Nagad</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={handlePlaceOrder}
+                                className="mt-8 w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition"
+                            >
+                                Place Order
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };
