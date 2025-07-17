@@ -42,38 +42,35 @@ const ProfilePage = () => {
     );
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 p-4">
+    <div className="min-h-screen p-4">
       <div className="max-w-6xl mx-auto bg-white shadow rounded-lg flex flex-col md:flex-row overflow-hidden">
         {/* Sidebar */}
         <div className="w-full md:w-1/4 p-4 border-b md:border-b-0 md:border-r border-gray-200">
           <div className="space-y-2">
             <button
               onClick={() => setActiveTab("profile")}
-              className={`w-full text-left px-4 py-2 rounded ${
-                activeTab === "profile"
-                  ? "bg-blue-100 font-semibold"
-                  : "hover:bg-gray-100"
-              }`}
+              className={`w-full text-left px-4 py-2 rounded ${activeTab === "profile"
+                ? "bg-blue-100 font-semibold"
+                : "hover:bg-gray-100"
+                }`}
             >
               Profile
             </button>
             <button
               onClick={() => setActiveTab("orders")}
-              className={`w-full text-left px-4 py-2 rounded ${
-                activeTab === "orders"
-                  ? "bg-blue-100 font-semibold"
-                  : "hover:bg-gray-100"
-              }`}
+              className={`w-full text-left px-4 py-2 rounded ${activeTab === "orders"
+                ? "bg-blue-100 font-semibold"
+                : "hover:bg-gray-100"
+                }`}
             >
               My Orders
             </button>
             <button
               onClick={() => setActiveTab("offers")}
-              className={`w-full text-left px-4 py-2 rounded ${
-                activeTab === "offers"
-                  ? "bg-blue-100 font-semibold"
-                  : "hover:bg-gray-100"
-              }`}
+              className={`w-full text-left px-4 py-2 rounded ${activeTab === "offers"
+                ? "bg-blue-100 font-semibold"
+                : "hover:bg-gray-100"
+                }`}
             >
               My Offers
             </button>
@@ -128,21 +125,47 @@ const ProfilePage = () => {
               {cartItems.length === 0 ? (
                 <p className="text-gray-500">No orders yet.</p>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {cartItems.map((item, index) => (
-                    <div
-                      key={index}
-                      className="border p-4 rounded shadow text-sm"
-                    >
-                      <h3 className="font-semibold">{item.title}</h3>
-                      <p>Quantity: {item.quantity}</p>
-                      <p>Price: ${item.price}</p>
-                    </div>
-                  ))}
+                <div className="overflow-x-auto border rounded-lg shadow">
+                  <table className="w-full text-sm text-left">
+                    <thead className="bg-gray-100 border-b">
+                      <tr>
+                        <th className="px-4 py-3 font-medium text-gray-600">Product</th>
+                        <th className="px-4 py-3 font-medium text-gray-600">Quantity</th>
+                        <th className="px-4 py-3 font-medium text-gray-600">Price</th>
+                        <th className="px-4 py-3 font-medium text-gray-600">Subtotal</th>
+                        <th className="px-4 py-3 font-medium text-gray-600">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y">
+                      {cartItems.map((item, index) => (
+                        <tr key={index} className="bg-white">
+                          <td className="px-4 py-3 flex items-center gap-3">
+                            <img
+                              src={item.image}
+                              alt={item.productName}
+                              className="w-12 h-12 object-contain rounded"
+                            />
+                            <span className="font-medium">{item.productName}</span>
+                          </td>
+                          <td className="px-4 py-3">{item.quantity}</td>
+                          <td className="px-4 py-3">${item.newPrice.toFixed(2)}</td>
+                          <td className="px-4 py-3">
+                            ${(item.newPrice * item.quantity).toFixed(2)}
+                          </td>
+                          <td className="px-4 py-3">
+                            <span className="inline-block px-2 py-1 text-xs font-medium text-yellow-800 bg-yellow-100 rounded">
+                              Pending
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               )}
             </div>
           )}
+
 
           {activeTab === "offers" && (
             <div>

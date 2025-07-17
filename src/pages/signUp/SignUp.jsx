@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ import navigate
 import signupImage from "../../assets/images/signupimage/signup-image.png";
 
 const SignUp = () => {
-    const [isLogin, setIsLogin] = useState(false);
+    const navigate = useNavigate(); // ✅ initialize navigate
+    const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -45,17 +47,32 @@ const SignUp = () => {
                 (u) => u.email.toLowerCase() === formData.email.toLowerCase()
             );
 
-            if (!user) return alert("User not found. Please sign up first.");
-            if (user.password !== formData.password) return alert("Incorrect password.");
+            if (!user) {
+                const confirmSignup = window.confirm("User not found. Would you like to sign up?");
+                if (confirmSignup) {
+                    setIsLogin(false);
+                }
+                return;
+            }
+
+            if (user.password !== formData.password) {
+                alert("Incorrect password.");
+                return;
+            }
 
             alert(`Welcome back, ${user.name}!`);
             localStorage.setItem("loggedInUser", user.email);
+            navigate("/"); // ✅ redirect to home
         } else {
             const userExists = storedUsers.some(
                 (u) => u.email.toLowerCase() === formData.email.toLowerCase()
             );
 
-            if (userExists) return alert("User already exists. Please login.");
+            if (userExists) {
+                alert("User already exists. Please login.");
+                setIsLogin(true);
+                return;
+            }
 
             storedUsers.push({
                 name: formData.name.trim(),
@@ -66,7 +83,7 @@ const SignUp = () => {
             localStorage.setItem("users", JSON.stringify(storedUsers));
             localStorage.setItem("loggedInUser", formData.email.trim().toLowerCase());
             alert("Signup successful! You are now logged in.");
-            setIsLogin(true);
+            navigate("/"); // ✅ redirect to home
         }
 
         setFormData({ name: "", email: "", password: "", confirmPassword: "" });
