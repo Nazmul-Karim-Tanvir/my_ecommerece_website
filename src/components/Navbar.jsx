@@ -9,12 +9,10 @@ const Navbar = () => {
     const location = useLocation();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    // Check login status
     useEffect(() => {
         const loggedInUser = localStorage.getItem("loggedInUser");
         setIsLoggedIn(!!loggedInUser);
-    }, [location]); // 👈 rerun whenever route changes
-
+    }, [location]);
 
     const totalQuantity = useCartStore(state =>
         state.cartItems.reduce((total, item) => total + item.quantity, 0)
@@ -37,7 +35,7 @@ const Navbar = () => {
         <nav className="bg-white pt-6 pb-4 px-4 md:px-8 border-b border-gray-300 relative z-50">
             <div className="max-w-[1170px] mx-auto flex items-center justify-between">
                 {/* Brand */}
-                <div className="text-xl font-bold text-gray-900">Exclusive</div>
+                <Link to="/" className="text-xl font-bold text-gray-900">Exclusive</Link>
 
                 {/* Nav Links - Desktop */}
                 <ul className="hidden md:flex gap-8 text-gray-700 font-sans font-medium">
@@ -45,32 +43,17 @@ const Navbar = () => {
                         <li key={link.path}>
                             <Link
                                 to={link.path}
-                                className={`hover:underline hover:underline-offset-4 ${location.pathname === link.path ? 'underline underline-offset-4 text-black font-semibold' : ''
-                                    }`}
+                                className={`hover:underline hover:underline-offset-4 ${location.pathname === link.path ? 'underline underline-offset-4 text-black font-semibold' : ''}`}
                             >
                                 {link.label}
                             </Link>
                         </li>
                     ))}
-
-                    <li>
-                        {isLoggedIn ? (
-                            <Link to="/profilepage" title="Profile">
-                                <UserCircle className="w-6 h-6 text-gray-700 hover:text-blue-600" />
-                            </Link>
-                        ) : (
-                            <Link
-                                to="/signUp"
-                                className="hover:underline hover:underline-offset-4"
-                            >
-                                Sign Up
-                            </Link>
-                        )}
-                    </li>
                 </ul>
 
-                {/* Search + Icons */}
+                {/* Right Side - Search + Icons */}
                 <div className="flex items-center gap-4">
+                    {/* Desktop Search */}
                     <div className="hidden md:flex border border-gray-300 px-3 py-1 rounded-md w-60">
                         <input
                             type="text"
@@ -80,10 +63,12 @@ const Navbar = () => {
                         <Search className="ml-3 w-5 h-5" />
                     </div>
 
+                    {/* Mobile Search Icon */}
                     <div className="md:hidden">
                         <Search className="w-6 h-6 text-gray-700" />
                     </div>
 
+                    {/* Wishlist */}
                     <Link to="/wishList" className="relative text-gray-700">
                         <Heart className="w-6 h-6 hover:text-red-500" />
                         {totalQuantity1 > 0 && (
@@ -93,6 +78,7 @@ const Navbar = () => {
                         )}
                     </Link>
 
+                    {/* Cart */}
                     <Link to="/cart" className="relative text-gray-700">
                         <ShoppingCart className="w-6 h-6 hover:text-blue-500" />
                         {totalQuantity > 0 && (
@@ -102,6 +88,21 @@ const Navbar = () => {
                         )}
                     </Link>
 
+                    {/* Sign In / Profile - Always Visible */}
+                    {isLoggedIn ? (
+                        <Link to="/profilepage" title="Profile">
+                            <UserCircle className="w-6 h-6 text-gray-700 hover:text-blue-600" />
+                        </Link>
+                    ) : (
+                        <Link
+                            to="/signUp"
+                            className="text-sm font-medium text-blue-600 border border-blue-600 rounded-md px-3 py-1 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+                        >
+                            Sign In
+                        </Link>
+                    )}
+
+                    {/* Hamburger - Mobile */}
                     <button className="md:hidden text-gray-700" onClick={toggleMenu}>
                         {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                     </button>
@@ -127,27 +128,6 @@ const Navbar = () => {
                             </Link>
                         </li>
                     ))}
-
-                    <li>
-                        {isLoggedIn ? (
-                            <Link
-                                to="/profilepage"
-                                onClick={() => setMenuOpen(false)}
-                                className="flex items-center gap-2 text-lg"
-                            >
-                                <UserCircle className="w-6 h-6 text-gray-700" />
-                                Profile
-                            </Link>
-                        ) : (
-                            <Link
-                                to="/signUp"
-                                onClick={() => setMenuOpen(false)}
-                                className="block text-lg"
-                            >
-                                Sign Up
-                            </Link>
-                        )}
-                    </li>
                 </ul>
             </div>
         </nav>

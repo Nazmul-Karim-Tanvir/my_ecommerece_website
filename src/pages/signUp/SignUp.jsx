@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import signupImage from "../../assets/images/signupimage/signup-image.png";
 
 const SignUp = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Get redirect path from query parameter, default to "/"
+    const params = new URLSearchParams(location.search);
+    const redirectTo = params.get("redirectTo") || "/";
+
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
         name: "",
@@ -62,7 +68,7 @@ const SignUp = () => {
 
             alert(`Welcome back, ${user.name}!`);
             localStorage.setItem("loggedInUser", user.email);
-            navigate("/");
+            navigate(redirectTo, { replace: true });  // <-- Redirect here after login
         } else {
             const userExists = storedUsers.some(
                 (u) => u.email.toLowerCase() === formData.email.toLowerCase()
@@ -83,7 +89,7 @@ const SignUp = () => {
             localStorage.setItem("users", JSON.stringify(storedUsers));
             localStorage.setItem("loggedInUser", formData.email.trim().toLowerCase());
             alert("Signup successful! You are now logged in.");
-            navigate("/");
+            navigate(redirectTo, { replace: true });  // <-- Redirect here after signup
         }
 
         setFormData({ name: "", email: "", password: "", confirmPassword: "" });
@@ -120,7 +126,10 @@ const SignUp = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     placeholder="Enter your full name"
-                                    className={`w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 ${errors.name ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"}`}
+                                    className={`w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 ${errors.name
+                                            ? "border-red-500 focus:ring-red-500"
+                                            : "border-gray-300 focus:ring-blue-500"
+                                        }`}
                                 />
                                 {errors.name && <p className="text-red-600 text-sm mt-1">{errors.name}</p>}
                             </div>
@@ -136,7 +145,10 @@ const SignUp = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 placeholder="you@example.com"
-                                className={`w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 ${errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"}`}
+                                className={`w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 ${errors.email
+                                        ? "border-red-500 focus:ring-red-500"
+                                        : "border-gray-300 focus:ring-blue-500"
+                                    }`}
                             />
                             {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
                         </div>
@@ -151,7 +163,10 @@ const SignUp = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                                 placeholder="Enter your password"
-                                className={`w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 ${errors.password ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"}`}
+                                className={`w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 ${errors.password
+                                        ? "border-red-500 focus:ring-red-500"
+                                        : "border-gray-300 focus:ring-blue-500"
+                                    }`}
                             />
                             {errors.password && <p className="text-red-600 text-sm mt-1">{errors.password}</p>}
                         </div>
@@ -167,9 +182,14 @@ const SignUp = () => {
                                     value={formData.confirmPassword}
                                     onChange={handleChange}
                                     placeholder="Re-enter your password"
-                                    className={`w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 ${errors.confirmPassword ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"}`}
+                                    className={`w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 ${errors.confirmPassword
+                                            ? "border-red-500 focus:ring-red-500"
+                                            : "border-gray-300 focus:ring-blue-500"
+                                        }`}
                                 />
-                                {errors.confirmPassword && <p className="text-red-600 text-sm mt-1">{errors.confirmPassword}</p>}
+                                {errors.confirmPassword && (
+                                    <p className="text-red-600 text-sm mt-1">{errors.confirmPassword}</p>
+                                )}
                             </div>
                         )}
 
