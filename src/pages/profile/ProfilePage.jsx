@@ -50,8 +50,8 @@ const ProfilePage = () => {
             <button
               onClick={() => setActiveTab("profile")}
               className={`w-full text-left px-4 py-2 rounded ${activeTab === "profile"
-                  ? "bg-blue-100 font-semibold"
-                  : "hover:bg-gray-100"
+                ? "bg-blue-100 font-semibold"
+                : "hover:bg-gray-100"
                 }`}
             >
               Profile
@@ -59,8 +59,8 @@ const ProfilePage = () => {
             <button
               onClick={() => setActiveTab("orders")}
               className={`w-full text-left px-4 py-2 rounded ${activeTab === "orders"
-                  ? "bg-blue-100 font-semibold"
-                  : "hover:bg-gray-100"
+                ? "bg-blue-100 font-semibold"
+                : "hover:bg-gray-100"
                 }`}
             >
               My Orders
@@ -68,8 +68,8 @@ const ProfilePage = () => {
             <button
               onClick={() => setActiveTab("offers")}
               className={`w-full text-left px-4 py-2 rounded ${activeTab === "offers"
-                  ? "bg-blue-100 font-semibold"
-                  : "hover:bg-gray-100"
+                ? "bg-blue-100 font-semibold"
+                : "hover:bg-gray-100"
                 }`}
             >
               My Offers
@@ -88,40 +88,52 @@ const ProfilePage = () => {
         <div className="w-full md:w-3/4 p-6">
           {/* Profile Tab */}
           {activeTab === "profile" && (
-            <div className="text-center">
-              <h2 className="text-2xl font-bold mb-4 text-gray-800">
-                User Profile
-              </h2>
-              {profilePic ? (
-                <img
-                  src={profilePic}
-                  alt="Profile"
-                  className="w-24 h-24 rounded-full object-cover mx-auto shadow mb-4"
+            <div className="max-w-md mx-auto bg-white rounded-lg border border-gray-300 p-8">
+              <h2 className="text-xl font-extrabold mb-6 text-gray-900 text-center">User Profile</h2>
+              <div className="text-center mb-6">
+                {profilePic ? (
+                  <img
+                    src={profilePic}
+                    alt="Profile"
+                    className="w-24 h-24 rounded-full object-cover mx-auto shadow mb-4"
+                  />
+                ) : (
+                  <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 mx-auto shadow mb-4">
+                    No Photo
+                  </div>
+                )}
+
+                <label
+                  htmlFor="profilePicInput"
+                  className="cursor-pointer inline-block bg-indigo-600 text-white px-6 py-2 rounded-full font-semibold
+               hover:bg-indigo-700 transition select-none"
+                >
+                  Upload Profile Picture
+                </label>
+                <input
+                  id="profilePicInput"
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePicUpload}
+                  className="hidden"
                 />
-              ) : (
-                <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 mx-auto shadow mb-4">
-                  No Photo
+              </div>
+
+
+              <div className="space-y-4 text-left text-gray-700">
+                <div>
+                  <p className="text-lg font-medium"><span className="font-semibold pr-2">Name:</span>{user.name}</p>
                 </div>
-              )}
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handlePicUpload}
-                className="mb-4 text-sm"
-              />
-              <div className="space-y-2 text-left mt-4 px-4">
-                <p>
-                  <span className="font-semibold">Full Name:</span> {user.name}
-                </p>
-                <p>
-                  <span className="font-semibold">Email:</span> {user.email}
-                </p>
-                <p>
-                  <span className="font-semibold">Contact:</span> Not set
-                </p>
+                <div>
+                  <p className="text-lg font-medium"><span className="font-semibold pr-2">Email:</span>{user.email}</p>
+                </div>
+                <div>
+                  <p className="text-lg font-medium"><span className="font-semibold pr-2">Contact:</span> Not set</p>
+                </div>
               </div>
             </div>
           )}
+
 
           {/* Orders Tab */}
           {activeTab === "orders" && (
