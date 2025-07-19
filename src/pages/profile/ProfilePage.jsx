@@ -5,7 +5,7 @@ const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [profilePic, setProfilePic] = useState(null);
   const [activeTab, setActiveTab] = useState("profile");
-  const cartItems = useCartStore((state) => state.cartItems);
+  const [orderHistory, setOrderHistory] = useState([]);
 
   useEffect(() => {
     const email = localStorage.getItem("loggedInUser");
@@ -15,6 +15,9 @@ const ProfilePage = () => {
 
     const savedPic = localStorage.getItem("profilePic");
     if (savedPic) setProfilePic(savedPic);
+
+    const allOrders = JSON.parse(localStorage.getItem("orderHistory")) || {};
+    setOrderHistory(allOrders[email] || []);
   }, []);
 
   const handlePicUpload = (e) => {
@@ -81,33 +84,24 @@ const ProfilePage = () => {
               Logout
             </button>
           </div>
-          {/* Logout button at bottom of sidebar */}
-
         </div>
 
-        {/* Content area */}
+        {/* Content Area */}
         <div className="w-full md:w-3/4 p-6">
-          {/* Profile Tab */}
           {activeTab === "profile" && (
             <div className="max-w-md mx-auto bg-white rounded-lg border border-gray-300 p-8">
               <h2 className="text-xl font-extrabold mb-6 text-gray-900 text-center">User Profile</h2>
               <div className="text-center mb-6">
                 {profilePic ? (
-                  <img
-                    src={profilePic}
-                    alt="Profile"
-                    className="w-24 h-24 rounded-full object-cover mx-auto shadow mb-4"
-                  />
+                  <img src={profilePic} alt="Profile" className="w-24 h-24 rounded-full object-cover mx-auto shadow mb-4" />
                 ) : (
                   <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 mx-auto shadow mb-4">
                     No Photo
                   </div>
                 )}
-
                 <label
                   htmlFor="profilePicInput"
-                  className="cursor-pointer inline-block bg-indigo-600 text-white px-6 py-2 rounded-full font-semibold
-               hover:bg-indigo-700 transition select-none"
+                  className="cursor-pointer inline-block bg-indigo-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-indigo-700 transition select-none"
                 >
                   Upload Profile Picture
                 </label>
@@ -119,129 +113,92 @@ const ProfilePage = () => {
                   className="hidden"
                 />
               </div>
-
-
               <div className="space-y-4 text-left text-gray-700">
-                <div>
-                  <p className="text-lg font-medium"><span className="font-semibold pr-2">Name:</span>{user.name}</p>
-                </div>
-                <div>
-                  <p className="text-lg font-medium"><span className="font-semibold pr-2">Email:</span>{user.email}</p>
-                </div>
-                <div>
-                  <p className="text-lg font-medium"><span className="font-semibold pr-2">Contact:</span> Not set</p>
-                </div>
+                <p className="text-lg font-medium"><span className="font-semibold pr-2">Name:</span>{user.name}</p>
+                <p className="text-lg font-medium"><span className="font-semibold pr-2">Email:</span>{user.email}</p>
+                <p className="text-lg font-medium"><span className="font-semibold pr-2">Contact:</span>Not set</p>
               </div>
             </div>
           )}
 
-
-          {/* Orders Tab */}
           {activeTab === "orders" && (
             <div>
-              <h2 className="text-2xl font-bold mb-4 text-gray-800">My Orders</h2>
-              {cartItems.length === 0 ? (
-                <p className="text-gray-500">No orders yet.</p>
+              <h2 className="text-2xl font-bold mb-6 text-gray-800">My Orders</h2>
+              {orderHistory.length === 0 ? (
+                <p className="text-gray-500 text-center py-20">You have no orders yet.</p>
               ) : (
-                <>
-                  {/* Desktop Table */}
-                  <div className="hidden sm:block border rounded-lg shadow-sm overflow-hidden">
-                    <table className="w-full divide-y divide-gray-200 text-sm">
-                      <thead className="bg-gray-100">
-                        <tr>
-                          <th className="p-4 font-medium text-left">Product</th>
-                          <th className="p-4 font-medium text-left">Quantity</th>
-                          <th className="p-4 font-medium text-left">Price</th>
-                          <th className="p-4 font-medium text-left">Subtotal</th>
-                          <th className="p-4 font-medium text-left">Status</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-100 bg-white">
-                        {cartItems.map((item, index) => (
-                          <tr key={index}>
-                            <td className="p-4 flex items-center gap-3 whitespace-normal">
-                              <img
-                                src={item.image}
-                                alt={item.productName || item.title}
-                                className="w-12 h-12 object-contain rounded"
-                              />
-                              <span className="font-medium">
-                                {item.productName || item.title}
-                              </span>
-                            </td>
-                            <td className="p-4">{item.quantity}</td>
-                            <td className="p-4">
-                              ${(item.newPrice ?? item.price).toFixed(2)}
-                            </td>
-                            <td className="p-4">
-                              $
-                              {(
-                                (item.newPrice ?? item.price) * item.quantity
-                              ).toFixed(2)}
-                            </td>
-                            <td className="p-4">
-                              <span className="inline-block px-2 py-1 text-xs font-medium text-yellow-800 bg-yellow-100 rounded">
-                                Pending
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Mobile Card Style */}
-                  <div className="sm:hidden border rounded-lg divide-y divide-gray-200 shadow-sm overflow-hidden">
-                    {cartItems.map((item, index) => (
-                      <div key={index} className="p-4 flex flex-col gap-3 bg-white">
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center gap-4">
-                            <img
-                              src={item.image}
-                              alt={item.productName || item.title}
-                              className="w-16 h-16 object-contain rounded"
-                            />
-                            <div>
-                              <h4 className="font-semibold">
-                                {item.productName || item.title}
-                              </h4>
-                              <p className="text-sm text-gray-600">
-                                ${(item.newPrice ?? item.price).toFixed(2)}
-                              </p>
-                            </div>
-                          </div>
+                <div className="space-y-6">
+                  {orderHistory.map((order) => (
+                    <div
+                      key={order.id}
+                      className="border rounded-lg shadow-sm overflow-hidden bg-white"
+                    >
+                      {/* Header */}
+                      <div className="bg-gray-100 px-6 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center">
+                        <div className="text-lg font-semibold text-gray-800">
+                          Order #{order.id}
                         </div>
-
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">Quantity</span>
-                          <span className="font-medium">{item.quantity}</span>
-                        </div>
-
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">Subtotal</span>
-                          <span className="font-semibold">
-                            $
-                            {(
-                              (item.newPrice ?? item.price) * item.quantity
-                            ).toFixed(2)}
-                          </span>
-                        </div>
-
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">Status</span>
-                          <span className="inline-block px-2 py-1 text-xs font-medium text-yellow-800 bg-yellow-100 rounded">
-                            Pending
-                          </span>
+                        <div className="text-sm text-gray-500 mt-1 sm:mt-0">
+                          {order.date}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </>
+
+                      {/* Items */}
+                      <div className="divide-y divide-gray-100">
+                        {order.items.map((item, idx) => (
+                          <div
+                            key={idx}
+                            className="px-6 py-4 flex items-center justify-between gap-4"
+                          >
+                            <div className="flex items-center gap-4">
+                              {item.image && (
+                                <img
+                                  src={item.image}
+                                  alt={item.productName}
+                                  className="w-14 h-14 object-contain border rounded"
+                                />
+                              )}
+                              <div>
+                                <p className="font-medium text-gray-800">
+                                  {item.productName}
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                  Quantity: {item.quantity}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="font-semibold text-gray-900">
+                              ${(item.newPrice * item.quantity).toFixed(2)}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Footer */}
+                      <div className="px-6 py-4 border-t flex flex-col sm:flex-row sm:justify-between sm:items-center bg-gray-50">
+                        <div
+                          className={`inline-block px-3 py-1 rounded-full text-xs font-medium
+                  ${order.status.toLowerCase() === "pending"
+                              ? "bg-yellow-100 text-yellow-800"
+                              : order.status.toLowerCase() === "completed"
+                                ? "bg-green-100 text-green-800"
+                                : "bg-gray-200 text-gray-800"
+                            }
+                `}
+                        >
+                          {order.status}
+                        </div>
+                        <div className="mt-2 sm:mt-0 font-semibold text-gray-800">
+                          Total: ${order.total.toFixed(2)}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           )}
 
-          {/* Offers Tab */}
           {activeTab === "offers" && (
             <div>
               <h2 className="text-2xl font-bold mb-4 text-gray-800">My Offers</h2>

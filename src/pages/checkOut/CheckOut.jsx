@@ -5,6 +5,7 @@ import useCartStore from '../../store/cartStore';
 const CheckOut = () => {
     const cartItems = useCartStore((state) => state.cartItems);
     const getTotalPrice = useCartStore((state) => state.getTotalPrice);
+    const clearCart = useCartStore((state) => state.clearCart);
     const subtotal = getTotalPrice();
     const navigate = useNavigate();
 
@@ -51,8 +52,24 @@ const CheckOut = () => {
             return;
         }
 
+        // ✅ Save order to order history
+        const existingOrders = JSON.parse(localStorage.getItem('orderHistory')) || {};
+        const userOrders = existingOrders[loggedInUser] || [];
+
+        const newOrder = {
+            id: Date.now(),
+            items: cartItems,
+            total: subtotal,
+            date: new Date().toLocaleString(),
+            status: 'Pending',
+        };
+
+        existingOrders[loggedInUser] = [...userOrders, newOrder];
+        localStorage.setItem('orderHistory', JSON.stringify(existingOrders));
+
         localStorage.removeItem('checkoutFormData');
         setOrderPlaced(true);
+        clearCart();
     };
 
     return (
