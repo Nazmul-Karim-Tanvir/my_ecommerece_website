@@ -3,7 +3,7 @@ import speakerImage from '../../assets/images/offerImages/speaker.svg';
 import { useCountdown } from '../../utils/countdown.js';
 
 const SectionExclusiveOffer = () => {
-    const targetDate = new Date('2025-07-15T00:00:00');
+    const targetDate = new Date('2025-07-22T00:00:00');
     const { days, hours, minutes, seconds, total } = useCountdown(targetDate);
 
     return (
