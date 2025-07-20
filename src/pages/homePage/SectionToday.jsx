@@ -60,7 +60,7 @@ const SectionToday = () => {
                     <div className="flex flex-col md:flex-row items-start md:items-center gap-y-4 md:gap-x-24 font-semibold">
                         <h1 className="text-3xl md:text-4xl">Flash Sales</h1>
                         <div>
-                            <div className="text-sm md:text-base flex gap-4 text-gray-600">
+                            <div className="text-sm md:text-base flex gap-7 text-gray-600">
                                 <span>Days</span>
                                 <span>Hours</span>
                                 <span>Minutes</span>
