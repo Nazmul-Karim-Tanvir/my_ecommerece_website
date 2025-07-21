@@ -26,6 +26,58 @@ const products = {
       oldPrice: 160,
       newPrice: 120,
       offer: "-40%",
+      reviews: [
+        {
+          user: "JohnD",
+          comment: "Nice packaging, fast delivery.",
+          rating: 4,
+        },
+        {
+          user: "DarkHorse",
+          comment: "Love the grip design.",
+          rating: 3,
+        },
+        {
+          user: "AliceW",
+          comment: "Excellent responsiveness and build quality!",
+          rating: 4,
+        },
+        {
+          user: "JohnD",
+          comment: "Packaging could be better.",
+          rating: 3,
+        },
+        {
+          user: "ArminZ",
+          comment: "Packaging could be better.",
+          rating: 3,
+        },
+        {
+          user: "PixelGuy",
+          comment: "Connectivity is fast and stable.",
+          rating: 4,
+        },
+        {
+          user: "ImranSK",
+          comment: "Better than expected at this price.",
+          rating: 3,
+        },
+        {
+          user: "TariqA",
+          comment: "Packaging could be better.",
+          rating: 5,
+        },
+        {
+          user: "ImranSK",
+          comment: "Battery life is impressive.",
+          rating: 4,
+        },
+        {
+          user: "DarkHorse",
+          comment: "Love the grip design.",
+          rating: 4,
+        },
+      ],
     },
     {
       id: 2,
