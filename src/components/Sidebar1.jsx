@@ -70,7 +70,7 @@ const Sidebar1 = () => {
                 <div className="space-y-4">
                     {filteredReviews.length === 0 && <p>No reviews match this filter.</p>}
                     {filteredReviews.map(({ user, comment, rating }, idx) => (
-                        <div key={idx} className="border-b pb-2">
+                        <div key={idx} className="border-b border-gray-300 pb-2">
                             <div className="flex items-center gap-1 mb-1">
                                 <span className="font-semibold">{user}</span>
                                 {[...Array(5)].map((_, i) => (
