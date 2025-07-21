@@ -59,7 +59,7 @@ const Sidebar1 = () => {
                     {selectedFilter && (
                         <button
                             onClick={() => setSelectedFilter(null)}
-                            className="text-sm underline text-blue-600"
+                            className="text-sm underline text-blue-600 py-2"
                         >
                             Clear Filter
                         </button>

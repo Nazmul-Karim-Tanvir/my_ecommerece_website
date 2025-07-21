@@ -64,7 +64,7 @@ const products = {
         },
         {
           user: "TariqA",
-          comment: "Packaging could be better.",
+          comment: "Good value for money.",
           rating: 5,
         },
         {
