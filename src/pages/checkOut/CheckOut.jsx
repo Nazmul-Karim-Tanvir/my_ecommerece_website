@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useCartStore from '../../store/cartStore';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import Swal from 'sweetalert2';
 
 const CheckOut = () => {
     const cartItems = useCartStore((state) => state.cartItems);
@@ -74,11 +72,16 @@ const CheckOut = () => {
         setOrderPlaced(true);
         clearCart();
 
-        // ✅ Show toast and redirect
-        toast.success('Order placed successfully!', {
-            position: 'top-center',
-            autoClose: 2000,
-            onClose: () => navigate('/')
+        // ✅ Show SweetAlert2
+        Swal.fire({
+            title: 'Order Placed!',
+            text: 'Your order was placed successfully.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigate('/');
+            }
         });
     };
 
@@ -87,7 +90,6 @@ const CheckOut = () => {
             <h2 className="text-2xl font-semibold mb-8 text-center sm:text-left text-gray-900">
                 Checkout
             </h2>
-
 
             <div className="flex flex-col md:flex-row gap-8 md:gap-10">
                 {/* Billing Form */}
@@ -230,7 +232,6 @@ const CheckOut = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     );
 };
