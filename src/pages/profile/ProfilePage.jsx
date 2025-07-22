@@ -45,8 +45,8 @@ const ProfilePage = () => {
     );
 
   return (
-    <div className="min-h-screen p-4">
-      <div className="max-w-6xl mx-auto bg-white shadow rounded-lg flex flex-col md:flex-row overflow-hidden">
+    <div className="max-w-[1170px] mx-auto py-5">
+      <div className=" bg-white border border-gray-300 rounded-lg flex flex-col md:flex-row overflow-hidden">
         {/* Sidebar */}
         <div className="w-full md:w-1/4 p-4 border-b md:border-b-0 md:border-r border-gray-200 flex flex-col justify-between">
           <div className="space-y-2">
@@ -89,7 +89,7 @@ const ProfilePage = () => {
         {/* Content Area */}
         <div className="w-full md:w-3/4 p-6">
           {activeTab === "profile" && (
-            <div className="max-w-md mx-auto bg-white rounded-lg border border-gray-300 p-8">
+            <div className="max-w-md mx-auto bg-white rounded-lg border border-gray-200 p-8">
               <h2 className="text-xl font-extrabold mb-6 text-gray-900 text-center">User Profile</h2>
               <div className="text-center mb-6">
                 {profilePic ? (
