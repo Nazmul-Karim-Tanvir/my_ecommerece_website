@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import products from '../../store/products';
 import ProductCard from '../../components/ProductCard';
+import { Link } from 'react-router-dom';
 
 const categories = {
     all: 'All Products',
@@ -27,7 +28,6 @@ const categories = {
 
 const Product = () => {
     const location = useLocation();
-
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [activeCategory, setActiveCategory] = useState('all');
     const [perPage, setPerPage] = useState(4);
@@ -82,14 +82,18 @@ const Product = () => {
     };
 
     return (
-        <div className="max-w-[1170px] mx-auto px-4 py-10">
+        <div className="max-w-[1170px] mx-auto py-10">
+            <div className="text-sm text-gray-500 mb-6 px-0 md:px-0 pb-2">
+                <Link to="/" className="hover:underline">Home</Link> / <span>Products</span>
+            </div>
+
             {/* Row: category dropdown (left) + per page selector (right) */}
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 py-4 border-b-1 border-gray-300">
                 {/* Category dropdown */}
                 <div className="w-full sm:w-auto">
                     <label
                         htmlFor="categorySelect"
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-sm font-semibold text-gray-700 mb-1"
                     >
                         Select Category
                     </label>

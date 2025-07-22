@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Heart, Minus, Plus } from 'lucide-react';
 import products from '../../store/products';
+import useSidebarStore from '../../store/useSidebarStore';
 
 import img1 from '../../assets/images/productDetails/image1.svg';
 import img2 from '../../assets/images/productDetails/image58.svg';
 import img3 from '../../assets/images/productDetails/image61.svg';
 import img4 from '../../assets/images/productDetails/image63.svg';
 
-import ProductCard from '../../components/ProductCard'; // Your ProductCard import
+import ProductCard from '../../components/ProductCard';
 
-// Map categories to nice labels (for breadcrumb)
+// Map categories to nice labels
 const categoryLabels = {
     all: 'All Products',
     today: "Today’s Deals",
@@ -43,14 +44,15 @@ const ProductDetails = () => {
     const [size, setSize] = useState('M');
     const [relatedProducts, setRelatedProducts] = useState([]);
 
+    const openSidebar = useSidebarStore((state) => state.openSidebar);
+
     useEffect(() => {
         const productId = parseInt(id);
         let foundProduct = null;
         let foundCategory = '';
 
-        // Find the product and category by id
         for (const categoryName in products) {
-            const found = products[categoryName].find((item) => item.id === productId);
+            const found = products[categoryName]?.find((item) => item.id === productId);
             if (found) {
                 foundProduct = found;
                 foundCategory = categoryName;
@@ -63,10 +65,9 @@ const ProductDetails = () => {
             setCategory(foundCategory);
             setSelectedImage(foundProduct.image);
 
-            // Find related products (same category, exclude current product)
             const related = products[foundCategory]
-                .filter(item => item.id !== productId)
-                .slice(0, 4); // limit to 4 related products
+                .filter((item) => item.id !== productId)
+                .slice(0, 4);
             setRelatedProducts(related);
         }
     }, [id]);
@@ -74,19 +75,16 @@ const ProductDetails = () => {
     if (!product)
         return <div className="text-center py-10 text-gray-500">Loading...</div>;
 
+    // Only include product image and your imported images if you want to show extra thumbnails
     const thumbnails = [product.image, img1, img2, img3];
 
     return (
         <div className="max-w-[1170px] mx-auto px-4 py-10">
             {/* Breadcrumb */}
             <div className="max-w-[1170px] mx-auto text-sm text-gray-500 mb-6 px-4 md:px-0 pb-6 flex flex-wrap items-center gap-1">
-                <Link to="/" className="hover:underline text-gray-500">
-                    Home
-                </Link>
+                <Link to="/" className="hover:underline text-gray-500">Home</Link>
                 <span>/</span>
-                <Link to="/product" className="hover:underline text-gray-500">
-                    Product
-                </Link>
+                <Link to="/product" className="hover:underline text-gray-500">Product</Link>
                 <span>/</span>
                 <Link
                     to={`/product?category=${category}`}
@@ -110,8 +108,7 @@ const ProductDetails = () => {
                                 alt={`thumb-${idx}`}
                                 onClick={() => setSelectedImage(img)}
                                 className={`w-20 h-20 object-contain rounded-md border-2 cursor-pointer transition-all duration-300
-                  ${selectedImage === img ? 'border-black scale-105' : 'border-gray-300 hover:border-black'}
-                `}
+                  ${selectedImage === img ? 'border-black scale-105' : 'border-gray-300 hover:border-black'}`}
                             />
                         ))}
                     </div>
@@ -132,7 +129,13 @@ const ProductDetails = () => {
                         <h1 className="text-3xl font-semibold text-gray-900">{product.productName}</h1>
                         <div className="flex items-center gap-2 text-yellow-500 mt-1">
                             ★★★★☆
-                            <span className="text-sm text-gray-600">({product.starCount} Reviews)</span>
+                            <span
+                                className="text-sm text-gray-600 cursor-pointer hover:underline"
+                                onClick={() => openSidebar(product?.reviews ?? [], product?.rating ?? 0)}
+                            >
+                                ({product.starCount ?? 0} Reviews)
+                            </span>
+
                             <span className="text-green-600 ml-2 text-sm">In Stock</span>
                         </div>
                         <div className="text-2xl font-bold mt-2">${product.newPrice}</div>
@@ -212,17 +215,13 @@ const ProductDetails = () => {
                     <div className="mt-6 space-y-3 border-t pt-4 text-sm text-gray-700">
                         <div className="flex items-center gap-2">
                             🚚 <span>Free Delivery</span>
-                            <a href="#" className="text-blue-600 underline ml-2">
-                                Enter your postal code
-                            </a>
+                            <a href="#" className="text-blue-600 underline ml-2">Enter your postal code</a>
                         </div>
                         <div className="flex items-center gap-2">
                             🔁 <span>Return Delivery</span>
                             <span className="ml-2">
                                 Free 30 Days Delivery Returns.{' '}
-                                <a href="#" className="underline text-blue-600">
-                                    Details
-                                </a>
+                                <a href="#" className="underline text-blue-600">Details</a>
                             </span>
                         </div>
                     </div>
