@@ -86,7 +86,7 @@ const CheckOut = () => {
     };
 
     return (
-        <div className="max-w-[1170px] mx-auto px-4 py-12">
+        <div className="max-w-[1170px] mx-auto py-12">
             <h2 className="text-2xl font-semibold mb-8 text-center sm:text-left text-gray-900">
                 Checkout
             </h2>
